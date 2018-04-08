@@ -2,6 +2,8 @@
 
 Trabalho 1 de MC302: Biblioteca Virtual
 
+Nesse trabalho, implementaremos uma biblioteca virtual, onde pessoas podem emprestar ou pegar livros emprestados. Os empréstimos poder ser pagos ou gratuitos. Os clientes podem ser pessoas ou estudantes. No caso de estudantes, é necesário cadastrar a instituição de ensino e obter descontos exclusivos. Instituições podem fazer requisições para seus estudantes ou gerenciar seus empréstimos no acervo próprio para seus alunos.
+
 Classes
 
 ## Livro:
