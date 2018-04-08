@@ -21,14 +21,43 @@ Classes
 	 
 
 ## PessoaEmpresta
+#### Atributos
+	id;
+	nome;
+	idade;
+	email;
+	status;
+	saldoDisponivel;
+	livros;
+## Cliente
+	id;
+	nome;
+	idade;
+	documentoRg;
+	email;
 
-## PessoaPega
+	saldoDisponivel;
+	historicoLivros;
+
+## ClienteEstudante
+	super();
+	instituicao;
+	codigoTurma;
+	codigoInscricao;
 
 ## Emprestimo
+	idTransacao;
+	dataEmprestimo;
+	dataDevolucao;
+	livro;
 
 ## EmprestimoPago
+	super();
+	valor;
 
 ## EmprestimoGratuito
+	super();
+	instituicao;
 
 ## Instituicao
 
