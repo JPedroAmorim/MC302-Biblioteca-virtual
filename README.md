@@ -4,17 +4,15 @@ Trabalho 1 de MC302: Biblioteca Virtual
 
 Classes
 
-#Livro:
-	#Atributos
-		codigo;
-		nome;
-		descricao;
-		anoFabricacao;
-		anoValidade;
-		numeroEmprestimos;
-	#Construtor
-	#get/set
-	#toString()	 
+##Livro:
+####Atributos
+	*codigo;
+	*nome;
+	*descricao;
+	*anoFabricacao;
+	*anoValidade;
+	*numeroEmprestimos;
+	 
 
 
 
