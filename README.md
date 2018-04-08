@@ -2,4 +2,20 @@
 
 Trabalho 1 de MC302: Biblioteca Virtual
 
-Classes: PessoaEmpresta, PessoaPega, Livro, Emprestimo, EmprestimoPago, EmprestimoGratuito, Instituicao, Requisicao
+Classes
+
+Livro:
+	Atributos
+		codigo;
+		nome;
+		descricao;
+		anoFabricacao;
+		anoValidade;
+		numeroEmprestimos;
+	Construtor
+	get/set
+	toString()	 
+
+
+
+PessoaEmpresta, PessoaPega, Livro, Emprestimo, EmprestimoPago, EmprestimoGratuito, Instituicao, Requisicao
