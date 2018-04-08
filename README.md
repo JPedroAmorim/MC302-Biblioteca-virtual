@@ -4,8 +4,8 @@ Trabalho 1 de MC302: Biblioteca Virtual
 
 Classes
 
-##Livro:
-####Atributos
+## Livro:
+#### Atributos
 	*codigo;
 	*nome;
 	*descricao;
