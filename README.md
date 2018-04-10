@@ -7,7 +7,7 @@ Nesse trabalho, implementaremos uma biblioteca virtual, onde pessoas podem empre
 Classes
 
 ## Livro:
-#### Atributos
+### Atributos
 	*codigoLivro: String
 	*nome: String
 	*autor: String
@@ -15,6 +15,10 @@ Classes
 	*ano: int
 	*numeroEmprestimos: static int
 	*genero: GeneroLivro(enum)
+	*numLivros: int
+### Metodos:
+	*verificarDisponibilidade();
+
 
 #### Construtor
 	*
@@ -25,7 +29,7 @@ Classes
 	 
 
 ## Pessoa
-#### Atributos
+### Atributos
 	id: static int
 	nome: String
 	idade: int
@@ -44,17 +48,30 @@ Classes
 	historicolivros: ArrayList<Livro>
 	saldoDisponivel: float
 	status: boolean
+### Metodos
 
+	
 ## PessoaAdmin
+### Atributos
 	super()
-	chaveAcesso: int
+	chaveAcesso: 
+### Metodos
+	cadastrarLivro(Livro livro);
+	adicionarCliente(PessoaEstudante estudante);
+	adicionarSaldo(PessoaEstudante estudante, double valor)
+	
 
 ## Emprestimo
 	idTransacao: int 
+	idEstudante: int
 	dataEmprestimo: String
 	dataDevolucao: String
 	codigoLivro: int
-	valor: double
+	valor: 
+### Metodo:
+	atualizaSaldo();
+
+
 
 ## Enum
 
