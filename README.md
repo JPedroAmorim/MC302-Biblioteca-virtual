@@ -58,7 +58,7 @@ Classes
 
 ## Enum
 
-```c
+```j
 enum{
 	BIOLOGIA (45)
 	MATEMATICA (467)
@@ -72,4 +72,4 @@ enum{
 		this.valor = valor;
 	}
 }
-```c
+```
