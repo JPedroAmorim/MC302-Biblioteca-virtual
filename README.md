@@ -8,12 +8,14 @@ Classes
 
 ## Livro:
 #### Atributos
-	*codigo;
-	*nome;
-	*descricao;
-	*anoFabricacao;
-	*anoValidade;
-	*numeroEmprestimos;
+	*codigoLivro: String
+	*nome: String
+	*autor: String
+	*descricao: String
+	*ano: int
+	*numeroEmprestimos: static int
+	*genero: GeneroLivro(enum)
+
 #### Construtor
 	*
 #### Get/Set
@@ -22,45 +24,52 @@ Classes
 	
 	 
 
-## PessoaEmpresta
+## Pessoa
 #### Atributos
-	id;
-	nome;
-	idade;
-	email;
-	status;
-	saldoDisponivel;
-	livros;
-## Cliente
-	id;
-	nome;
-	idade;
-	documentoRg;
-	email;
+	id: static int
+	nome: String
+	idade: int
+	email: String
+#### Metodos
 
-	saldoDisponivel;
-	historicoLivros;
+## Biblioteca
+	clientes: ArrayList<PessoaEstudante>
+	admins: Arraylist<PessoaAdmin>
+	acervo: ArrayList<Livros>
 
-## ClienteEstudante
-	super();
+## PessoaEstudante
+	super()
 	instituicao;
-	codigoTurma;
-	codigoInscricao;
+	RA;
+	historicolivros: ArrayList<Livro>
+	saldoDisponivel: float
+	status: boolean
+
+## PessoaAdmin
+	super()
+	chaveAcesso: int
 
 ## Emprestimo
-	idTransacao;
-	dataEmprestimo;
-	dataDevolucao;
-	livro;
+	idTransacao: int 
+	dataEmprestimo: String
+	dataDevolucao: String
+	codigoLivro: int
+	valor: double
 
-## EmprestimoPago
-	super();
-	valor;
+## Enum
 
-## EmprestimoGratuito
-	super();
-	instituicao;
+```c
+enum{
+	BIOLOGIA (45)
+	MATEMATICA (467)
+	PORTUGUES (12)
+	FISICA (90)
+	QUIMICA (45)
+	GEOGRAFIA (65)
+	HISTORIA (90)
 
-## Instituicao
-
-## Requisicao
+	public enum(float valor){
+		this.valor = valor;
+	}
+}
+```c
