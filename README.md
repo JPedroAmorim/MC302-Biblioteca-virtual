@@ -28,7 +28,7 @@ Classes
 	
 	 
 
-## Pessoa
+## Usuario
 ### Atributos
 	id: static int
 	nome: String
