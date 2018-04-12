@@ -51,4 +51,4 @@ public class Livro {
 		return "Livro [codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", anoFabricacao="
 				+ anoFabricacao + ", anoValidade=" + anoValidade + ", numeroEmprestimos=" + numeroEmprestimos + "]";
 	}	
-}
+} // kjkjkjk
