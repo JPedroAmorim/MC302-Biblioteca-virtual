@@ -1,54 +1,89 @@
-package trabalho1;
 
 public class Livro {
 	
-	private int codigo;
+	private int id;
 	private String nome;
-	private String descricao;
-	private int anoFabricacao;
-	private int anoValidade;
-	private int numeroEmprestimos;
+	private String autor;
+	private String genero;
+	private short edicao;
+	private short ano;
+	private int disponibilidade;
 	
-	public Livro(int codigo, String nome, String descricao, int anoFabricacao, int anoValidade, int numeroEmprestimos) {
-		this.codigo = codigo;
+	public Livro(int id, String nome, String autor, String genero, short edicao, short ano, int disponibilidade) {
+		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
-		this.anoFabricacao = anoFabricacao;
-		this.anoValidade = anoValidade;
-		this.numeroEmprestimos = numeroEmprestimos;
+		this.autor = autor;
+		this.genero = genero;
+		this.edicao = edicao;
+		this.ano = ano;
+		this.disponibilidade = disponibilidade;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getAnoFabricacao() {
-		return anoFabricacao;
+	public String getAutor() {
+		return autor;
 	}
 
-	public int getAnoValidade() {
-		return anoValidade;
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
-	public int getNumeroEmprestimos() {
-		return numeroEmprestimos;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setNumeroEmprestimos(int numeroEmprestimos) {
-		this.numeroEmprestimos = numeroEmprestimos;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
-	@Override
+	public short getEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(short edicao) {
+		this.edicao = edicao;
+	}
+
+	public short getAno() {
+		return ano;
+	}
+
+	public void setAno(short ano) {
+		this.ano = ano;
+	}
+
+	public int getDisponibilidade() {
+		return disponibilidade;
+	}
+
+	public void setDisponibilidade(int disponibilidade) {
+		this.disponibilidade = disponibilidade;
+	}
+
+
 	public String toString() {
-		return "Livro [codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", anoFabricacao="
-				+ anoFabricacao + ", anoValidade=" + anoValidade + ", numeroEmprestimos=" + numeroEmprestimos + "]";
-	}	
-} // kjkjkjk
+		String out = "Nome: "+getNome()+"(ID: "+getId()+")\n";
+		out = out + "Autor: "+getAutor()+"\n";
+		out = out + "Ano: "+getAno()+"\n";
+		out = out + "Edição: "+getEdicao()+"\n";
+		out = out + "Gênero: "+getGenero()+"\n";
+		out = out + "Livros disponiveis: "+getDisponibilidade()+"\n";
+		
+		return out;
+	}
+}
