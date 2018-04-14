@@ -1,22 +1,27 @@
+package trabalho1;
 
 public class Livro {
-	
+
 	private int id;
+	private static int geradorId=0;
 	private String nome;
 	private String autor;
 	private String genero;
-	private short edicao;
-	private short ano;
-	private int disponibilidade;
-	
-	public Livro(int id, String nome, String autor, String genero, short edicao, short ano, int disponibilidade) {
-		this.id = id;
+	private int edicao;
+	private int ano;
+	private int quantLivros;
+	private int livrosDisponiveis;
+
+	public Livro(String nome, String autor, String genero, int edicao, int ano, int quantLivros) {
 		this.nome = nome;
 		this.autor = autor;
 		this.genero = genero;
 		this.edicao = edicao;
 		this.ano = ano;
-		this.disponibilidade = disponibilidade;
+		this.quantLivros = quantLivros;
+		this.livrosDisponiveis = quantLivros;
+		geradorId++;
+		id = geradorId;	
 	}
 
 	public int getId() {
@@ -51,7 +56,7 @@ public class Livro {
 		this.genero = genero;
 	}
 
-	public short getEdicao() {
+	public int getEdicao() {
 		return edicao;
 	}
 
@@ -59,7 +64,7 @@ public class Livro {
 		this.edicao = edicao;
 	}
 
-	public short getAno() {
+	public int getAno() {
 		return ano;
 	}
 
@@ -67,14 +72,28 @@ public class Livro {
 		this.ano = ano;
 	}
 
-	public int getDisponibilidade() {
-		return disponibilidade;
+	public int getQuantLivros() {
+		return quantLivros;
 	}
 
-	public void setDisponibilidade(int disponibilidade) {
-		this.disponibilidade = disponibilidade;
+	public void setQuantLivros(int quantLivros) {
+		this.quantLivros = quantLivros;
 	}
 
+	public int getLivrosDisponiveis() {
+		return livrosDisponiveis;
+	}
+
+	public void setLivrosDisponiveis(int livrosDisponiveis) {
+		this.livrosDisponiveis = livrosDisponiveis;
+	}
+
+	public boolean disponibilidade(int id_livro){
+		if(livrosDisponiveis >= 1)
+			return true;
+		else
+			return false;
+	}
 
 	public String toString() {
 		String out = "Nome: "+getNome()+"(ID: "+getId()+")\n";
@@ -82,8 +101,8 @@ public class Livro {
 		out = out + "Ano: "+getAno()+"\n";
 		out = out + "Edição: "+getEdicao()+"\n";
 		out = out + "Gênero: "+getGenero()+"\n";
-		out = out + "Livros disponiveis: "+getDisponibilidade()+"\n";
-		
+		out = out + "Livros disponiveis: "+getLivrosDisponiveis()+"\n";
+
 		return out;
 	}
 }
