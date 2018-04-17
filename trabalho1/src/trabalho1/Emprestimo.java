@@ -2,59 +2,77 @@ package trabalho1;
 
 public class Emprestimo {
 	
-	private int idTransacao;
-	private int idEstudante;
+	private int idEmprestimo;
+	private int idUsuario;
+	private int idLivro;
 	private String dataEmprestimo;
 	private String dataDevolucao;
-	private int codigoLivro;
-	private int valor;
-	public Emprestimo(int idTransacao, int idEstudante, String dataEmprestimo, String dataDevolucao, int codigoLivro,
-			int valor) {
-		this.idTransacao = idTransacao;
-		this.idEstudante = idEstudante;
+	private float valor;
+	
+	public Emprestimo(int idEmprestimo, int idUsuario, int idLivro, String dataEmprestimo, String dataDevolucao,
+					  float valor){
+		this.idEmprestimo = idEmprestimo;
+		this.idUsuario = idUsuario;
+		this.idLivro = idLivro;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucao = dataDevolucao;
-		this.codigoLivro = codigoLivro;
 		this.valor = valor;
 	}
-	public int getIdTransacao() {
-		return idTransacao;
+
+	public int getIdEmprestimo() {
+		return idEmprestimo;
 	}
-	public void setIdTransacao(int idTransacao) {
-		this.idTransacao = idTransacao;
+
+	public void setIdEmprestimo(int idEmprestimo) {
+		this.idEmprestimo = idEmprestimo;
 	}
-	public int getIdEstudante() {
-		return idEstudante;
+
+	public int getIdUsuario() {
+		return idUsuario;
 	}
-	public void setIdEstudante(int idEstudante) {
-		this.idEstudante = idEstudante;
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
+
+	public int getIdLivro() {
+		return idLivro;
+	}
+
+	public void setIdLivro(int idLivro) {
+		this.idLivro = idLivro;
+	}
+
 	public String getDataEmprestimo() {
 		return dataEmprestimo;
 	}
+
 	public void setDataEmprestimo(String dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
+
 	public String getDataDevolucao() {
 		return dataDevolucao;
 	}
+
 	public void setDataDevolucao(String dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
-	public int getCodigoLivro() {
-		return codigoLivro;
-	}
-	public void setCodigoLivro(int codigoLivro) {
-		this.codigoLivro = codigoLivro;
-	}
-	public int getValor() {
+	
+	public float getValor() {
 		return valor;
 	}
-	public void setValor(int valor) {
+
+	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	public void atualizaSaldo(PessoaEstudante cliente) {
-		cliente.setSaldoDisponivel(cliente.getSaldoDisponivel() - valor);
-	}
 
+	public String toString() {
+		String out = "Emprestimo: "+getIdEmprestimo()+"\n";
+		out = out + "Usuario: "+getIdUsuario()+"\n";
+		out = out + "Livro: "+getIdLivro()+"\n";
+		out = out + "Valor: R$"+getValor()+"\n";
+		
+		return out;
+	}
 }
