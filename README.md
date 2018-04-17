@@ -37,7 +37,7 @@ Classes
 #### Metodos
 
 ## Biblioteca
-	clientes: ArrayList<PessoaEstudante>
+	usuarios: ArrayList<PessoaEstudante>
 	admins: Arraylist<PessoaAdmin>
 	acervo: ArrayList<Livros>
 
@@ -90,3 +90,5 @@ enum{
 	}
 }
 ```
+
+usuario 
