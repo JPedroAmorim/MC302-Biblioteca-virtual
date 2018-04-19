@@ -91,6 +91,18 @@ Classes
 	atualizaSaldo();
 
 
+## Gerenciador  
+
+### Metodos:
+    geradorUsuario();
+    checaUsuario();
+    opcoesUsuario();
+    opcoesUsuarioEstudante();
+    novoEmprestimo();
+    addAmigo();
+    infoUsuario();
+    alteraDados();
+    finalizaEmprestimo();
 
 ## Enum
 

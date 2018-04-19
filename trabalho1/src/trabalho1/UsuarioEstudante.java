@@ -5,10 +5,11 @@ public class UsuarioEstudante extends Usuario{
 	private String instituicao;
 	private int ra;
 	
-	public UsuarioEstudante(String nome, String dataNasc, String email, boolean status, String instituicao, int ra) {
-		super(nome, dataNasc, email, status);
+	public UsuarioEstudante(String nome, String senha, String dataNasc, String email, boolean status, String instituicao, int ra) {
+		super(nome, senha, dataNasc, email, status);
 		this.instituicao = instituicao;
 		this.ra = ra;
+		Biblioteca.usuarios.add(this);
 	}
 
 	public String getInstituicao() {
@@ -28,7 +29,8 @@ public class UsuarioEstudante extends Usuario{
 	}
 	
 	public String toString() {
-		String out = "Intituicao: "+getInstituicao()+"\n";
+		String out = super.toString();
+		out = out + "Instituicao: "+getInstituicao()+"\n";
 		out = out + "Ra: "+getRa()+"\n";
 		
 		return out;
