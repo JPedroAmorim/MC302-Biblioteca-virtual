@@ -16,7 +16,6 @@ public class Emprestimo {
 					  float valor){
 	    Random geraIdRandom = new Random(geradorId);
 	    this.idEmprestimo = geraIdRandom.nextInt();
-	    geradorId++;
 		this.idUsuario = idUsuario;
 		this.idLivro = idLivro;
 		this.dataEmprestimo = dataEmprestimo;
@@ -72,6 +71,14 @@ public class Emprestimo {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	
+	public boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	public String toString() {
 		String out = "Emprestimo: "+getIdEmprestimo()+"\n";
@@ -79,6 +86,11 @@ public class Emprestimo {
 		out = out + "Livro: "+getIdLivro()+"\n";
 		out = out + "Valor: R$"+getValor()+"\n";
 		
+		if(getAtivo())
+			out = out + "O livro ainda esta emprestado\n";
+		else
+			out = out + "O livro ja foi devolvido\n";
+
 		return out;
 	}
 }

@@ -1,5 +1,0 @@
-package trabalho1;
-
-public enum Catalogo {
-	MATEMATICA, BIOLOGIA, PORTUGUES, HISTORIA, GEOGRAFIA, FISICA, QUIMICA	
-}
