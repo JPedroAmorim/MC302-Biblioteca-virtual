@@ -5,7 +5,8 @@ import java.util.Scanner;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e legível - IMPORTANTE: todos seus métodos são estáticos e ela não possui atributos - Classe Abstrata
+public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e legível -
+							// IMPORTANTE: todos seus métodos são estáticos e ela não possui atributos
 
     // Metódo geradorUsuario: Gera um um objeto Usuario ou UsuarioEstudante com os dados fornecidos pela entrada
 
@@ -80,6 +81,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
 
     /* Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado (nome e senha batem com os dados na AL), e -1 se o usuário
        não existir. Recebe como parâmetro o nome e senha do usuário.  */
+    
 
     public static int login() { // TODO: Tratar o caso do UsuarioAdmin...
         Scanner sc = new Scanner(System.in);

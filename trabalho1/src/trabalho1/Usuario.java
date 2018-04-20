@@ -1,7 +1,8 @@
 package trabalho1;
 
 import java.util.ArrayList;
-import java.util.Random; // Fiz um random com seed do geradorId para que cada Id seja um número único e aleatório, como nos sistemas reais
+import java.util.Random; // Fiz um random com seed do geradorId para que cada Id seja um número único e 
+						//	aleatório, como nos sistemas reais
 
 public class Usuario {
 
@@ -31,7 +32,6 @@ public class Usuario {
 		this.amigos = new ArrayList<Object>();
 		Random geradorIdRandom = new Random(geradorId);
 		this.id = geradorIdRandom.nextInt();
-		geradorId++;
 		Biblioteca.usuarios.add(this);
 	}
 
@@ -94,9 +94,7 @@ public class Usuario {
 	// @Overrride
 	public String toString() { // Alterei o toString para os novos atributos adicionados...
 		String out = "Nome: "+getNome()+" (ID: "+getId()+")\n";
-
 		out = out + "Data de nascimento: "+getDataNasc()+"\n";
-
 		out = out + "Email: "+getEmail()+"\n";
 
 		if(getStatus()) {

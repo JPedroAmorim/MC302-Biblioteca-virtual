@@ -1,19 +1,21 @@
 package trabalho1;
 
+import java.util.Random;
+
 public class Livro {
 
 	private int id;
 	private static int geradorId=0;
 	private String nome;
 	private String autor;
-	private String genero;
+	private Genero genero;
 	private int edicao;
 	private int ano;
 	private int quantLivros;
 	private int livrosDisponiveis;
 	private int valorDeEmprestimo;
 
-	public Livro(String nome, String autor, String genero, int edicao, int ano, int quantLivros) {
+	public Livro(String nome, String autor, Genero genero, int edicao, int ano, int quantLivros) {
 		this.nome = nome;
 		this.autor = autor;
 		this.genero = genero;
@@ -21,8 +23,8 @@ public class Livro {
 		this.ano = ano;
 		this.quantLivros = quantLivros;
 		this.livrosDisponiveis = quantLivros;
-		geradorId++;
-		id = geradorId;	
+		Random geradorIdRandom = new Random(geradorId); // Adcionei o random aqui tambem como o Amorim fez no usiarios
+		this.id = geradorIdRandom.nextInt();	
 	}
 
 	public int getId() {
@@ -49,11 +51,11 @@ public class Livro {
 		this.autor = autor;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
