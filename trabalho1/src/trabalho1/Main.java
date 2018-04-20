@@ -16,13 +16,13 @@ public class Main {
             Gerenciador.geradorUsuario();
         }
 
-        int resultado = Gerenciador.checaUsuario();
+        int resultado = Gerenciador.login();
 
         if (resultado == -1) { // Resultado == -1 significa que o usuario não está no AL da biblioteca...
 
             while (resultado == -1) {
                 System.out.println("Usuario ou senha incorretos!");
-                resultado = Gerenciador.checaUsuario();
+                resultado = Gerenciador.login();
             }
 
         } else {// Decidi diferenciar o tratamento de Usuario e UsuarioEstudante pois podemos adicionar métodos exclusivos à UsuarioEstudante no futuro...

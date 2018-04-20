@@ -75,6 +75,8 @@ public class Emprestimo {
 
 	public String toString() {
 		String out = "Emprestimo: "+getIdEmprestimo()+"\n";
+		out = out + "Data do empréstimo: " + getDataEmprestimo() + "\n";
+		out = out + "Data de devolução: " + getDataDevolucao() + "\n";
 		out = out + "Usuario: "+getIdUsuario()+"\n";
 		out = out + "Livro: "+getIdLivro()+"\n";
 		out = out + "Valor: R$"+getValor()+"\n";

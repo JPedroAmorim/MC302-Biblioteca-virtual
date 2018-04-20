@@ -11,6 +11,7 @@ public class Livro {
 	private int ano;
 	private int quantLivros;
 	private int livrosDisponiveis;
+	private int valorDeEmprestimo;
 
 	public Livro(String nome, String autor, String genero, int edicao, int ano, int quantLivros) {
 		this.nome = nome;
@@ -88,7 +89,11 @@ public class Livro {
 		this.livrosDisponiveis = livrosDisponiveis;
 	}
 
-	public boolean disponibilidade(int id_livro){
+	public int getValorDeEmprestimo () { return valorDeEmprestimo; }
+
+    public void setValorDeEmprestimo(int valorDeEmprestimo) { this.valorDeEmprestimo = valorDeEmprestimo; }
+
+    public boolean disponibilidade(int id_livro){
 		if(livrosDisponiveis >= 1)
 			return true;
 		else
