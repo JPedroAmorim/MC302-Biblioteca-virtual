@@ -7,12 +7,14 @@ import java.util.Random; // Fiz um random com seed do geradorId para que cada Id
 public class Usuario {
 
 	private int id;
-	private static int geradorId=0;
+	private static int geradorId = 0;
 	private String nome;
 	private String senha;
 	private String dataNasc;
 	private String email;
 	private boolean status;
+	private float saldo;
+	private String infoPagamento;
 	private ArrayList<Livro> livrosEmprestados;
 	private ArrayList<Emprestimo> emprestimosAtivos;
 	private ArrayList<Object> amigos; // Pode ser um amigo Usuario ou Usuario estudante, daí a AL heterogênea
@@ -23,6 +25,8 @@ public class Usuario {
 		this.dataNasc = dataNasc;
 		this.email = email;
 		this.status = status;
+		this.saldo = 0;
+		this.infoPagamento = null;
 		this.livrosEmprestados = new ArrayList<Livro>();
 		this.emprestimosAtivos = new ArrayList<Emprestimo>();
 		this.amigos = new ArrayList<Object>();
@@ -74,6 +78,18 @@ public class Usuario {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	public ArrayList<Object> getAmigos() { return amigos ;}
+
+	public ArrayList<Emprestimo> getEmprestimosAtivos() { return emprestimosAtivos; }
+
+	public float getSaldo() { return saldo; }
+
+	public void setSaldo(float saldo) { this.saldo = saldo; }
+
+	public String getInfoPagamento() { return infoPagamento; }
+
+	public void setInfoPagamento(String infoPagamento) { this.infoPagamento = infoPagamento; }
 
 	// @Overrride
 	public String toString() { // Alterei o toString para os novos atributos adicionados...
