@@ -36,7 +36,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
 
         String email = sc.next();
 
-        System.out.println("Você é estudante de alguma instituição de ensino superior?");
+        System.out.println("Você é estudante de alguma instituição de ensino superior? (Sim/Nao)");
 
         if (sc.next().equals("Sim")) {
 
@@ -239,6 +239,9 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
                 }
             }
         }
+        
+        //ADICIONAR: erros caso o usuario adicione um amigo que ja consta na sua lista ou adicione a si proprio
+        
         System.out.println("Perdão, não conseguimos encontrar um usuário com esse nome"); // Se ele não retornou no for, é porque o usuário não existe
     }
 
