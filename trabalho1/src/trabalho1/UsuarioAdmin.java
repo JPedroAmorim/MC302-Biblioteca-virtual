@@ -13,6 +13,4 @@ public class UsuarioAdmin extends Usuario {
     public void adicionarUsuario(Usuario usuario) {
 	    Biblioteca.usuarios.add(usuario);
     }
-
-
 }
