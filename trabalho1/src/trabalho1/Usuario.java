@@ -132,19 +132,32 @@ public class Usuario {
             out = out + "Status: Negativo\n";
         }
 
+
         out = out + "Livros do Usuário\n";
+
+		out = out + "Saldo R$: "+getSaldo()+"\n";
+		
+		out = out + "Livros Emprestados:\n";
 
         for (int i = 0; i < livrosDoUsuario.size(); i++) {
             out = out + livrosDoUsuario.get(i).getNome() + "\n";
         }
 
+
         out = out + "Empréstimos ativos\n";
+
+		out = out + "Empréstimos ativos:\n";
+
 
         for (int i = 0; i < emprestimosAtivos.size(); i++) {
             out = out + "Id do empréstimo ativo número " + i + "é " + emprestimosAtivos.get(i).getIdEmprestimo() + "\n";
         }
 
+
         out = out + "Amigos do Usuario " + getNome() + "\n";
+
+		out = out + "Seus amigos:\n";
+
 
         for (int i = 0; i < amigos.size(); i++) {
             out = out + amigos.get(i).getNome() + "\n";

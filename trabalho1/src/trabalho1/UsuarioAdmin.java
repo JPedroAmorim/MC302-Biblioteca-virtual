@@ -113,6 +113,4 @@ public class UsuarioAdmin extends Usuario {
         }
 
     }
-
-
 }
