@@ -11,20 +11,20 @@ public class Livro {
 	private Genero genero;
 	private int edicao;
 	private int ano;
-	private int quantLivros;
 	private int livrosDisponiveis;
-	private int valorDeEmprestimo;
+	private float valorDeEmprestimo;
 
-	public Livro(String nome, String autor, Genero genero, int edicao, int ano, int quantLivros) {
+	public Livro(String nome, String autor, Genero genero, int edicao, int ano, int livrosDisponiveis, float valorDeEmprestimo) {
 		this.nome = nome;
 		this.autor = autor;
 		this.genero = genero;
 		this.edicao = edicao;
 		this.ano = ano;
-		this.quantLivros = quantLivros;
-		this.livrosDisponiveis = quantLivros;
+		this.livrosDisponiveis = livrosDisponiveis;
+		this.valorDeEmprestimo = valorDeEmprestimo;
 		Random geradorIdRandom = new Random(geradorId); // Adcionei o random aqui tambem como o Amorim fez no usiarios
-		this.id = geradorIdRandom.nextInt();	
+		this.id = geradorIdRandom.nextInt();
+		geradorId++; // Mesmo motivo de usuário.
 	}
 
 	public int getId() {
@@ -75,14 +75,6 @@ public class Livro {
 		this.ano = ano;
 	}
 
-	public int getQuantLivros() {
-		return quantLivros;
-	}
-
-	public void setQuantLivros(int quantLivros) {
-		this.quantLivros = quantLivros;
-	}
-
 	public int getLivrosDisponiveis() {
 		return livrosDisponiveis;
 	}
@@ -91,7 +83,7 @@ public class Livro {
 		this.livrosDisponiveis = livrosDisponiveis;
 	}
 
-	public int getValorDeEmprestimo () { return valorDeEmprestimo; }
+	public float getValorDeEmprestimo () { return valorDeEmprestimo; }
 
     public void setValorDeEmprestimo(int valorDeEmprestimo) { this.valorDeEmprestimo = valorDeEmprestimo; }
 

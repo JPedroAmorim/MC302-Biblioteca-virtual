@@ -25,17 +25,10 @@ public class Main {
                 resultado = Gerenciador.login();
             }
 
-        } else {// Decidi diferenciar o tratamento de Usuario e UsuarioEstudante pois podemos adicionar métodos exclusivos à UsuarioEstudante no futuro...
-            if (Biblioteca.usuarios.get(resultado) instanceof Usuario) { // TODO: Caso em que o objeto é um UsuarioEstudante ou o UsuarioAdmin, quando definirmos os métodos exclusivos desses
-                Usuario usuarioAtual = ((Usuario) Biblioteca.usuarios.get(resultado));
+        } else {
+           while (Gerenciador.opcoesUsuario(Biblioteca.usuarios.get(resultado)));
 
-                int opcao1 = Gerenciador.opcoesUsuario(usuarioAtual);
-
-                while (opcao1 != 6) {
-                    opcao1 = Gerenciador.opcoesUsuario(usuarioAtual);
-                }
-
-            }
+           System.out.println("Obrigado por utilizar a biblioteca virtual!");
         }
     }
 }
