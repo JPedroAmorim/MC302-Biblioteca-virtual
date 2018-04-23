@@ -2,7 +2,6 @@ package trabalho1;
 
 import java.util.ArrayList;
 import java.util.Random; // Fiz um random com seed do geradorId para que cada Id seja um número único e 
-//	aleatório, como nos sistemas reais
 
 public class Usuario {
 
@@ -18,7 +17,7 @@ public class Usuario {
     private ArrayList<Mensagem> mensagens;
     private ArrayList<Livro> livrosDoUsuario;
     private ArrayList<Emprestimo> emprestimosAtivos;
-    private ArrayList<Usuario> amigos; // Pode ser um amigo Usuario ou Usuario estudante, daí a AL heterogênea
+    private ArrayList<Usuario> amigos; // Pode ser um amigo Usuario ou Usuario estudante
 
     public Usuario(String nome, String senha, String dataNasc, String email, boolean status) {
         this.nome = nome;
@@ -34,7 +33,7 @@ public class Usuario {
         this.amigos = new ArrayList<Usuario>();
         Random geradorIdRandom = new Random(geradorId);
         this.id = geradorIdRandom.nextInt();
-        geradorId++; // Precisa ser atualizado, se não sempre teremos o mesmo número aleatório de id p/ todos usuários -> porque a seed dele sempre será geradorId = 0.
+        geradorId++;
         Biblioteca.usuarios.add(this);
     }
 
@@ -118,8 +117,6 @@ public class Usuario {
         return mensagens;
     }
 
-
-
     // @Overrride
     public String toString() {
         String out = "Nome: " + getNome() + " (ID: " + getId() + ")\n";
@@ -132,38 +129,25 @@ public class Usuario {
             out = out + "Status: Negativo\n";
         }
 
-
         out = out + "Livros do Usuário\n";
-
 		out = out + "Saldo R$: "+getSaldo()+"\n";
-		
 		out = out + "Livros Emprestados:\n";
 
         for (int i = 0; i < livrosDoUsuario.size(); i++) {
             out = out + livrosDoUsuario.get(i).getNome() + "\n";
         }
 
-
-        out = out + "Empréstimos ativos\n";
-
 		out = out + "Empréstimos ativos:\n";
-
 
         for (int i = 0; i < emprestimosAtivos.size(); i++) {
             out = out + "Id do empréstimo ativo número " + i + "é " + emprestimosAtivos.get(i).getIdEmprestimo() + "\n";
         }
 
-
         out = out + "Amigos do Usuario " + getNome() + "\n";
-
 		out = out + "Seus amigos:\n";
-
-
         for (int i = 0; i < amigos.size(); i++) {
             out = out + amigos.get(i).getNome() + "\n";
         }
         return out;
     }
 }
-	
-
