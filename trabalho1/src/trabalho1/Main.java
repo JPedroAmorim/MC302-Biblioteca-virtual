@@ -12,13 +12,13 @@ public class Main {
 
         int opcao = sc.nextInt();
 
-        if (opcao == 1) { // Apenas importa se opcao for == 1, pra ser franco.
+        if (opcao == 1) { 
             Gerenciador.geradorUsuario();
         }
 
         int resultado = Gerenciador.login();
 
-        if (resultado == -1) { // Resultado == -1 significa que o usuario não está no AL da biblioteca...
+        if (resultado == -1) { // Resultado == -1 significa que o usuario não está no AL da biblioteca
 
             while (resultado == -1) {
                 System.out.println("Usuario ou senha incorretos!");
