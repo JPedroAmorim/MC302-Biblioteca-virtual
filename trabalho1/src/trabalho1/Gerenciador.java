@@ -1,18 +1,18 @@
 package trabalho1;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+//import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e legível -
-    // IMPORTANTE: todos seus métodos são estáticos e ela não possui atributos
+public class Gerenciador {
+	 // Essa classe basicamente deixa a main mais enxuta e legível 
+     //  todos seus métodos são estáticos e ela não possui atributos
 
     // Metódo geradorUsuario: Gera um um objeto Usuario ou UsuarioEstudante com os dados fornecidos pela entrada
-
     public static void geradorUsuario() {
         Scanner sc = new Scanner(System.in);
         String nome;
@@ -64,7 +64,8 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         }
     }
 
-    // Método checaUsuário: Retorna o índice de um usuário caso ele exista (nome consta na AL usuarios). Caso contrário, retorna -1.
+    // Método checaUsuário: Retorna o índice de um usuário caso ele exista (nome consta na AL usuarios). 
+    // Caso contrário, retorna -1.
 
     public static int checaUsuario(String nome) {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
@@ -73,10 +74,12 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         return -1; // Se não retornou no for, o usuário não existe
     }
 
-    /* Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado (nome e senha batem com os dados na AL), e -1 se o usuário
-       não existir. Recebe como parâmetro o nome e senha do usuário.  */
+    // Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado 
+    // (nome e senha batem com os dados na AL), e -1 se o usuário  não existir.
+    // Recebe como parâmetro o nome e senha do usuário. 
+    
 
-    private static boolean trataExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) { // Tratar -> Usuário se adicionar e/ou adicionar alguém que já tá na sua lista de amigos
+    private static boolean trataExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) { 
         for (int i = 0; i < usuarioAtual.getAmigos().size(); i++) {
             if (usuarioAlvo.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
                 System.out.println("O usuário já está adicionado na sua lista de amigos!");
@@ -90,7 +93,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         return false;
     }
 
-    public static int login() { // TODO: Tratar o caso do UsuarioAdmin...
+    public static int login() { 
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Por favor, digite seu usuário: ");
@@ -108,14 +111,15 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         return -1;
     }
 
-    // Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas. Se houver 16 caracteres na string (como em um número de cartão da vida real), retorna true.
+    // Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas.
+    // Se houver 16 caracteres na string (como em um número de cartão da vida real), retorna true.
 
     private static boolean pagamentoValido(String infoPagamento) {
         return (infoPagamento.length() == 16);
     }
 
-    /* Método opcoesUsuario: Recebe do usuário pela entrada padrão e realiza a opção desejada. Enquanto não retorna,
-   ele continua a ser executado pela main em loop.  */
+   // Método opcoesUsuario: Recebe do usuário pela entrada padrão e realiza a opção desejada. Enquanto não retorna,
+   // ele continua a ser executado pela main em loop.  */
 
     public static boolean opcoesUsuario(Usuario usuarioAtual) {
         System.out.println("Olá " + usuarioAtual.getNome() + " !");
@@ -152,7 +156,6 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
                 return false;
             }
         }
-
 
         System.out.println("1 - Realizar um empréstimo com a Biblioteca Virtual");
         System.out.println("2 - Realizar um empréstimo com um usuário da Biblioteca Virtual");
@@ -264,14 +267,15 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         }
     }
 
-    /*  Método novoEmprestimo: Cria um novo empréstimo. Para conseguir as datas de entrega e devolucao do empréstimo, foi utilizado as classes Date e Calendar. Caso o empréstimo não possa ser realizado,
-      mensagens de erro são impressas. */
+    // Método novoEmprestimo: Cria um novo empréstimo. Para conseguir as datas de entrega e devolucao
+    // do empréstimo, foi utilizado as classes Date e Calendar. Caso o empréstimo não possa ser realizado,
+    //  mensagens de erro são impressas. 
 
     private static void novoEmprestimo(Usuario usuarioAtual, @Nullable Usuario usuarioEmprestador, @Nullable Cupom cupom) {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Por favor, digite o nome do livro que você deseja fazer um empréstimo");
-        String nome = sc.next(); // Caso queiram entender o que tá rolando aqui, a documentação do Oracle pra essas duas classes é bem show
+        String nome = sc.next();
 
         Calendar cal = Calendar.getInstance();
 
@@ -361,7 +365,8 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         }
     }
 
-    // Método adicionarAmigo: Adiciona um usuário na AL amigos do usuário atual. Caso o usuário a ser adicionado não exista, imprime uma mensagem de erro.
+    // Método adicionarAmigo: Adiciona um usuário na AL amigos do usuário atual. Caso o usuário a
+    // ser adicionado não exista, imprime uma mensagem de erro.
 
     private static void adicionarAmigo(Usuario usuarioAtual) {
         Scanner sc = new Scanner(System.in);
@@ -378,8 +383,6 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         } else { // i == -1 -> Usuário não existe
             System.out.println("Perdão, não conseguimos encontrar um usuário com esse nome");
         }
-        
-        //ADICIONAR: erros caso o usuario adicione um amigo que ja consta na sua lista ou adicione a si proprio
         
         System.out.println("Perdão, não conseguimos encontrar um usuário com esse nome"); // Se ele não retornou no for, é porque o usuário não existe
 
@@ -510,7 +513,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
 
         if (opcao == 1) {
             for (int i = 0; i < usuarioAtual.getMensagens().size(); i++) {
-                if (!usuarioAtual.getMensagens().get(i).isLido()) {
+                if (!usuarioAtual.getMensagens().get(i).getLido()) {
                     System.out.println(usuarioAtual.getMensagens().get(i));
                     usuarioAtual.getMensagens().get(i).setLido(true);
                 }
@@ -518,7 +521,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         } else if (opcao == 2) {
             for (int i = 0; i < usuarioAtual.getMensagens().size(); i++) {
                 System.out.println(usuarioAtual.getMensagens().get(i));
-                if (!usuarioAtual.getMensagens().get(i).isLido())
+                if (!usuarioAtual.getMensagens().get(i).getLido())
                     usuarioAtual.getMensagens().get(i).setLido(true);
             }
         } else {
@@ -531,7 +534,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if (Biblioteca.usuarios.get(i) instanceof UsuarioEstudante) {
                 if (usuarioAtual.getInstituicao().equals(((UsuarioEstudante) Biblioteca.usuarios.get(i)).getInstituicao())) {
-                    System.out.println("Usuário " + Biblioteca.usuarios.get(i).getNome() + " Também pertence à " + usuarioAtual.getInstituicao());
+                    System.out.println("Usuário " + Biblioteca.usuarios.get(i).getNome() + " também pertence à " + usuarioAtual.getInstituicao()); // aqui esta imprimindo duas vezes
                     flag++;
                 }
             }
@@ -543,7 +546,7 @@ public class Gerenciador { // Essa classe basicamente deixa a main mais enxuta e
     public static int checaCupom(String codigo) {
         for (int i = 0; i < Biblioteca.cupons.size(); i++) {
             if (Biblioteca.cupons.get(i).getCodigo().equals(codigo)) {
-                if (!Biblioteca.cupons.get(i).isFoiUsado()) {
+                if (!Biblioteca.cupons.get(i).getFoiUsado()) {
                     return i;
                 } else {
                     System.out.println("Cupom já utilizado!");

@@ -1,6 +1,6 @@
 package trabalho1;
 
-import java.util.Random; // Mesmo esquema de Usuario
+import java.util.Random; 
 
 public class Emprestimo {
 
@@ -11,13 +11,13 @@ public class Emprestimo {
     private String dataEmprestimo;
     private String dataDevolucao;
     private float valor;
-    private boolean ativo; // Achei necessário saber se um empréstimo ainda está rolando ou não
+    private boolean ativo; 
 
     public Emprestimo(int idLivro, int idUsuario, String dataEmprestimo, String dataDevolucao,
                       float valor) {
-        Random geraIdRandom = new Random(geradorId);
+        Random geraIdRandom = new Random(geradorId); // Gera um id unico para dad livro
         this.idEmprestimo = geraIdRandom.nextInt();
-        geradorId++; // Precisa ser atualizado pelo mesmo motivo de Usuário.
+        geradorId++; 
         this.idUsuario = idUsuario;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;

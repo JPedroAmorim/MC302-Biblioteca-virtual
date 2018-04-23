@@ -20,7 +20,7 @@ public class Cupom {
         this.codigo = codigo;
     }
 
-    public boolean isFoiUsado() {
+    public boolean getFoiUsado() {
         return foiUsado;
     }
 
@@ -37,7 +37,6 @@ public class Cupom {
     }
 
     // @Override
-
     public String toString() {
         String out = "Código do cupom: " + getCodigo() + "\n";
         if(foiUsado) {

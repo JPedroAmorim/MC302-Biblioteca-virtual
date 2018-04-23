@@ -22,9 +22,9 @@ public class Livro {
 		this.ano = ano;
 		this.livrosDisponiveis = livrosDisponiveis;
 		this.valorDeEmprestimo = valorDeEmprestimo;
-		Random geradorIdRandom = new Random(geradorId); // Adcionei o random aqui tambem como o Amorim fez no usiarios
+		Random geradorIdRandom = new Random(geradorId); 
 		this.id = geradorIdRandom.nextInt();
-		geradorId++; // Mesmo motivo de usuário.
+		geradorId++;
 	}
 
 	public int getId() {
@@ -83,9 +83,13 @@ public class Livro {
 		this.livrosDisponiveis = livrosDisponiveis;
 	}
 
-	public float getValorDeEmprestimo () { return valorDeEmprestimo; }
+	public float getValorDeEmprestimo () {
+		return valorDeEmprestimo; 
+	}
 
-    public void setValorDeEmprestimo(int valorDeEmprestimo) { this.valorDeEmprestimo = valorDeEmprestimo; }
+    public void setValorDeEmprestimo(int valorDeEmprestimo) {
+    	this.valorDeEmprestimo = valorDeEmprestimo; 
+    }
 
     public boolean disponibilidade(int id_livro){
 		if(livrosDisponiveis >= 1)

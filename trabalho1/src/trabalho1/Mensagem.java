@@ -20,7 +20,7 @@ public class Mensagem {
         this.texto = texto;
     }
 
-    public boolean isLido() {
+    public boolean getLido() {
         return lido;
     }
 
