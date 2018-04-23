@@ -4,7 +4,8 @@ public class EmprestimoEntreUsuarios extends Emprestimo {
 
     private int idUsuarioEmprestador;
 
-    public EmprestimoEntreUsuarios(int idUsuario, int idUsuarioEmprestador, int idLivro, String dataEmprestimo, String dataDevolucao, float valor) {
+    public EmprestimoEntreUsuarios(int idUsuario, int idUsuarioEmprestador, int idLivro, String dataEmprestimo, 
+    								String dataDevolucao, float valor) {
         super(idUsuario, idLivro, dataEmprestimo, dataDevolucao, valor);
         this.idUsuarioEmprestador = idUsuarioEmprestador;
     }
