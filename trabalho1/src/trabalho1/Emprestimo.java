@@ -1,23 +1,30 @@
 package trabalho1;
 
-import java.util.Random; 
+import java.util.Random;
+
+// Classe empréstimo: Abstração de um empréstimo para os efeitos do sistema. Classe mãe de EmprestimoEntreUsuarios.
 
 public class Emprestimo {
 
+    // Atributos.
+
     private int idEmprestimo;
     private static int geradorId = 0;
+    private final int idMax = 10000;
     private int idUsuario;
     private int idLivro;
     private String dataEmprestimo;
     private String dataDevolucao;
-    private float valor;
-    private boolean ativo; 
+    private double valor;
+    private boolean ativo;
+
+    // Construtor.
 
     public Emprestimo(int idLivro, int idUsuario, String dataEmprestimo, String dataDevolucao,
-                      float valor) {
-        Random geraIdRandom = new Random(geradorId); // Gera um id unico para dad livro
-        this.idEmprestimo = geraIdRandom.nextInt();
-        geradorId++; 
+                      double valor) {
+        Random geraIdRandom = new Random(geradorId);
+        this.idEmprestimo = geraIdRandom.nextInt(idMax);
+        geradorId++;
         this.idUsuario = idUsuario;
         this.idLivro = idLivro;
         this.dataEmprestimo = dataEmprestimo;
@@ -26,6 +33,8 @@ public class Emprestimo {
         this.ativo = true;
         Biblioteca.emprestimos.add(this);
     }
+
+    // Getters & Setters.
 
     public int getIdEmprestimo() {
         return idEmprestimo;
@@ -67,11 +76,11 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
@@ -82,6 +91,10 @@ public class Emprestimo {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    // toString de empréstimo.
+
+    // @Override
 
     public String toString() {
         String out = "Emprestimo: " + getIdEmprestimo() + "\n";

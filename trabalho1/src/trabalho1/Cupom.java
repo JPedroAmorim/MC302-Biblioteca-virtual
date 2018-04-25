@@ -1,15 +1,22 @@
 package trabalho1;
 
+// Classe Cupom: abstação de um cupom para os efeitos do sistema.
+
 public class Cupom {
+
+    // Atributos.
 
     private String codigo;
     private boolean foiUsado;
-    private float desconto;
+    private double desconto;
 
-    public Cupom (String codigo, float desconto) {
+    // Getters & Setters.
+
+    public Cupom(String codigo, double desconto) {
         this.codigo = codigo;
         this.desconto = desconto;
         this.foiUsado = false;
+        Biblioteca.cupons.add(this);
     }
 
     public String getCodigo() {
@@ -28,18 +35,20 @@ public class Cupom {
         this.foiUsado = foiUsado;
     }
 
-    public float getDesconto() {
+    public double getDesconto() {
         return desconto;
     }
 
-    public void setDesconto(int desconto) {
+    public void setDesconto(double desconto) {
         this.desconto = desconto;
     }
+
+    // toString de Cupom.
 
     // @Override
     public String toString() {
         String out = "Código do cupom: " + getCodigo() + "\n";
-        if(foiUsado) {
+        if (foiUsado) {
             out = out + "Cupom foi utilizado";
         } else {
             out = out + "Cupom não foi utilizado";
