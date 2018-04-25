@@ -1,14 +1,22 @@
 package trabalho1;
 
+// Classe EmprestimoEntreUsuarios: Abstração de um empréstimo entre dois usuários para os efeitos do sistema. Extende empréstimo.
+
 public class EmprestimoEntreUsuarios extends Emprestimo {
+
+    // Atributo.
 
     private int idUsuarioEmprestador;
 
-    public EmprestimoEntreUsuarios(int idUsuario, int idUsuarioEmprestador, int idLivro, String dataEmprestimo, 
-    								String dataDevolucao, float valor) {
+    // Construtor.
+
+    public EmprestimoEntreUsuarios(int idUsuario, int idUsuarioEmprestador, int idLivro, String dataEmprestimo,
+                                   String dataDevolucao, double valor) {
         super(idUsuario, idLivro, dataEmprestimo, dataDevolucao, valor);
         this.idUsuarioEmprestador = idUsuarioEmprestador;
     }
+
+    // Getter & Setter.
 
     public int getIdUsuarioEmprestador() {
         return idUsuarioEmprestador;
@@ -18,13 +26,16 @@ public class EmprestimoEntreUsuarios extends Emprestimo {
         this.idUsuarioEmprestador = idUsuarioEmprestador;
     }
 
+    // toString de EmprestimoEntreUsuarios.
+
     // @Override
+
     public String toString() {
         String out = "Emprestimo: " + getIdEmprestimo() + "\n";
         out = out + "Data do empréstimo: " + getDataEmprestimo() + "\n";
         out = out + "Data de devolução: " + getDataDevolucao() + "\n";
         out = out + "Usuário: " + getIdUsuario() + "\n";
-        out = out + "Usuário que emprestou: " +getIdUsuarioEmprestador() + "\n";
+        out = out + "Usuário que emprestou: " + getIdUsuarioEmprestador() + "\n";
         out = out + "Livro: " + getIdLivro() + "\n";
         out = out + "Valor: R$" + getValor() + "\n";
 

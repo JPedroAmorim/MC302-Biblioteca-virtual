@@ -1,16 +1,24 @@
 package trabalho1;
 
+// Classe mensagem: Abstração de uma mensagem para os efeitos do sistema.
+
 public class Mensagem {
+
+    // Atributos.
 
     private String texto;
     private boolean lido;
-    private String  enviadaPor;
+    private String enviadaPor;
 
-    public Mensagem( String texto, String enviadaPor) {
+    // Construtor.
+
+    public Mensagem(String texto, String enviadaPor) {
         this.texto = texto;
         this.enviadaPor = enviadaPor;
         this.lido = false;
     }
+
+    // Setters & Getters.
 
     public String getTexto() {
         return texto;
@@ -28,11 +36,13 @@ public class Mensagem {
         this.lido = lido;
     }
 
+    // toString de mensagem.
+
     //@Override
-    public String toString () {
+    public String toString() {
 
         String out = "Status da mensagem: ";
-        if(lido) {
+        if (lido) {
             out = out + "Lida\n";
         } else {
             out = out + "Não lida\n";
