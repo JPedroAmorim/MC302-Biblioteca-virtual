@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static int testMode = 0;
+    public static int testMode = 0; // Variável que indica se o sistema está em modo de teste ou não.
 
     public static void main(String[] args) {
 

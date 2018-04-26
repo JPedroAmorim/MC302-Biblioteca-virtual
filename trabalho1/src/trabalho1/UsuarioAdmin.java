@@ -1,9 +1,6 @@
 package trabalho1;
 
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.EnumSet;
 
 
 // Classe UsuarioAdmin: Abstração de um administrador para os efeitos do sistema. Extende usuario.
