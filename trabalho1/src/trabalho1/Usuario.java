@@ -17,7 +17,7 @@ public class Usuario {
 
     private int id;
     private static int geradorId = 0;
-    private final int idMax = 100;
+    private final int idMax = 10000;
     private String nome;
     private String senha;
     private String dataNasc;
@@ -134,7 +134,7 @@ public class Usuario {
 
     // Métodos da classe Usuário. São herdados pelas classes UsuarioEstudante e UsuarioAdmin.
 
-    // Método adicionarSaldo: Permite que o usuário adicione um valor(float) à seu seu saldo se a forma de pagamento provida pelo usuário for válida.
+    // Método adicionarSaldo: Permite que o usuário adicione um valor(double) à seu seu saldo se a forma de pagamento provida pelo usuário for válida.
 
     public void adicionarSaldo() {
         Scanner sc = new Scanner(System.in);
@@ -445,10 +445,10 @@ public class Usuario {
                             saldo = saldo - valorComDesconto;
                             cupom.setFoiUsado(true);
                         } else {
-                            saldo = saldo - usuarioEmprestador.getLivrosDoUsuario().get(i).getValorDeEmprestimo();
+                            saldo = saldo - valorNormal;
                         }
 
-                        usuarioEmprestador.setSaldo(usuarioEmprestador.getSaldo() + usuarioEmprestador.getLivrosDoUsuario().get(i).getValorDeEmprestimo()); // Atualiza o saldo do usuário emprestador com o valor do livro emprestado.
+                        usuarioEmprestador.setSaldo(usuarioEmprestador.getSaldo() + valorNormal); // Atualiza o saldo do usuário emprestador com o valor do livro emprestado.
 
 
                         EmprestimoEntreUsuarios emprestimoAtual = new EmprestimoEntreUsuarios(id, usuarioEmprestador.getId(), usuarioEmprestador.getLivrosDoUsuario().get(i).getId(), dataEmprestimo, dataDevolucao, ((cupom != null) ? valorComDesconto : valorNormal));

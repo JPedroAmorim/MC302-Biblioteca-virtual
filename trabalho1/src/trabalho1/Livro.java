@@ -110,7 +110,7 @@ public class Livro {
         out = out + "Autor: " + getAutor() + "\n";
         out = out + "Ano: " + getAno() + "\n";
         out = out + "Edição: " + getEdicao() + "\n";
-        out = out + "Gênero: " + getGenero() + "\n";
+        out = out + getGenero() + "\n";
         out = out + "Livros disponiveis: " + getLivrosDisponiveis() + "\n";
 
         return out;
