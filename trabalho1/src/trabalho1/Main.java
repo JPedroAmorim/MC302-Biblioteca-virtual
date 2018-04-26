@@ -117,14 +117,7 @@ public class Main {
         System.out.println(Biblioteca.cupons);
 
         System.out.print("\n");
-
-        exemploUsuarioAdmin.cadastrarLivro();
-
-        System.out.print("\n");
-
-        System.out.println(Biblioteca.acervo.get(2));
-
-
+        
         System.out.println("FIM DO MODO TESTE");
 
     }
