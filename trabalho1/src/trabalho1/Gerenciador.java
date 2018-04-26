@@ -145,12 +145,13 @@ public class Gerenciador {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(" ***** Pressione a tecla para executar a opção desejada... ***** ");
+        System.out.println(" ***** Digite a tecla para executar a opção desejada... ***** ");
 
         System.out.print("\n");
 
         if (usuarioAtual instanceof UsuarioAdmin) { // Verifica se o usuarioAtual é um UsuarioAdmin e oferece as opções disponíveis à esse tipo de Usuario.
 
+            System.out.println("0 - Listar conteúdo do sistema");
             System.out.println("1 - Cadastrar cupom de desconto");
             System.out.println("2 - Cadastrar um livro");
             System.out.println("3 - Banir um usuário");
@@ -158,7 +159,10 @@ public class Gerenciador {
 
             int opcaoAdmin = sc.nextInt();
 
-            if (opcaoAdmin == 1) {
+
+            if (opcaoAdmin == 0) {
+                ((UsuarioAdmin) usuarioAtual).listaDados();
+            } else if (opcaoAdmin == 1) {
                 ((UsuarioAdmin) usuarioAtual).cadastrarCupom();
                 return true;
             } else if (opcaoAdmin == 2) {
@@ -175,8 +179,9 @@ public class Gerenciador {
             }
         }
 
-        // Opções de 1 à 9 são comuns para Usuario e UsuarioEstudante.
+        // Opções de 0 à 9 são comuns para Usuario e UsuarioEstudante.
 
+        System.out.println("0 - Cadastrar um livro em seu acervo pessoal");
         System.out.println("1 - Realizar um empréstimo com a Biblioteca Virtual");
         System.out.println("2 - Realizar um empréstimo com um usuário da Biblioteca Virtual");
         System.out.println("3 - Adicionar um amigo");
@@ -197,7 +202,11 @@ public class Gerenciador {
 
         int opcao = sc.nextInt();
 
-        if (opcao == 1) {
+        if (opcao == 0) {
+            usuarioAtual.cadastrarLivro();
+            return true;
+
+        } else if (opcao == 1) {
             usuarioAtual.novoEmprestimo(null, null);
             return true;
 

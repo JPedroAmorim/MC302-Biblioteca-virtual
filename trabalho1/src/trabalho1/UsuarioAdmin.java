@@ -42,68 +42,32 @@ public class UsuarioAdmin extends Usuario {
         System.out.println("Cupom cadastrado com sucesso!");
     }
 
-    // Método cadastrarLivro: Permite ao Admin cadastrar um livro no sistema.
+    // Método listaDados: Permite ao Admin listar o conteúdo de cada uma das AL de Biblioteca.
 
-    public void cadastrarLivro() {
+    public void listaDados() {
+
+        System.out.println("Digite a opcao desejada: ");
+        System.out.println("1 - Listar os livros no acervo da Biblioteca Virtual");
+        System.out.println("2 - Listar os empréstimos do sistema");
+        System.out.println("3 - Listar os usuários do sistema");
+        System.out.println("4 - Listar os cupons do sistema");
+
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Digite o nome do livro: ");
+        int opcao = sc.nextInt();
 
-        String nome = sc.nextLine();
-
-        for (int i = 0; i < Biblioteca.acervo.size(); i++) {
-            if (Biblioteca.acervo.get(i).getNome().equals(nome)) {
-                System.out.println("O livro já existe no acervo!");
-                return;
-            }
+        if(opcao == 1) {
+            System.out.println(Biblioteca.acervo);
+        } else if (opcao == 2) {
+            System.out.println(Biblioteca.emprestimos);
+        } else if (opcao == 3) {
+            System.out.println(Biblioteca.usuarios);
+        } else if (opcao == 4) {
+            System.out.println(Biblioteca.cupons);
+        } else {
+            System.out.println("Por favor, digite uma opcao válida!");
         }
 
-        System.out.println("Digite o nome do autor: ");
-
-        String autor = sc.nextLine();
-
-        System.out.println("Digite o gênero do livro: ");
-
-        String nomeGenero = sc.nextLine();
-
-        boolean flag = false;
-        int indice = 0;
-
-        // "Gambiarra" para lidar com o Genero.
-
-        List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
-
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getTipo().equals(nomeGenero)) {
-                flag = true;
-                indice = i;
-            }
-        }
-
-        if (!flag) {
-            System.out.println("Por favor, digite um gênero válido");
-            return;
-        }
-
-        System.out.println("Digite a edição do livro: ");
-
-        int edicao = sc.nextInt();
-
-        System.out.println("Digite o ano do livro: ");
-
-        int ano = sc.nextInt();
-
-        System.out.println("Digite quantos exemplares estão disponíveis desse livro: ");
-
-        int livrosDisponiveis = sc.nextInt();
-
-        System.out.println("Digite o valor de empréstimo do livro: ");
-
-        double valor = sc.nextDouble();
-
-        Livro livro = new Livro(nome, autor, list.get(indice), edicao, ano, livrosDisponiveis, valor);
-
-        System.out.println("Livro adicionado com sucesso!");
     }
 
     // Método banirUsuário: Permite ao Admin remover (banir) um usuário do sistema.
