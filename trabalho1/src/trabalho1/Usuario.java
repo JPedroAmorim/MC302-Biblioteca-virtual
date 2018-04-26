@@ -23,7 +23,7 @@ public class Usuario {
     private String infoPagamento;
     private ArrayList<Mensagem> mensagens;
     private ArrayList<Livro> livrosDoUsuario;
-    private ArrayList<Emprestimo> emprestimosAtivos;
+    private ArrayList<Emprestimo> emprestimos;
     private ArrayList<Usuario> amigos;
 
     // Construtor.
@@ -38,7 +38,7 @@ public class Usuario {
         this.infoPagamento = null;
         this.mensagens = new ArrayList<Mensagem>();
         this.livrosDoUsuario = new ArrayList<Livro>();
-        this.emprestimosAtivos = new ArrayList<Emprestimo>();
+        this.emprestimos = new ArrayList<Emprestimo>();
         this.amigos = new ArrayList<Usuario>();
         Random geradorIdRandom = new Random(geradorId); // Aqui, há um processo de geração de id com auxílio da classe Random. Para cada usuário gerado, seu id é um número aleatório com seed geradorId.
         this.id = geradorIdRandom.nextInt(idMax);
@@ -116,8 +116,8 @@ public class Usuario {
         return amigos;
     }
 
-    public ArrayList<Emprestimo> getEmprestimosAtivos() {
-        return emprestimosAtivos;
+    public ArrayList<Emprestimo> getemprestimos() {
+        return emprestimos;
     }
 
     public ArrayList<Livro> getLivrosDoUsuario() {
@@ -407,7 +407,7 @@ public class Usuario {
 
                         Emprestimo emprestimoAtual = new Emprestimo(Biblioteca.acervo.get(i).getId(), id, dataEmprestimo, dataDevolucao, ((cupom != null) ? valorComDesconto : valorNormal)); // Instanciamento do empréstimo.
 
-                        emprestimosAtivos.add(emprestimoAtual);
+                        emprestimos.add(emprestimoAtual);
 
                         System.out.println("**** Dados do empréstimo ****");
                         System.out.println(emprestimoAtual);
@@ -449,9 +449,9 @@ public class Usuario {
 
                         EmprestimoEntreUsuarios emprestimoAtual = new EmprestimoEntreUsuarios(id, usuarioEmprestador.getId(), usuarioEmprestador.getLivrosDoUsuario().get(i).getId(), dataEmprestimo, dataDevolucao, ((cupom != null) ? valorComDesconto : valorNormal));
 
-                        emprestimosAtivos.add(emprestimoAtual);
+                        emprestimos.add(emprestimoAtual);
 
-                        usuarioEmprestador.getEmprestimosAtivos().add(emprestimoAtual);
+                        usuarioEmprestador.getemprestimos().add(emprestimoAtual);
 
                         System.out.println("**** Dados do empréstimo ****");
                         System.out.println(emprestimoAtual);
@@ -574,8 +574,8 @@ public class Usuario {
 
         out = out + "Empréstimos ativos:\n";
 
-        for (int i = 0; i < emprestimosAtivos.size(); i++) {
-            out = out + "Id do empréstimo ativo número " + i + " é " + emprestimosAtivos.get(i).getIdEmprestimo() + "\n";
+        for (int i = 0; i < emprestimos.size(); i++) {
+            out = out + "Id do empréstimo ativo número " + i + " é " + emprestimos.get(i).getIdEmprestimo() + "\n";
         }
 
         out = out + "Amigos do Usuario " + getNome() + "\n";
