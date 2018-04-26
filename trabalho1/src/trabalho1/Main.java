@@ -24,7 +24,7 @@ public class Main {
         }
 
         System.out.println("*************** BIBLIOTECA VIRTUAL  v 1.0 - CLOSED BETA ***************");
-        System.out.println("*** Pressione 1 para se cadastrar ou 2 se você já possui cadastro ***");
+        System.out.println("*** Digite 1 para se cadastrar ou 2 se você já possui cadastro ***");
 
 
         int opcao = sc.nextInt();
@@ -56,6 +56,8 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
+        // Instanciamento de usuários teste de todas as classes de usuário: Usuario, UsuarioEstudante e UsuarioAdmin.
+
         Usuario exemploUsuario = new Usuario("João", "1234", "12/09/1998", "João@Email", true);
 
         Usuario exemplo1Usuario = new Usuario("Maria", "5678", "10/10/2000", "Maria@Email", true);
@@ -66,11 +68,19 @@ public class Main {
 
         UsuarioAdmin exemploUsuarioAdmin = new UsuarioAdmin("Felipe", "9223", "12/08/1970", "Felipe@Admin", true);
 
+        // Instanciamento de livros de exemplo.
+
         Livro livroExemplo = new Livro("Fisica de Particulas", "Einstein", Genero.FISICA, 1, 1930, 10, 34);
 
         Livro livroExemplo1 = new Livro("Romeu e Julieta", "Shakespere", Genero.ROMANCE, 100, 2000, 10, 40);
 
+        Biblioteca.acervo.add(livroExemplo);
+
+        Biblioteca.acervo.add(livroExemplo1);
+
         exemplo1Usuario.setSaldo(1000);
+
+        // Aqui, são feitos empréstimos: com a Biblioteca Virtual, entre usuários e com cupom de desconto.
 
         exemploUsuario.getLivrosDoUsuario().add(livroExemplo1);
 
@@ -81,6 +91,8 @@ public class Main {
         Cupom cupom = new Cupom("123", 20);
 
         exemplo1Usuario.novoEmprestimo(null, cupom);
+
+        // Teste dos principais métodos de Usuario, UsuarioEstudante e UsuarioAdmin.
 
         exemplo1Usuario.adicionarAmigo();
 
@@ -97,6 +109,8 @@ public class Main {
         exemploUsuarioAdmin.banirUsuario();
 
         System.out.print("\n");
+
+        // Impressão da DB do programa para mostrar como ela está após a execução de testMode().
 
         System.out.println("Impressão da database (todas as AL de Biblioteca) do programa");
 
@@ -117,7 +131,7 @@ public class Main {
         System.out.println(Biblioteca.cupons);
 
         System.out.print("\n");
-        
+
         System.out.println("FIM DO MODO TESTE");
 
     }

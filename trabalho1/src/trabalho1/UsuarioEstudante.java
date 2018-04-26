@@ -40,9 +40,9 @@ public class UsuarioEstudante extends Usuario {
     public void buscaUsuarioUniversidade() {
         boolean flag = false;
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
-            if (Biblioteca.usuarios.get(i) instanceof UsuarioEstudante
-                    && instituicao.equals(((UsuarioEstudante) Biblioteca.usuarios.get(i)).getInstituicao())
-                    && !(this.getNome().equals(Biblioteca.usuarios.get(i).getNome()))) {
+            if (Biblioteca.usuarios.get(i) instanceof UsuarioEstudante // Verifica se o usuário é um UsuarioEstudante
+                    && instituicao.equals(((UsuarioEstudante) Biblioteca.usuarios.get(i)).getInstituicao()) // Verifica se ambos possuem a mesma instiuição de ensino
+                    && !(this.getNome().equals(Biblioteca.usuarios.get(i).getNome()))) { // Verifica se não é o próprio usuário que chamou o método
                 System.out.println("Usuário " + Biblioteca.usuarios.get(i).getNome() + " também pertence à " + instituicao);
                 flag = true;
             }

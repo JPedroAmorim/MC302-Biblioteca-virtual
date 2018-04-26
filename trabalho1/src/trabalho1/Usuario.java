@@ -3,11 +3,7 @@ package trabalho1;
 import com.sun.istack.internal.Nullable;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 // Classe Usuário: Abstração de um usuário para os efeitos do sistema. É a classe mãe de UsuarioAdmin e UsuarioEstudante.
 
@@ -473,6 +469,86 @@ public class Usuario {
         }
     }
 
+    // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema.
+
+    public void cadastrarLivro() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Digite o nome do livro: ");
+
+        String nome = sc.nextLine();
+
+
+        if (this instanceof UsuarioAdmin) { // Se quem chamou o método é um UsuarioAdmin, devemos verificar no acervo da Biblioteca.
+            for (int i = 0; i < Biblioteca.acervo.size(); i++) {
+                if (Biblioteca.acervo.get(i).getNome().equals(nome)) {
+                    System.out.println("O livro já existe no acervo!");
+                    return;
+                }
+            }
+        } else { // Se quem chamou o método é um Usuario ou UsuarioEstudante, devemos verificar no acervo do usuário.
+            for (int i = 0; i < livrosDoUsuario.size(); i++) {
+                if (livrosDoUsuario.get(i).getNome().equals(nome)) {
+                    System.out.println("Você já possui esse livro em seu acervo!");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("Digite o nome do autor: ");
+
+        String autor = sc.nextLine();
+
+        System.out.println("Digite o gênero do livro: ");
+
+        String nomeGenero = sc.nextLine();
+
+        boolean flag = false;
+        int indice = 0;
+
+        // "Gambiarra" para lidar com o Genero.
+
+        List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getTipo().equals(nomeGenero)) {
+                flag = true;
+                indice = i;
+            }
+        }
+
+        if (!flag) {
+            System.out.println("Por favor, digite um gênero válido");
+            return;
+        }
+
+        System.out.println("Digite a edição do livro: ");
+
+        int edicao = sc.nextInt();
+
+        System.out.println("Digite o ano do livro: ");
+
+        int ano = sc.nextInt();
+
+        System.out.println("Digite quantos exemplares estão disponíveis desse livro: ");
+
+        int livrosDisponiveis = sc.nextInt();
+
+        System.out.println("Digite o valor de empréstimo do livro: ");
+
+        double valor = sc.nextDouble();
+
+        Livro livro = new Livro(nome, autor, list.get(indice), edicao, ano, livrosDisponiveis, valor);
+
+        if (this instanceof UsuarioAdmin) { // Se quem chamou o método é um UsuarioAdmin, o livro deve ser adicionado ao acervo da Biblioteca.
+            Biblioteca.acervo.add(livro);
+        } else { // Caso quem chamou o método é um Usuario ou UsuarioEstudante, o livro deve ser adicionado ao acervo do usuário.
+            livrosDoUsuario.add(livro);
+        }
+
+        System.out.println("Livro cadastrado com sucesso!");
+    }
+
     // toString de Usuário.
 
     // @Overrride
@@ -490,7 +566,7 @@ public class Usuario {
 
         out = out + "Livros do Usuário\n";
         out = out + "Saldo R$: " + getSaldo() + "\n";
-        out = out + "Livros Emprestados:\n";
+        out = out + "Livros do Usuário: \n";
 
         for (int i = 0; i < livrosDoUsuario.size(); i++) {
             out = out + livrosDoUsuario.get(i).getNome() + "\n";
