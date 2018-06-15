@@ -20,7 +20,8 @@ public class Gerenciador {
         int contador = 0;
 
         do {
-            if (contador > 0) System.out.println("Esse nome de usuário já existe! Por favor, digite outro nome");
+           if (contador > 0) 
+            	System.out.println("Esse nome de usuário já existe! Por favor, digite outro nome");
             System.out.println("Digite o nome do usuário: ");
             nome = sc.nextLine();
             resultado = checaUsuario(nome);
@@ -28,27 +29,21 @@ public class Gerenciador {
         } while (resultado != -1); // Enquanto o usuário não escolher um nome que não exista, o loop continua..
 
         System.out.println("Digite sua senha: ");
-
         String senha = sc.nextLine();
 
         System.out.println("Digite sua data de nascimento: ");
-
         String dataNascimento = sc.nextLine();
 
         System.out.println("Digite seu email: ");
-
         String email = sc.nextLine();
 
         System.out.println("Você é estudante de alguma instituição de ensino superior? (Sim/Nao)");
 
         if (sc.nextLine().equals("Sim")) {
-
             System.out.println("Digite sua instituição: ");
-
             String instituicao = sc.nextLine();
-
+            
             System.out.println("Digite seu registro academico (RA):  ");
-
             int ra = sc.nextInt();
 
             UsuarioEstudante novoUsuarioEstudante = new UsuarioEstudante(nome, senha, dataNascimento, email, true,
@@ -57,9 +52,7 @@ public class Gerenciador {
             System.out.println("Obrigado " + novoUsuarioEstudante.getNome() + "! Você foi cadastrado!");
 
         } else {
-
-            Usuario novoUsuario = new Usuario(nome, senha, dataNascimento, email, true);
-
+            UsuarioComum novoUsuario = new UsuarioComum(nome, senha, dataNascimento, email, true);
             System.out.println("Obrigado " + novoUsuario.getNome() + " !  Você foi cadastrado!");
         }
     }
@@ -68,23 +61,25 @@ public class Gerenciador {
 
     public static int checaUsuario(String nome) {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
-            if ((Biblioteca.usuarios.get(i)).getNome().equals(nome)) return i;
+            if ((Biblioteca.usuarios.get(i)).getNome().equals(nome))
+            	return i;
         }
         return -1; // Se não retornou no for, o usuário não existe.
     }
 
     // Método trataExececao: Retorna true se o usuário, durante a execução do método adicionarAmigo, tentar se adicionar ou adicionar um usuário que já está em sua lista de amigos.
 
-    public static boolean trataExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) {
+    public static boolean trataExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) throws SistemaExcecao {
         for (int i = 0; i < usuarioAtual.getAmigos().size(); i++) {
             if (usuarioAlvo.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
-                System.out.println("O usuário já está adicionado na sua lista de amigos!");
-                return true;
+            	System.out.println("O usuário já está adicionado na sua lista de amigos!");
+            	return true;
             }
         }
+        
         if (usuarioAtual.getNome().equals(usuarioAlvo.getNome())) {
-            System.out.println("Você não pode se adicionar na lista de amigos!");
-            return true;
+        	System.out.println("Você não pode se adicionar na lista de amigos!");
+        	return true;
         }
         return false; // Se não houve retorno nos "for" acima, então não houve nenhum caso de exceção.
     }
@@ -94,13 +89,13 @@ public class Gerenciador {
     public static int login() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Por favor, digite seu usuário: ");
-
+       System.out.println("Por favor, digite seu usuário: ");
         String nome = sc.nextLine();
 
         System.out.println("Por favor, digite sua senha: ");
-
         String senha = sc.nextLine();
+        
+        
 
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if (Biblioteca.usuarios.get(i).getNome().equals(nome) && Biblioteca.usuarios.get(i).getSenha().equals(senha))
@@ -135,18 +130,13 @@ public class Gerenciador {
 
     // Método opcoesUsuario: Recebe do usuário um inteiro pela entrada padrão e realiza a opção ligada à esse inteiro. Enquanto não retorna false, ele continua a ser executado pela main em loop.
 
-    public static boolean opcoesUsuario(Usuario usuarioAtual) {
+    public static boolean opcoesUsuario(Usuario usuarioAtual) throws SistemaExcecao {
 
         System.out.print("\n");
-
         System.out.println("Olá " + usuarioAtual.getNome() + " !");
-
         System.out.print("\n");
-
         Scanner sc = new Scanner(System.in);
-
         System.out.println(" ***** Digite a tecla para executar a opção desejada... ***** ");
-
         System.out.print("\n");
 
         if (usuarioAtual instanceof UsuarioAdmin) { // Verifica se o usuarioAtual é um UsuarioAdmin e oferece as opções disponíveis à esse tipo de Usuario.
@@ -158,19 +148,29 @@ public class Gerenciador {
             System.out.println("4 - Sair da Biblioteca Virtual");
 
             int opcaoAdmin = sc.nextInt();
-
-
+          
             if (opcaoAdmin == 0) {
                 ((UsuarioAdmin) usuarioAtual).listaDados();
-            } else if (opcaoAdmin == 1) {
-                ((UsuarioAdmin) usuarioAtual).cadastrarCupom();
                 return true;
+            } else if (opcaoAdmin == 1) {
+            	try {
+            		((UsuarioAdmin) usuarioAtual).cadastrarCupom();
+            		return true;
+            	}catch(SistemaExcecao e) {
+            		System.out.println(e.getMessage());
+            		return true;
+            	}
             } else if (opcaoAdmin == 2) {
                 ((UsuarioAdmin) usuarioAtual).cadastrarLivro();
                 return true;
             } else if (opcaoAdmin == 3) {
-                ((UsuarioAdmin) usuarioAtual).banirUsuario();
-                return true;
+            	try {
+            		((UsuarioAdmin) usuarioAtual).banirUsuario();
+            		return true;
+            	}catch(SistemaExcecao e) {
+            		System.out.println(e.getMessage());
+            		return true;
+            	}
             } else if (opcaoAdmin == 4) {
                 return false;
             } else {
@@ -179,7 +179,7 @@ public class Gerenciador {
             }
         }
 
-        // Opções de 0 à 9 são comuns para Usuario e UsuarioEstudante.
+        // Opções de 0 à 9 são comuns para UsuarioComum e UsuarioEstudante.
 
         System.out.println("0 - Cadastrar um livro em seu acervo pessoal");
         System.out.println("1 - Realizar um empréstimo com a Biblioteca Virtual");
@@ -196,9 +196,9 @@ public class Gerenciador {
             System.out.println("10 - Realizar empréstimo com cupom de desconto (exclusivo para usuários estudantes)");
             System.out.println("11 - Mostrar usuários da mesma universidade");
             System.out.println("12 - Desconectar da Biblioteca Virtual");
-        } else {
+        } else
             System.out.println("10 - Desconectar da Biblioteca Virtual");
-        }
+        
 
         int opcao = sc.nextInt();
 
@@ -207,9 +207,11 @@ public class Gerenciador {
             return true;
 
         } else if (opcao == 1) {
-            usuarioAtual.novoEmprestimo(null, null);
-            return true;
-
+        	
+        		usuarioAtual.novoEmprestimo(null, null);
+        		return true;
+        	
+        	
         } else if (opcao == 2) {
             System.out.println("Digite o nome do usuário com quem você quer fazer um empréstimo ");
 
@@ -217,26 +219,41 @@ public class Gerenciador {
             int resultado = checaUsuario(nome);
             if (resultado != -1) { // Resultado != -1 -> Usuário existe.
                 usuarioAtual.novoEmprestimo(Biblioteca.usuarios.get(resultado), null);
-            } else { // Resultado == -1 -> Usuário não existe.
+            }else { // Resultado == -1 -> Usuário não existe.
                 System.out.println("Usuário não existe");
             }
             return true;
 
         } else if (opcao == 3) {
-            usuarioAtual.adicionarAmigo();
-            return true;
+        	try {
+        		usuarioAtual.adicionarAmigo();
+        		return true;
+        	}catch(SistemaExcecao e) {
+        		System.out.println(e.getMessage());
+        		return true;
+        	}
 
         } else if (opcao == 4) {
-            usuarioAtual.infoUsuario();
-            return true;
+        	try {
+        		usuarioAtual.infoUsuario();
+        		return true;
+        	}catch(SistemaExcecao e) {
+        		System.out.println(e.getMessage());
+        		return true;
+        	}
 
         } else if (opcao == 5) {
             usuarioAtual.alteraDados();
             return true;
 
         } else if (opcao == 6) {
-            usuarioAtual.adicionarSaldo();
-            return true;
+        	try {
+        		usuarioAtual.adicionarSaldo();
+            	return true;
+        	}catch(SistemaExcecao e) {
+        		System.out.println(e.getMessage());
+        		return true;
+        	}
 
         } else if (opcao == 7) {
             System.out.println("**** Suas informações ****");
@@ -278,23 +295,25 @@ public class Gerenciador {
                         System.out.println("Usuário não existe");
                     }
                 } else {
-                    System.out.println("Por favor, digite uma opção válida");
+                	 System.out.println("Por favor, digite uma opção válida");
                 }
             }
 
             return true;
 
         } else if (usuarioAtual instanceof UsuarioEstudante && opcao == 11) {
-            ((UsuarioEstudante) usuarioAtual).buscaUsuarioUniversidade();
-            return true;
-
-        } else if (usuarioAtual instanceof UsuarioEstudante && opcao == 12) {
+        	try {
+        		((UsuarioEstudante) usuarioAtual).buscaUsuarioUniversidade();
+        		return true;
+        	}catch(SistemaExcecao e) {
+        		System.out.println(e.getMessage());
+        		return true;
+        	}
+        } else if (usuarioAtual instanceof UsuarioEstudante && opcao == 12) 
             return false;
-
-        } else {
-            System.out.println("Por favor, escolha uma opção válida");
-            return true;
+        else {
+        	System.out.println("Por favor, escolha uma opção válida");
+        	return true;
         }
     }
-
 }
