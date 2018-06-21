@@ -11,53 +11,18 @@ import java.util.Scanner;
 
 public class Gerenciador {
 
-    // Metódo geradorUsuario: Gera um um objeto Usuario ou UsuarioEstudante com os dados fornecidos pela entrada.
+    // Metodo geradorUsuario: Gera um um objeto Usuario ou UsuarioEstudante com os dados fornecidos pela entrada.
 
-    public static void geradorUsuario() {
-        Scanner sc = new Scanner(System.in);
-        String nome;
-        int resultado;
-        int contador = 0;
-
-        do {
-           if (contador > 0) 
-            	System.out.println("Esse nome de usuário já existe! Por favor, digite outro nome");
-            System.out.println("Digite o nome do usuário: ");
-            nome = sc.nextLine();
-            resultado = checaUsuario(nome);
-            contador++;
-        } while (resultado != -1); // Enquanto o usuário não escolher um nome que não exista, o loop continua..
-
-        System.out.println("Digite sua senha: ");
-        String senha = sc.nextLine();
-
-        System.out.println("Digite sua data de nascimento: ");
-        String dataNascimento = sc.nextLine();
-
-        System.out.println("Digite seu email: ");
-        String email = sc.nextLine();
-
-        System.out.println("Você é estudante de alguma instituição de ensino superior? (Sim/Nao)");
-
-        if (sc.nextLine().equals("Sim")) {
-            System.out.println("Digite sua instituição: ");
-            String instituicao = sc.nextLine();
-            
-            System.out.println("Digite seu registro academico (RA):  ");
-            int ra = sc.nextInt();
-
-            UsuarioEstudante novoUsuarioEstudante = new UsuarioEstudante(nome, senha, dataNascimento, email, true,
+    public static void geradorUsuario(String nome, String senha, String email, String data, String instituicao, int ra, boolean estudante) {   
+        if (estudante) {
+            UsuarioEstudante novoUsuarioEstudante = new UsuarioEstudante(nome, senha, data, email, true,
                     instituicao, ra);
-
-            System.out.println("Obrigado " + novoUsuarioEstudante.getNome() + "! Você foi cadastrado!");
-
         } else {
-            UsuarioComum novoUsuario = new UsuarioComum(nome, senha, dataNascimento, email, true);
-            System.out.println("Obrigado " + novoUsuario.getNome() + " !  Você foi cadastrado!");
+            UsuarioComum novoUsuario = new UsuarioComum(nome, senha, data, email, true);
         }
     }
 
-    // Método checaUsuario: Retorna o índice de um usuário caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contrário, retorna -1.
+    // M�todo checaUsuario: Retorna o pindice de um usu�rio caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contrário, retorna -1.
 
     public static int checaUsuario(String nome) {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
@@ -86,17 +51,8 @@ public class Gerenciador {
 
     // Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado (nome e senha batem com os dados na AL), e -1 caso contrário.
 
-    public static int login() {
-        Scanner sc = new Scanner(System.in);
-
-       System.out.println("Por favor, digite seu usuário: ");
-        String nome = sc.nextLine();
-
-        System.out.println("Por favor, digite sua senha: ");
-        String senha = sc.nextLine();
-        
-        
-
+    public static int login(String nome, String senha) {
+    	
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if (Biblioteca.usuarios.get(i).getNome().equals(nome) && Biblioteca.usuarios.get(i).getSenha().equals(senha))
                 return i;

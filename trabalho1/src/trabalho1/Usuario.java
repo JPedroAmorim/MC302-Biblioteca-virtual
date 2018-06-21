@@ -5,7 +5,7 @@ import java.util.*;
 
 // Classe Usuário: Abstração de um usuário para os efeitos do sistema. É a classe mãe de UsuarioAdmin e UsuarioEstudante.
 
-public abstract class Usuario implements Salvar {
+public abstract class Usuario implements SalvarLer {
 
     // Atributos.
 
@@ -134,7 +134,7 @@ public abstract class Usuario implements Salvar {
         Scanner sc = new Scanner(System.in);
         String infoPagamento = "";
 
-        System.out.println("Por favor, digite o número do seu cartão de crédito: ");
+        System.out.println("Por favor, digite o nmero do seu cartão de crédito: ");
 
 
         if (Main.testMode == 0) {

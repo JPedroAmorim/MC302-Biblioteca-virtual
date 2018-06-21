@@ -7,6 +7,10 @@ package trabalho1;
 import java.io.File;
 import java.util.Scanner;
 
+import telas.TelaInicial;
+
+
+
 // Classe main: Ponto de partida do sistema. É responsável por chamar os métodos login e de opcoesUsuario, da classe Gerenciador. Contém testaSistema(), utilizado para demonstrar o sistema.
 
 public class Main {
@@ -16,7 +20,7 @@ public class Main {
     public static void main(String[] args) throws SistemaExcecao {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Você deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
+        System.out.println("Voc� deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
         String testeSistema = sc.nextLine();
         
         if (testeSistema.equals("Sim")) {
@@ -24,32 +28,14 @@ public class Main {
             testaSistema();
             return;
         }
-
-        System.out.println("*************** BIBLIOTECA VIRTUAL  v 2.0 - CLOSED BETA ***************");
-        System.out.println("*** Digite 1 para se cadastrar ou 2 se você já possui cadastro ***");
-
-        int opcao = sc.nextInt();
         
-        if (opcao == 1) {
-            Gerenciador.geradorUsuario();
-        }
+        new TelaInicial().setVisible(true);
+        
+        
 
-        int resultado = Gerenciador.login();
 
-        if (resultado == -1) { // Resultado == -1 significa que o usuario não está na AL usuários da biblioteca.
-            while (resultado == -1) {
-                System.out.println("Usuario ou senha incorretos!");
-                resultado = Gerenciador.login();
-            }
-
-        } else {
-            while (Gerenciador.opcoesUsuario(Biblioteca.usuarios.get(resultado)))
-                 // Enquanto o método opcoesUsuario não retornar false, o usuário não optou por deslogar do sistema.
-
-            System.out.print("\n");
-            System.out.println("Obrigado por utilizar a biblioteca virtual!");
-        }
     }
+        
 
     public static void testaSistema() throws SistemaExcecao { // Testa as principais funcionalidades do sistema.
 

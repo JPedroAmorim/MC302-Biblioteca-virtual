@@ -1,7 +1,9 @@
 package trabalho1;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +74,7 @@ public class UsuarioComum extends Usuario {
 	
 	 public void salvar(File arquivo) {	
 		try {
-			FileWriter arq = new FileWriter("UsuarioAdmin.txt", true);
+			FileWriter arq = new FileWriter("MensagensUsuarioComum.txt", true);
 			BufferedWriter escrever = new BufferedWriter(arq);
 			for(int i=0; i<getMensagens().size(); i++)
 				escrever.write(getMensagens().get(i).toString());
@@ -82,4 +84,20 @@ public class UsuarioComum extends Usuario {
 				
 		}		
 	}
+	 
+	 public void ler(File arquivo) {
+	    	try {
+				FileReader arq = new FileReader(arquivo);
+				BufferedReader ler = new BufferedReader(arq);
+				String linha = ler.readLine();		
+				while(linha != null) {
+					System.out.println(linha);
+					linha = ler.readLine();
+				}
+				ler.close();
+				arq.close();	
+			}catch(IOException e) {
+				
+			}	
+		}
 }

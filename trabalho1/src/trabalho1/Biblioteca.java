@@ -1,7 +1,9 @@
 package trabalho1;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 // Classe biblioteca: É o banco de dados onde estão armazenadas as AL necessárias do sistema.
 
-public class Biblioteca implements Salvar {
+public class Biblioteca implements SalvarLer {
 
     public static ArrayList<Livro> acervo = new ArrayList<Livro>();
     public static ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
@@ -44,9 +46,23 @@ public class Biblioteca implements Salvar {
 		}catch(IOException e) {
 			
 		}
-		
 	}
-
+	
+	public void ler(File arquivo) {
+    	try {
+			FileReader arq = new FileReader(arquivo);
+			BufferedReader ler = new BufferedReader(arq);
+			String linha = ler.readLine();		
+			while(linha != null) {
+				System.out.println(linha);
+				linha = ler.readLine();
+			}
+			ler.close();
+			arq.close();	
+		}catch(IOException e) {
+			
+		}	
+	}
 }
 
 
