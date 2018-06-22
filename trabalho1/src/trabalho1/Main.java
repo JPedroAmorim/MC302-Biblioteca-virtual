@@ -7,6 +7,7 @@ package trabalho1;
 import java.io.File;
 import java.util.Scanner;
 
+import telas.MenuEstudante;
 import telas.TelaInicial;
 
 
@@ -20,16 +21,16 @@ public class Main {
     public static void main(String[] args) throws SistemaExcecao {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Você deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
-        String testeSistema = sc.nextLine();
+        System.out.println("Vocï¿½ deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
+       // String testeSistema = sc.nextLine();
         
-        if (testeSistema.equals("Sim")) {
-            testMode = 1;
-            testaSistema();
-            return;
-        }
+        //if (testeSistema.equals("Sim")) {
+            //testMode = 1;
+          //  testaSistema();
+        //    return;
+      //  }
         
-        new TelaInicial().setVisible(true);
+        new MenuEstudante().setVisible(true);
         
         
 
