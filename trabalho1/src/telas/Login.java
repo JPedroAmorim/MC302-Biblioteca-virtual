@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import trabalho1.Biblioteca;
 import trabalho1.Gerenciador;
+import trabalho1.SistemaExcecao;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -73,11 +75,12 @@ public class Login extends JFrame {
 				 String nome = textUsuario.getText();
 				 String senha = textSenha.getText();
 				
-				if(Gerenciador.login(nome, senha) == -1)
-					JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos");
-				else {
-					new MenuEstudante().setVisible(true);
-					setVisible(false);
+				try {
+					MenuComum menu = new MenuComum(Biblioteca.usuarios.get(Gerenciador.login(nome, senha)));
+
+				} catch (SistemaExcecao excecao) {
+					JOptionPane.showMessageDialog(Login.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+					Login.this.dispose();
 				}
 				
 				

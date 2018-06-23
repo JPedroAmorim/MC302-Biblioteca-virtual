@@ -28,6 +28,8 @@ public class UsuarioEstudante extends Usuario {
         this.ra = ra;
     }
 
+
+
     // Getters & Setters.
 
     public String getInstituicao() {
@@ -61,63 +63,24 @@ public class UsuarioEstudante extends Usuario {
         if (!flag)
         	throw new SistemaExcecao("Não encontramos nenhum usuário de sua instituição de ensino!");
     }
-    
-    public void cadastrarLivro() {
-    	 Scanner sc = new Scanner(System.in);
-    	
-         System.out.println("Digite o nome do livro: ");
-         String nome = sc.nextLine();
 
-         for (int i = 0; i < getLivrosDoUsuario().size(); i++) {
-        	 if (getLivrosDoUsuario().get(i).getNome().equals(nome)) {
-        		System.out.println("Você já possui esse livro em seu acervo!");
-        		sc.close();
-        		return;
-              }
-           }
-        
-         System.out.println("Digite o nome do autor: ");
-         String autor = sc.nextLine();
+    public void alteraDados(String novoNome, String novaSenha, String novoEmail, String novoAniversario, int novoRA, String novaInstituicao) {
+        this.setNome(novoNome);
+        this.setSenha(novaSenha);
+        this.setEmail(novoEmail);
+        this.setDataNasc(novoAniversario);
+        this.setRa(novoRA);
+        this.setInstituicao(novaInstituicao);
+    }
 
-         System.out.println("Digite o gênero do livro: ");
-         String nomeGenero = sc.nextLine();
+    public void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor) {
 
-         boolean flag = false;
-         int indice = 0;
+        List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
 
-         // "Gambiarra" para lidar com o Genero.
+        Livro livro = new Livro(nome, autor, list.get(indice), edicao, ano, livrosDisponiveis, valor);
+        this.getLivrosDoUsuario().add(livro);
+    }
 
-         List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
-
-         for (int i = 0; i < list.size(); i++) {
-             if (list.get(i).getTipo().equals(nomeGenero)) {
-                 flag = true;
-                 indice = i;
-             }
-         }
-
-         if (!flag) {
-             System.out.println("Por favor, digite um gênero válido");
-             return;
-         }
-
-         System.out.println("Digite a edição do livro: ");
-         int edicao = sc.nextInt();
-
-         System.out.println("Digite o ano do livro: ");
-         int ano = sc.nextInt();
-
-         System.out.println("Digite quantos exemplares estão disponíveis desse livro: ");
-         int livrosDisponiveis = sc.nextInt();
-
-         System.out.println("Digite o valor de empréstimo do livro: ");
-         double valor = sc.nextDouble();
-
-         Livro livro = new Livro(nome, autor, list.get(indice), edicao, ano, livrosDisponiveis, valor);
-         getLivrosDoUsuario().add(livro);
-         System.out.println("Livro cadastrado com sucesso!");
-
-	}
 
     // toString de UsuarioEstudante.
     // @Override
