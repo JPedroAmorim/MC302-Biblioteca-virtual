@@ -125,16 +125,12 @@ public class UsuarioAdmin extends Usuario {
          System.out.println("Livro cadastrado com sucesso!");         
     }
     
-    public void banirUsuario() throws SistemaExcecao {
-    	
-        Scanner sc = new Scanner(System.in);
+    public void banirUsuario(String nome) throws SistemaExcecao {
 
         System.out.println("Digite o nome do usuário que você deseja banir: ");
-        String nome = "";
+        nome = "";
         
-        if (Main.testMode == 0) {
-            nome = sc.nextLine();
-        } else if (Main.testMode == 1) {
+        if (Main.testMode == 1) {
             nome = "João";
         }
 

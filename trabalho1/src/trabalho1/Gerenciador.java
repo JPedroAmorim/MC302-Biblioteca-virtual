@@ -22,7 +22,7 @@ public class Gerenciador {
         }
     }
 
-    // MÈtodo checaUsuario: Retorna o pindice de um usu·rio caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contr√°rio, retorna -1.
+    // Mtodo checaUsuario: Retorna o pindice de um usurio caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contr√°rio, retorna -1.
 
     public static int checaUsuario(String nome) {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {

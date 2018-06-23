@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) throws SistemaExcecao {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Você deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
+        System.out.println("Voce deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
         String testeSistema = sc.nextLine();
         
         if (testeSistema.equals("Sim")) {
@@ -28,12 +28,7 @@ public class Main {
             testaSistema();
             return;
         }
-        
         new TelaInicial().setVisible(true);
-        
-        
-
-
     }
         
 
