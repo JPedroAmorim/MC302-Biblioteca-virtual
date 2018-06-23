@@ -71,8 +71,7 @@ public class UsuarioComum extends Usuario {
         getLivrosDoUsuario().add(livro);
         System.out.println("Livro cadastrado com sucesso!");  
 	}
-	
-	 public void salvar(File arquivo) {	
+	public void salvar(File arquivo) {
 		try {
 			FileWriter arq = new FileWriter("MensagensUsuarioComum.txt", true);
 			BufferedWriter escrever = new BufferedWriter(arq);
@@ -84,8 +83,7 @@ public class UsuarioComum extends Usuario {
 				
 		}		
 	}
-	 
-	 public void ler(File arquivo) {
+	public void ler(File arquivo) {
 	    	try {
 				FileReader arq = new FileReader(arquivo);
 				BufferedReader ler = new BufferedReader(arq);

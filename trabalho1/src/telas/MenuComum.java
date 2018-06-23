@@ -71,6 +71,13 @@ public class MenuComum extends JFrame {
 		contentPane.add(btnInformacoesDeOutros);
 		
 		JButton btnAlterarDados = new JButton("Alterar dados");
+		btnAlterarDados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new telaAlteraDados().setVisible(true);
+            }
+        });
 		btnAlterarDados.setBounds(217, 134, 187, 23);
 		contentPane.add(btnAlterarDados);
 		
@@ -89,6 +96,8 @@ public class MenuComum extends JFrame {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			    setVisible(false);
+				new Login().setVisible(true);
 			}
 		});
 		btnSair.setBounds(163, 359, 89, 23);

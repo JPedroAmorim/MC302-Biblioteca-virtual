@@ -16,7 +16,7 @@ public class TelaBanirUsuario extends JFrame {
     JTextField usuarioBanido;
     JLabel texto;
 
-    public TelaBanirUsuario(UsuarioAdmin usuarioAdmin) {
+    public TelaBanirUsuario() {
 
         //Pegar dimensões da Tela
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,6 +57,6 @@ public class TelaBanirUsuario extends JFrame {
     }
 
     public static void main(String[] args){
-        new TelaBanirUsuario(U);
+        new TelaBanirUsuario();
     }
 }

@@ -71,7 +71,6 @@ public class UsuarioAdmin extends Usuario {
             System.out.println("Por favor, digite uma opcao válida!");
         }
     }
-    
     public void cadastrarLivro() {
     	 Scanner sc = new Scanner(System.in);
 
@@ -124,7 +123,6 @@ public class UsuarioAdmin extends Usuario {
          getLivrosDoUsuario().add(livro);
          System.out.println("Livro cadastrado com sucesso!");         
     }
-    
     public void banirUsuario(String nome) throws SistemaExcecao {
 
         System.out.println("Digite o nome do usuário que você deseja banir: ");
@@ -142,7 +140,6 @@ public class UsuarioAdmin extends Usuario {
         } else 
         	throw new SistemaExcecao("Usuário não existe!");
     }
-
     public void salvar(File arquivo) {	
 		try {
 			FileWriter arq = new FileWriter("MensagensUsuarioAdmin.txt", true);
@@ -155,7 +152,6 @@ public class UsuarioAdmin extends Usuario {
 			
 		}		
 	}
-    
     public void ler(File arquivo) {
     	try {
 			FileReader arq = new FileReader(arquivo);

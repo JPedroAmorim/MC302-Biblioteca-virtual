@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) throws SistemaExcecao {
 
         Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
+
         System.out.println("Voce deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
         String testeSistema = sc.nextLine();
         
@@ -31,7 +31,7 @@ public class Main {
             return;
         }
         new TelaInicial().setVisible(true);
-=======
+
         System.out.println("Voc� deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
        // String testeSistema = sc.nextLine();
         
@@ -43,10 +43,7 @@ public class Main {
         
         new MenuEstudante().setVisible(true);
         
-        
 
-
->>>>>>> ad595296dd409185024f8c99faa943750b2ffccf
     }
         
 
@@ -93,7 +90,7 @@ public class Main {
         exemplo1Usuario.enviarMensagem();
         exemploUsuario.verMensagens();
         exemplo1UsuarioEstudante.buscaUsuarioUniversidade();
-        exemploUsuarioAdmin.banirUsuario();
+       // exemploUsuarioAdmin.banirUsuario();
         
         File arq = new File("Biblioteca.txt");
         biblioteca.salvar(arq);

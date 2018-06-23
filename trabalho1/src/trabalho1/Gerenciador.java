@@ -121,7 +121,8 @@ public class Gerenciador {
                 return true;
             } else if (opcaoAdmin == 3) {
             	try {
-            		((UsuarioAdmin) usuarioAtual).banirUsuario();
+            	    String nome = sc.nextLine();
+            		((UsuarioAdmin) usuarioAtual).banirUsuario(nome);
             		return true;
             	}catch(SistemaExcecao e) {
             		System.out.println(e.getMessage());
