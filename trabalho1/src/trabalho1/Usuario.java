@@ -130,38 +130,18 @@ public abstract class Usuario implements SalvarLer {
 
     // Método adicionarSaldo: Permite que o usuário adicione um valor(double) à seu seu saldo se a forma de pagamento provida pelo usuário for válida.
 
-    public void adicionarSaldo() throws SistemaExcecao {
-        Scanner sc = new Scanner(System.in);
-        String infoPagamento = "";
+    public double adicionarSaldo(String infoPagamento, Double valor) throws SistemaExcecao {
 
-        System.out.println("Por favor, digite o nmero do seu cartão de crédito: ");
+        Gerenciador.pagamentoValido(infoPagamento); // Lança uma exceção se o número de cartão de crédito não for uma forma válida de pagamento.
 
+        // Se até esse ponto do código não foi lançada nenhuma exceção, a forma de pagamento provida é válida.
 
-        if (Main.testMode == 0) {
-            infoPagamento = sc.nextLine();
-        } else if (Main.testMode == 1) {
-            infoPagamento = "1234567891234567";
-        }
-
-        if (!(Gerenciador.pagamentoValido(infoPagamento))) // Verifica se pagamentoValido retornou false.
-        	throw new SistemaExcecao("Por favor, digite um número válido de cartão de crédito.");
-            
-        System.out.println("Digite o valor a ser inserido em seu saldo: ");
-
-        double valor = 0;
-
-        if (Main.testMode == 0) {
-            valor = sc.nextDouble();
-        } else if (Main.testMode == 1) {
-            valor = 30.40;
-        }
-
-        if (valor > 0) 
+        if (valor > 0)
             saldo = saldo + valor;
-        else 
-        	throw new SistemaExcecao("Por favor, digite um número positivo e maior que zero à ser inserido em seu saldo");
- 
-        System.out.println("Saldo atualizado com sucesso! Seu saldo agora é: " + saldo);
+        else
+            throw new SistemaExcecao("Por favor, digite um número positivo e maior que zero à ser inserido em seu saldo");
+
+        return saldo;
 
     }
 
@@ -182,7 +162,7 @@ public abstract class Usuario implements SalvarLer {
         } else if (Main.testMode == 1) {
             opcao = 1;
         }
-        
+
         if (opcao == 1) {
             for (int i = 0; i < mensagens.size(); i++) {
                 if (!(mensagens.get(i).getLido())) { // Caso o atributo lido da mensagem seja false.
@@ -196,9 +176,9 @@ public abstract class Usuario implements SalvarLer {
                 if (!(mensagens.get(i).getLido())) // Caso o atributo lido da mensagem seja false.
                     mensagens.get(i).setLido(true);
             }
-        } else 
-        	throw new SistemaExcecao("Opção inválida!");
-        
+        } else
+            throw new SistemaExcecao("Opção inválida!");
+
     }
 
     // Método enviarMensagem: Permite o usuário enviar uma mensagem à outro usuário do sistema.
@@ -212,66 +192,28 @@ public abstract class Usuario implements SalvarLer {
 
         if (Main.testMode == 0)
             nome = sc.nextLine();
-         else 
+        else
             nome = "João";
-        
+
 
         int resultado = Gerenciador.checaUsuario(nome);
         if (resultado != -1) {
             System.out.println("Digite o corpo de sua mensagem: ");
             String texto = "";
 
-            if (Main.testMode == 0) 
+            if (Main.testMode == 0)
                 texto = sc.nextLine();
-            else 
+            else
                 texto = "Esta é uma mensagem de teste!";
-            
+
             Mensagem mensagemAtual = new Mensagem(texto, nome);
 
             Biblioteca.usuarios.get(resultado).getMensagens().add(mensagemAtual);
 
             System.out.println("Mensagem enviada com sucesso!");
-        } else 
-        	throw new SistemaExcecao("Usuário não encontrado!");
-        
-    }
+        } else
+            throw new SistemaExcecao("Usuário não encontrado!");
 
-    // Metódo alteraDados : Permite o usuário alterar seus atributos pessoais (nome, senha, email...) pela entrada padrão.
-
-    public void alteraDados() {
-        int resultado;
-        int contador = 0;
-        Scanner sc = new Scanner(System.in);
-        String nome;
-
-        do {
-            if (contador > 0) System.out.println("Esse nome de usuário já existe! Por favor, digite outro nome");
-            System.out.println("Digite o novo nome do usuário: ");
-            nome = sc.nextLine();
-            resultado = Gerenciador.checaUsuario(nome);
-            contador++;
-        } while (resultado != -1); // Enquanto o usuário não digitar um nome válido, o loop continua...
-
-        this.nome = nome;
-
-        System.out.println("Digite a sua nova senha: ");
-        senha = sc.nextLine();
-
-        System.out.println("Digite seu novo email: ");
-        email = sc.nextLine();
-
-        System.out.println("Digite sua nova data de Nascimento: ");
-        dataNasc = sc.nextLine();
-
-        if (this instanceof UsuarioEstudante) { // Verifica se é uma instância de UsuarioEstudante.
-            System.out.println("Por favor, digite sua nova instituição: ");
-            ((UsuarioEstudante) this).setInstituicao(sc.nextLine());
-
-            System.out.println("Por favor, digite seu novo RA: ");
-            ((UsuarioEstudante) this).setRa(sc.nextInt());
-        }
-
-        System.out.println("Dados alterados com sucesso!");
     }
 
     // Metódo infoUsuario: Permite o usuário atual buscar outro usuário do sistema e caso ele exista, imprimir as informações dele.
@@ -281,12 +223,12 @@ public abstract class Usuario implements SalvarLer {
 
         System.out.println("Digite o usuário que você deseja saber suas informações: ");
         String nome = "";
-        
-        if (Main.testMode == 0) 
+
+        if (Main.testMode == 0)
             nome = sc.nextLine();
-        else if (Main.testMode == 1) 
+        else if (Main.testMode == 1)
             nome = "João";
-        
+
         int resultado = Gerenciador.checaUsuario(nome);
 
         if (resultado != -1) { // resultado != -1 -> O usuário em questão existe.
@@ -294,37 +236,28 @@ public abstract class Usuario implements SalvarLer {
             System.out.println(Biblioteca.usuarios.get(resultado));
 
         } else { // resultado == -1 -> O usuário não existe.
-        	throw new SistemaExcecao("O usuário não existe!");
+            throw new SistemaExcecao("O usuário não existe!");
         }
     }
 
-    // Método adicionarAmigo: Permite o usuário atual adicionar outro usuário do sistema à sua lista de amigos.
+    // Método adicionarAmigo: Permite o usuário atual adicionar outro usuário do sistema à sua lista de amigos. Lança SistemaExcecao.
 
-    public void adicionarAmigo() throws SistemaExcecao {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Digite o nome do usuário que você deseja adicionar");
-        String nomeAlvo = "";
-
-        if (Main.testMode == 0) {
-            nomeAlvo = sc.nextLine();
-        } else if (Main.testMode == 1) {
-            nomeAlvo = "João";
-        }
+    public void adicionarAmigo(String nomeAlvo) throws SistemaExcecao {
 
         int resultado = Gerenciador.checaUsuario(nomeAlvo);
 
-        // A chamada de tratarExcecao ocorre para impedir o usuário de se adicionar ou adicionar um usuário que já consta em sua lista de amigos.
+        // Caso tenhamos chegado à esse ponto do código, checaUsuario não lançou a exceção de que o Usuário não existe.
 
-        if (resultado != -1) { // resultado != -> Usuário existe
-            if (Gerenciador.trataExcecao(this, Biblioteca.usuarios.get(resultado)))
-                return; // Se houve uma exceção, é para o método parar sua execução.
-            amigos.add(Biblioteca.usuarios.get(resultado));
-            System.out.println("Usuário adicionado com sucesso!");
-        } else { // resultado == -1 -> Usuário não existe
-        	throw new SistemaExcecao("Perdão, não conseguimos encontrar um usuário com esse nome");
-        }
+        // A chamada de checaExcecao ocorre para impedir o usuário de se adicionar ou adicionar um usuário que já consta em sua lista de amigos - o método lança as exceções correspondentes para cada caso.
+
+        Gerenciador.checaExcecao(this, Biblioteca.usuarios.get(resultado)); // Propaga a exceção lançada.
+
+        // Se nenhuma exceção foi lançada até esse ponto do código, obtivemos sucesso ao adicionar o usuário.
+
+        amigos.add(Biblioteca.usuarios.get(resultado));
+
     }
+
 
     /*
        Método novoEmprestimo: Provavelmente o método mais complexo e importante do sistema. Ele recebe dois parâmetros: usuarioEmprestador
@@ -333,20 +266,11 @@ public abstract class Usuario implements SalvarLer {
        ambos tipos de empréstimo com um cupom de desconto.
      */
 
-    public void novoEmprestimo(@Nullable Usuario usuarioEmprestador, @Nullable Cupom cupom) throws SistemaExcecao {
+    public Emprestimo novoEmprestimo(String nome, @Nullable Usuario usuarioEmprestador, @Nullable Cupom cupom) throws SistemaExcecao {
         Scanner sc = new Scanner(System.in);
 
         // Para determinar a data de empréstimo e devolução, foram utilizadas as classes Data e Calendar.
 
-        System.out.println("Por favor, digite o nome do livro que você deseja fazer um empréstimo");
-        String nome = "";
-
-        if (Main.testMode == 0) {
-            nome = sc.nextLine();
-        } else if (Main.testMode == 1) {
-            nome = "Romeu e Julieta";
-        }
-        
         Calendar cal = Calendar.getInstance();
         Date data = cal.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
@@ -372,25 +296,20 @@ public abstract class Usuario implements SalvarLer {
                         if (cupom != null) { // Se há um cupom de desconto, devemos aplicá-lo no saldo do usuário e defini-lo como usado.
                             saldo = saldo - valorComDesconto;
                             cupom.setFoiUsado(true);
-                        } else 
+                        } else
                             saldo = saldo - valorNormal;
-                        
+
                         Emprestimo emprestimoAtual = new Emprestimo(Biblioteca.acervo.get(i).getId(), id, dataEmprestimo, dataDevolucao, ((cupom != null) ? valorComDesconto : valorNormal)); // Instanciamento do empréstimo.
                         emprestimos.add(emprestimoAtual);
 
-                        System.out.println("**** Dados do empréstimo ****");
-                        System.out.println(emprestimoAtual);
-
-                        System.out.println("Seu empréstimo foi realizado com sucesso! Seu saldo agora é: " + saldo);
-
-                        return;
+                        return emprestimoAtual;
 
                     } else // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
-                    	throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
+                        throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
                 }
             }
             throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe
-            
+
         } else { // Caso em que o empréstimo é realizado com um usuário do sistema.
             for (int i = 0; i < usuarioEmprestador.getLivrosDoUsuario().size(); i++) {
                 if (usuarioEmprestador.getLivrosDoUsuario().get(i).getNome().equals(nome)) {
@@ -418,22 +337,18 @@ public abstract class Usuario implements SalvarLer {
                         emprestimos.add(emprestimoAtual);
                         usuarioEmprestador.getemprestimos().add(emprestimoAtual);
 
-                        System.out.println("**** Dados do empréstimo ****");
-                        System.out.println(emprestimoAtual);
-                        System.out.println("Seu empréstimo foi realizado com sucesso! Seu saldo agora é: " + saldo);
-
-                        return;
+                        return emprestimoAtual;
                     }
                 } else  // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
-                	throw new SistemaExcecao("Saldo insuficiente ou livro indisponível!"); 
+                    throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
             }
             throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe.
         }
     }
 
     // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema.
-    public abstract void cadastrarLivro();
-         
+    public abstract void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor);
+
     // toString de Usuário.
     // @Overrride
     public String toString() {

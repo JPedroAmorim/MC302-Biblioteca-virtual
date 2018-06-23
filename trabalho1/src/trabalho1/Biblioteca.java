@@ -19,7 +19,7 @@ public class Biblioteca implements SalvarLer {
     public static ArrayList<Cupom> cupons = new ArrayList<Cupom>();
     
     public String toString() {
-    	String out = "Bacon de Dados da Biblioteca\n\n";
+    	String out = "Banco de Dados da Biblioteca\n\n";
     	for(int i=0; i<acervo.size(); i++)
     		out = out + acervo.get(i).toString();
     	

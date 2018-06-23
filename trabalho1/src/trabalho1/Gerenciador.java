@@ -24,64 +24,60 @@ public class Gerenciador {
 
     // Mtodo checaUsuario: Retorna o pindice de um usurio caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contrário, retorna -1.
 
-    public static int checaUsuario(String nome) {
+    public static int checaUsuario(String nome) throws SistemaExcecao {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if ((Biblioteca.usuarios.get(i)).getNome().equals(nome))
             	return i;
         }
-        return -1; // Se não retornou no for, o usuário não existe.
+
+        throw new SistemaExcecao("Usuário não existe!");
     }
 
     // Método trataExececao: Retorna true se o usuário, durante a execução do método adicionarAmigo, tentar se adicionar ou adicionar um usuário que já está em sua lista de amigos.
 
-    public static boolean trataExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) throws SistemaExcecao {
+    public static void checaExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) throws SistemaExcecao {
         for (int i = 0; i < usuarioAtual.getAmigos().size(); i++) {
             if (usuarioAlvo.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
-            	System.out.println("O usuário já está adicionado na sua lista de amigos!");
-            	return true;
+            	throw new SistemaExcecao("Você já possui esse usuário em sua lista de amigos!");
             }
         }
         
         if (usuarioAtual.getNome().equals(usuarioAlvo.getNome())) {
-        	System.out.println("Você não pode se adicionar na lista de amigos!");
-        	return true;
+        	throw new SistemaExcecao("Você não pode se adicionar em sua lista de amigos!");
         }
-        return false; // Se não houve retorno nos "for" acima, então não houve nenhum caso de exceção.
     }
 
     // Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado (nome e senha batem com os dados na AL), e -1 caso contrário.
 
-    public static int login(String nome, String senha) {
+    public static int login(String nome, String senha) throws SistemaExcecao {
     	
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if (Biblioteca.usuarios.get(i).getNome().equals(nome) && Biblioteca.usuarios.get(i).getSenha().equals(senha))
                 return i;
         }
-        return -1;
+        throw new SistemaExcecao("Usuário ou senha incorretos!");
     }
 
     // Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas. Se houver 16 caracteres na string (como em um número de cartão da vida real), retorna true.
 
-    public static boolean pagamentoValido(String infoPagamento) {
-        return (infoPagamento.length() == 16);
+    public static void pagamentoValido(String infoPagamento) throws SistemaExcecao {
+        if(!(infoPagamento.length() == 16)) throw new SistemaExcecao("Cartão de crédito inválido! Por favor, insira um método de pagamento válido");
     }
 
     // Método checaCupom: Verifica se o código de Cupom dado pelo usuário é um código válido - isto é, existe um cupom com esse código e ele não foi utilizado.
     // Retorna o índice do cupom na AL cupons da Biblioteca caso o cupom seja válido e -1 caso contrário.
 
-    public static int checaCupom(String codigo) {
+    public static int checaCupom(String codigo) throws SistemaExcecao {
         for (int i = 0; i < Biblioteca.cupons.size(); i++) {
             if (Biblioteca.cupons.get(i).getCodigo().equals(codigo)) {
                 if (!Biblioteca.cupons.get(i).getFoiUsado()) {
                     return i;
                 } else {
-                    System.out.println("Cupom já utilizado!");
-                    return -1;
+                    throw new SistemaExcecao("Cupom já utilizado!");
                 }
             }
         }
-        System.out.println("Código de cupom inválido!");
-        return -1;
+       throw new SistemaExcecao("Código de cupom inválido (não existe)!");
     }
 
     // Método opcoesUsuario: Recebe do usuário um inteiro pela entrada padrão e realiza a opção ligada à esse inteiro. Enquanto não retorna false, ele continua a ser executado pela main em loop.
