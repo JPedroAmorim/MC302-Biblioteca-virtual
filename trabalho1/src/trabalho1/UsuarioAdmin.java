@@ -26,23 +26,11 @@ public class UsuarioAdmin extends Usuario {
 
     // Método cadastrarCupom: Permite ao Admin cadastrar um cupom no sistema.
 
-    public void cadastrarCupom() throws SistemaExcecao {
+    public void cadastrarCupom(String codigo, double desconto) {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o código do cupom a ser adicionado: ");
-
-        String codigo = sc.nextLine();
-
-        if (Gerenciador.checaCupom(codigo) != -1) 
-        	throw new SistemaExcecao("Esse cupom já existe!");
-
-        System.out.println("Digite, em porcentagem, o desconto do cupom: ");
-
-        double desconto = sc.nextDouble();
         Cupom cupom = new Cupom(codigo, desconto);
         Biblioteca.cupons.add(cupom);
 
-        System.out.println("Cupom cadastrado com sucesso!");
     }
 
     // Método listaDados: Permite ao Admin listar o conteúdo de cada uma das AL de Biblioteca.
@@ -80,23 +68,16 @@ public class UsuarioAdmin extends Usuario {
          Biblioteca.acervo.add(livro); // Aqui está a justificativa de cadastrarLivro ser abstrato: Enquanto usuarioComum e usuarioEstudante adicionam livros em seus acervos, usuarioAdmin adiciona livros na AL acervo da Biblioteca.
          System.out.println("Livro cadastrado com sucesso!");         
     }
-    public void banirUsuario(String nome) throws SistemaExcecao {
 
-        System.out.println("Digite o nome do usuário que você deseja banir: ");
-        nome = "";
-        
-        if (Main.testMode == 1) {
-            nome = "João";
-        }
+    public void banirUsuario(String nome) throws SistemaExcecao {
 
         int resultado = Gerenciador.checaUsuario(nome);
 
-        if (resultado != -1) {
-            Biblioteca.usuarios.remove(Biblioteca.usuarios.get(resultado));
-            System.out.println("Usuário banido com sucesso!");
-        } else 
-        	throw new SistemaExcecao("Usuário não existe!");
+        // Se nenhuma exceção foi lançada até esse ponto, o usuário que se deseja banir existe.
+
+        Biblioteca.usuarios.remove(Biblioteca.usuarios.get(resultado));
     }
+
     public void salvar(File arquivo) {	
 		try {
 			FileWriter arq = new FileWriter("MensagensUsuarioAdmin.txt", true);
