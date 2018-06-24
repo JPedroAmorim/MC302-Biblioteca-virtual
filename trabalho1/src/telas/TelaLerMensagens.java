@@ -22,13 +22,13 @@ public class TelaLerMensagens extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Caixa de entrada");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 200, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 500, 500);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         pergunta = new JLabel("Você deseja ler as mensagens: ");
@@ -36,7 +36,7 @@ public class TelaLerMensagens extends JFrame {
         todas = new JButton("Todas");
         naoLidas = new JButton("Não Lidas");
 
-        textoMensagens = new JTextArea(40, 40);
+        textoMensagens = new JTextArea(25, 30);
 
         textoMensagens.setLineWrap(true);
 
@@ -56,9 +56,13 @@ public class TelaLerMensagens extends JFrame {
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaLerMensagens.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaLerMensagens.this.dispose();
+                    return;
                 }
             }
         };
+
+        naoLidas.addActionListener(butonListener);
+        todas.addActionListener(butonListener);
 
         contentPane.add(pergunta);
         contentPane.add(todas);

@@ -97,17 +97,17 @@ public class Emprestimo {
     // @Override
 
     public String toString() {
-        String out = "Emprestimo: " + getIdEmprestimo() + "\n";
+        String out = "Empréstimo (ID): " + getIdEmprestimo() + "\n";
         out = out + "Data do empréstimo: " + getDataEmprestimo() + "\n";
         out = out + "Data de devolução: " + getDataDevolucao() + "\n";
-        out = out + "Usuario: " + getIdUsuario() + "\n";
-        out = out + "Livro: " + getIdLivro() + "\n";
+        out = out + "Usuário (ID): " + getIdUsuario() + "\n";
+        out = out + "Livro (ID): " + getIdLivro() + "\n";
         out = out + "Valor: R$" + getValor() + "\n";
 
         if (getAtivo())
-            out = out + "O livro ainda esta emprestado\n";
+            out = out + "O livro ainda está emprestado\n";
         else
-            out = out + "O livro ja foi devolvido\n";
+            out = out + "O livro já foi devolvido\n";
 
         return out;
     }

@@ -16,28 +16,28 @@ public class TelaInfoUsuario extends JFrame {
     private JScrollPane scrollbar;
     private JButton botaoConfirmar;
 
-    // TODO: Fazer um setBounds pra ficar bonitinho o botão.
+
 
     public TelaInfoUsuario() {
 
         // Definições de tamanho e criação do frame e painel.
 
-        setTitle("Empréstimo realizado com sucesso!");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 200, 330);
+        setTitle("Informações de outros usuários");
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 600, 600);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         perguntaUsuario = new JLabel("Qual o nome do usuário que deseja saber as informações? ");
-        nomeUsuario = new JTextField("", 50);
+        nomeUsuario = new JTextField("", 20);
 
-        dadosUsuario = new JTextArea(50, 50);
+        dadosUsuario = new JTextArea(30, 30);
 
         dadosUsuario.setLineWrap(true);
 
@@ -62,6 +62,7 @@ public class TelaInfoUsuario extends JFrame {
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaInfoUsuario.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaInfoUsuario.this.dispose();
+                    return;
                 }
             }
         });

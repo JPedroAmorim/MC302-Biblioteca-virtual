@@ -1,11 +1,6 @@
 package trabalho1;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -88,18 +83,17 @@ public class UsuarioEstudante extends Usuario {
 
         return out;
     }
-    public void salvar() {
-		try {
-			FileWriter arq = new FileWriter("UsuarioEstudante.txt", true);
-			BufferedWriter escrever = new BufferedWriter(arq);
-			for(int i=0; i<getMensagens().size(); i++)
-				escrever.write(getMensagens().get(i).toString());
-			escrever.close();
-			arq.close();
-		}catch(IOException e) {
-			
-		}		
-	}
+
+    public void salvar(Writer writer) {
+        try {
+            writer.write(this.getMensagens().toString());
+
+            writer.flush();
+
+        }catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void ler(File arquivo) {
     	try {
 			FileReader arq = new FileReader(arquivo);

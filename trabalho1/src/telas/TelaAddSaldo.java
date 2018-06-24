@@ -26,22 +26,22 @@ public class TelaAddSaldo extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Adicionar saldo");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 305, 228);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 350, 300);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         perguntaCartao = new JLabel("Digite o número do cartão de crédito: ");
-        textCartao = new JTextField("", 30);
+        textCartao = new JTextField("", 25);
 
         perguntaValor = new JLabel("Valor à ser adicionado em seu saldo (R$): ");
-        textValor = new JTextField("", 30);
+        textValor = new JTextField("", 25);
 
         // Botão de confirmação.
 
@@ -53,17 +53,19 @@ public class TelaAddSaldo extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
 
-                    double saldoAtual = usuarioAtual.adicionarSaldo(textValor.getText(), Double.parseDouble(textValor.getText()));
+                    double saldoAtual = usuarioAtual.adicionarSaldo(textCartao.getText(), Double.parseDouble(textValor.getText()));
 
 					// Se nenhuma exceção foi lançada até esse ponto do código, houve sucesso ao adicionarmos o valor ao saldo do usuário.
 
-                    JOptionPane.showMessageDialog(TelaAddSaldo.this, "Sucesso ao adicionar saldo, seu saldo agora é " + saldoAtual, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(TelaAddSaldo.this, "Sucesso ao adicionar saldo, seu saldo agora é (R$) " + saldoAtual, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     TelaAddSaldo.this.dispose();
+                    return;
 
                 } catch (SistemaExcecao excecao) {
 
                     JOptionPane.showMessageDialog(TelaAddSaldo.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaAddSaldo.this.dispose();
+                    return;
 
                 }
             }

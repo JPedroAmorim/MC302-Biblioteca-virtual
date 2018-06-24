@@ -34,7 +34,7 @@ public class Gerenciador {
      tentar se adicionar ou adicionar um usuário que já está em sua lista de amigos.*/
     public static void checaExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) throws SistemaExcecao {
         for (int i = 0; i < usuarioAtual.getAmigos().size(); i++) {
-            if (usuarioAlvo.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
+            if (usuarioAtual.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
             	throw new SistemaExcecao("Você já possui esse usuário em sua lista de amigos!");
             }
         }
@@ -58,7 +58,7 @@ public class Gerenciador {
     /* Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas. Se houver
      16 caracteres na string (como em um número de cartão da vida real), retorna true.*/
     public static void pagamentoValido(String infoPagamento) throws SistemaExcecao {
-        if(!(infoPagamento.length() == 16)) throw new SistemaExcecao("Cartão de crédito inválido! Por favor, insira um método de pagamento válido");
+        if(!(infoPagamento.length() == 2)) throw new SistemaExcecao("Cartão de crédito inválido! Por favor, insira um método de pagamento válido");
     }
 
     /* Método checaCupom: Verifica se o código de Cupom dado pelo usuário é um código válido

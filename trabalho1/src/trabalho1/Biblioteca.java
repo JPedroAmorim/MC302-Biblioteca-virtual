@@ -33,7 +33,7 @@ public class Biblioteca implements SalvarLer {
 
     	return out;
     }
-	public void salvar() {
+	public void salvar(Writer writer) {
 		try {
 			FileWriter arq = new FileWriter("testeArquivos/Biblioteca.txt", true);
 			BufferedWriter escrever = new BufferedWriter(arq);

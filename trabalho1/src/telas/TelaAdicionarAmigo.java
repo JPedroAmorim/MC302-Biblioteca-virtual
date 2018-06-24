@@ -20,20 +20,20 @@ public class TelaAdicionarAmigo extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Adicionar amigo");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 400, 150);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         perguntaNomeUsuario = new JLabel("Digite o nome do usuário que você deseja adicionar: ");
 
-        nomeUsuario = new JTextField("", 40);
+        nomeUsuario = new JTextField("", 30);
 
         botaoConfirmar = new JButton("Confirmar");
 
@@ -54,6 +54,7 @@ public class TelaAdicionarAmigo extends JFrame {
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaAdicionarAmigo.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaAdicionarAmigo.this.dispose();
+                    return;
                 }
             }
         });
