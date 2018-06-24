@@ -45,18 +45,21 @@ public class UsuarioEstudante extends Usuario {
 
     // Método buscaUsuarioUniversidade: Exclusivo de usuarioEstudante, é capaz de informar quais usuários do sistema estão na mesma instituição de ensino do usuário atual.
 
-    public void buscaUsuarioUniversidade() throws SistemaExcecao {
+    public String buscaUsuarioUniversidade() throws SistemaExcecao {
         boolean flag = false;
+        String out = "";
+
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if (Biblioteca.usuarios.get(i) instanceof UsuarioEstudante // Verifica se o usuário é um UsuarioEstudante
                     && instituicao.equals(((UsuarioEstudante) Biblioteca.usuarios.get(i)).getInstituicao()) // Verifica se ambos possuem a mesma instiuição de ensino
                     && !(this.getNome().equals(Biblioteca.usuarios.get(i).getNome()))) { // Verifica se não é o próprio usuário que chamou o método
-                System.out.println("Usuário " + Biblioteca.usuarios.get(i).getNome() + " também pertence à " + instituicao);
+                out += "Usuário " + Biblioteca.usuarios.get(i).getNome() + " também pertence à " + instituicao + "\n";
                 flag = true;
             }
         }
         if (!flag)
         	throw new SistemaExcecao("Não encontramos nenhum usuário de sua instituição de ensino!");
+        return out;
     }
 
     public void alteraDados(String novoNome, String novaSenha, String novoEmail, String novoAniversario, int novoRA, String novaInstituicao) {

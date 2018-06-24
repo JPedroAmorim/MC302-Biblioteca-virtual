@@ -1,28 +1,65 @@
 package telas;
 
-import trabalho1.SistemaExcecao;
-import trabalho1.Usuario;
-import trabalho1.UsuarioAdmin;
+import trabalho1.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
 public class TelaBanirUsuario extends JFrame {
 
-    JFrame janelaBanirUsuario;
-    JPanel painelBanirUsuario;
-    JButton botaoConfirmar;
-    JTextField usuarioBanido;
-    JLabel perguntaUsuario;
+    private JPanel contentPane;
+    private JButton botaoConfirmar;
+    private JTextField usuarioBanido;
+    private JLabel perguntaUsuario;
 
-    public TelaBanirUsuario() {
+    public TelaBanirUsuario(UsuarioAdmin admin) {
 
+        // Definições de tamanho e criação do frame e painel.
 
+        setTitle("Banir usuário");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(100, 100, 800, 330);
+        setLocationRelativeTo(null);
 
-    }
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        setContentPane(contentPane);
 
-    public static void main(String[] args){
-        new TelaBanirUsuario();
+        // Labels de pergunta e seus JTextFields correspondentes (respostas).
+
+        perguntaUsuario = new JLabel("Digite o nome do usuário à ser banido: ");
+        usuarioBanido = new JTextField("", 40);
+
+        // Botão de confirmação.
+
+        botaoConfirmar = new JButton("Confirmar");
+
+        // ActionListener do botão de confirmação.
+
+        botaoConfirmar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    admin.banirUsuario(usuarioBanido.getText());
+
+                    // Se nenhuma exceção foi lançada até esse ponto, obtivemos sucesso ao banir o usuário.
+
+                    JOptionPane.showMessageDialog(TelaBanirUsuario.this, "Usuário banido com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (SistemaExcecao excecao) {
+                    JOptionPane.showMessageDialog(TelaBanirUsuario.this,excecao.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
+                    TelaBanirUsuario.this.dispose();
+                }
+            }
+        });
+
+        contentPane.add(perguntaUsuario);
+        contentPane.add(usuarioBanido);
+        contentPane.add(botaoConfirmar);
+
     }
 }
