@@ -52,7 +52,7 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel txtUsuario = new JLabel("Usuario");
+		JLabel txtUsuario = new JLabel("Usuário");
 		txtUsuario.setBounds(24, 28, 46, 14);
 		contentPane.add(txtUsuario);
 		

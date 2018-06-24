@@ -6,18 +6,18 @@ import trabalho1.Usuario;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class DadosDoEmprestimo extends JFrame {
+public class TelaInfoPropria extends JFrame {
 
     private JPanel contentPane;
     private JTextArea dados;
     private JLabel infoSaldo;
     private JScrollPane scrollbar;
 
-    public DadosDoEmprestimo(Usuario usuarioAtual, Emprestimo emprestimoAtual) {
+    public TelaInfoPropria(Usuario usuarioAtual) {
 
         // Definições de tamanho e criação do frame e painel.
 
-        setTitle("Empréstimo realizado com sucesso!");
+        setTitle("Suas informações");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 200, 330);
         setLocationRelativeTo(null);
@@ -29,8 +29,6 @@ public class DadosDoEmprestimo extends JFrame {
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
-        infoSaldo = new JLabel("Seu saldo agora é " + usuarioAtual.getSaldo());
-
         dados = new JTextArea(50, 50);
 
         dados.setLineWrap(true);
@@ -39,16 +37,16 @@ public class DadosDoEmprestimo extends JFrame {
 
         scrollbar = new JScrollPane(dados, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        dados.setText(emprestimoAtual.toString());
+        dados.setText(usuarioAtual.toString());
 
         contentPane.add(infoSaldo);
         contentPane.add(scrollbar);
 
     }
 
-
     public static void main (String args[]) {
     }
 
 
 }
+

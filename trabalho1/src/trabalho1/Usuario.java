@@ -147,72 +147,40 @@ public abstract class Usuario implements SalvarLer {
 
     // Método verMensagem: Permite o usuário ler o contéudo das mensagens de seu atributo AL<Mensagem> mensagens. Ele pode optar por ler todas as mensagens ou apenas as não lidas.
 
-    public void verMensagens() throws SistemaExcecao {
+    public String verMensagens(int opcao) throws SistemaExcecao {
 
-        System.out.println("Pressione a tecla correspondente à opção desejada: ");
-        System.out.println("1 - Exibir apenas as mensagens marcadas como não lidas");
-        System.out.println("2 - Exibir todas as mensagens");
-
-        Scanner sc = new Scanner(System.in);
-
-        int opcao = 0;
-
-        if (Main.testMode == 0) {
-            opcao = sc.nextInt();
-        } else if (Main.testMode == 1) {
-            opcao = 1;
-        }
+        String out = "";
 
         if (opcao == 1) {
             for (int i = 0; i < mensagens.size(); i++) {
                 if (!(mensagens.get(i).getLido())) { // Caso o atributo lido da mensagem seja false.
-                    System.out.println(mensagens.get(i));
+                    out += mensagens.get(i).toString();
                     mensagens.get(i).setLido(true);
                 }
             }
-        } else if (opcao == 2) {
+        } else {
             for (int i = 0; i < mensagens.size(); i++) {
-                System.out.println(mensagens.get(i));
+                out += mensagens.get(i);
                 if (!(mensagens.get(i).getLido())) // Caso o atributo lido da mensagem seja false.
                     mensagens.get(i).setLido(true);
             }
-        } else
-            throw new SistemaExcecao("Opção inválida!");
+        }
+
+        if (out.equals("")) throw new SistemaExcecao("Não há mensagens em sua caixa de entrada!");
+
+        return out;
 
     }
 
     // Método enviarMensagem: Permite o usuário enviar uma mensagem à outro usuário do sistema.
 
-    public void enviarMensagem() throws SistemaExcecao {
-        Scanner sc = new Scanner(System.in);
+    public void enviarMensagem(String nomeUsuario, String texto) throws SistemaExcecao {
 
-        System.out.println("Digite o nome do Usuário para quem você deseja enviar a mensagem: ");
+        int resultado = Gerenciador.checaUsuario(nomeUsuario);
 
-        String nome = "";
+        Mensagem mensagemAtual = new Mensagem(texto, nome);
 
-        if (Main.testMode == 0)
-            nome = sc.nextLine();
-        else
-            nome = "João";
-
-
-        int resultado = Gerenciador.checaUsuario(nome);
-        if (resultado != -1) {
-            System.out.println("Digite o corpo de sua mensagem: ");
-            String texto = "";
-
-            if (Main.testMode == 0)
-                texto = sc.nextLine();
-            else
-                texto = "Esta é uma mensagem de teste!";
-
-            Mensagem mensagemAtual = new Mensagem(texto, nome);
-
-            Biblioteca.usuarios.get(resultado).getMensagens().add(mensagemAtual);
-
-            System.out.println("Mensagem enviada com sucesso!");
-        } else
-            throw new SistemaExcecao("Usuário não encontrado!");
+        Biblioteca.usuarios.get(resultado).getMensagens().add(mensagemAtual);
 
     }
 
@@ -308,6 +276,7 @@ public abstract class Usuario implements SalvarLer {
                         throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
                 }
             }
+
             throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe
 
         } else { // Caso em que o empréstimo é realizado com um usuário do sistema.
@@ -340,8 +309,10 @@ public abstract class Usuario implements SalvarLer {
                         return emprestimoAtual;
                     }
                 } else  // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
+
                     throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
             }
+
             throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe.
         }
     }
