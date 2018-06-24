@@ -1,0 +1,25 @@
+Banco de Dados da Biblioteca
+0
+2
+Nome: Leonardo (ID: 1360)
+Data de nascimento: 19/06/1995
+Email: lrm5060@gmail.com
+Status: Positivo
+Livros do Usuário
+Saldo R$: 0.0
+Livros do Usuário: 
+Empréstimos ativos:
+Amigos do Usuario Leonardo
+Seus amigos:
+Nome: Roberta (ID: 8985)
+Data de nascimento: 12/06/1956
+Email: roberta@hotmail.com
+Status: Positivo
+Livros do Usuário
+Saldo R$: 0.0
+Livros do Usuário: 
+Empréstimos ativos:
+Amigos do Usuario Roberta
+Seus amigos:
+0
+0
