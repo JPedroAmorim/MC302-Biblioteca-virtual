@@ -5,6 +5,7 @@
 package trabalho1;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 import telas.MenuEstudante;
@@ -24,29 +25,35 @@ public class Main {
 
         System.out.println("Voce deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
         String testeSistema = sc.nextLine();
-        
+
         if (testeSistema.equals("Sim")) {
             testMode = 1;
-            testaSistema();
+            //testaSistema();
             return;
         }
         new TelaInicial().setVisible(true);
 
+        Gerenciador.geradorUsuario("Leonardo", "3234", "19/06/1995", "lrm5060@gmail.com", "Unicamp", 178610, false);
+        for (Usuario i: Biblioteca.usuarios){
+            i.salvar(null);
+        }
+
         System.out.println("Voc� deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
-       // String testeSistema = sc.nextLine();
-        
+        // String testeSistema = sc.nextLine();
+
         //if (testeSistema.equals("Sim")) {
-            //testMode = 1;
-          //  testaSistema();
+        //testMode = 1;
+        //  testaSistema();
         //    return;
-      //  }
-        
+        //  }
+
         new MenuEstudante().setVisible(true);
-        
+
 
     }
+}
         
-
+/*
     public static void testaSistema() throws SistemaExcecao { // Testa as principais funcionalidades do sistema.
 
         Scanner sc = new Scanner(System.in);
@@ -110,6 +117,7 @@ public class Main {
         System.out.println("FIM DO MODO TESTE");
         
     }
-}
+    }
+    */
 
 

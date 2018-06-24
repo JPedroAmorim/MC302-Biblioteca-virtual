@@ -28,22 +28,17 @@ public class UsuarioEstudante extends Usuario {
         this.ra = ra;
     }
 
-
-
     // Getters & Setters.
 
     public String getInstituicao() {
         return instituicao;
     }
-
     public void setInstituicao(String instituicao) {
         this.instituicao = instituicao;
     }
-
     public int getRa() {
         return ra;
     }
-
     public void setRa(int ra) {
         this.ra = ra;
     }
@@ -82,8 +77,7 @@ public class UsuarioEstudante extends Usuario {
     }
 
 
-    // toString de UsuarioEstudante.
-    // @Override
+    @Override
     public String toString() {
         String out = super.toString();
         out = out + "Instituicao: " + getInstituicao() + "\n";
@@ -91,7 +85,6 @@ public class UsuarioEstudante extends Usuario {
 
         return out;
     }
-    
     public void salvar(File arquivo) {	
 		try {
 			FileWriter arq = new FileWriter("UsuarioEstudante.txt", true);
@@ -104,7 +97,6 @@ public class UsuarioEstudante extends Usuario {
 			
 		}		
 	}
-    
     public void ler(File arquivo) {
     	try {
 			FileReader arq = new FileReader(arquivo);

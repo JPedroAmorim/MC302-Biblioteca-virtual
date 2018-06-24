@@ -1,5 +1,7 @@
 package telas;
 
+import trabalho1.Usuario;
+
 import java.awt.*;
 
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ public class MenuComum extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    MenuComum frame = new MenuComum();
+                    MenuComum frame = new MenuComum(null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -29,11 +31,12 @@ public class MenuComum extends JFrame {
         });
     }
 
+
     /**
      * Create the frame.
      */
+    public MenuComum(Usuario usuario) {
 
-    public MenuComum() {
         setTitle("Menu Principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 432);
@@ -75,7 +78,7 @@ public class MenuComum extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new TelaAlteraDados().setVisible(true);
+                new TelaAlteraDados(usuario).setVisible(true);
             }
         });
         btnAlterarDados.setBounds(217, 134, 187, 23);
@@ -106,7 +109,7 @@ public class MenuComum extends JFrame {
         JButton btnAdicionarSaldo = new JButton("Adicionar Saldo");
         btnAdicionarSaldo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaAddSaldo().setVisible(true);
+                new TelaAddSaldo(usuario).setVisible(true);
             }
         });
         btnAdicionarSaldo.setBounds(10, 310, 180, 23);

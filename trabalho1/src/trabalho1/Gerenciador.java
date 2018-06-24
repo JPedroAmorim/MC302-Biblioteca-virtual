@@ -1,7 +1,5 @@
 package trabalho1;
 
-import java.util.Scanner;
-
 /*
     Classe Gerenciador: Funciona como uma espécie de "cerne" do sistema. É responsável por métodos estáticos de criação de usuários (geradorUsuario),
     verificação de elementos no sistema (métodos checaXXXX), login e tratamento de exceções. Além disso, é a classe do método opcoesUsuario, que é
@@ -87,7 +85,6 @@ public class Gerenciador {
         System.out.print("\n");
         System.out.println("Olá " + usuarioAtual.getNome() + " !");
         System.out.print("\n");
-        Scanner sc = new Scanner(System.in);
         System.out.println(" ***** Digite a tecla para executar a opção desejada... ***** ");
         System.out.print("\n");
 
@@ -99,7 +96,7 @@ public class Gerenciador {
             System.out.println("3 - Banir um usuário");
             System.out.println("4 - Sair da Biblioteca Virtual");
 
-            int opcaoAdmin = sc.nextInt();
+            int opcaoAdmin = 0;
           
             if (opcaoAdmin == 0) {
                 ((UsuarioAdmin) usuarioAtual).listaDados();
@@ -113,11 +110,11 @@ public class Gerenciador {
             		return true;
             	}
             } else if (opcaoAdmin == 2) {
-                ((UsuarioAdmin) usuarioAtual).cadastrarLivro();
+                 //((UsuarioAdmin) usuarioAtual).cadastrarLivro();
                 return true;
             } else if (opcaoAdmin == 3) {
             	try {
-            	    String nome = sc.nextLine();
+            	    String nome = "MUDAR AQUI";
             		((UsuarioAdmin) usuarioAtual).banirUsuario(nome);
             		return true;
             	}catch(SistemaExcecao e) {
@@ -151,40 +148,37 @@ public class Gerenciador {
             System.out.println("12 - Desconectar da Biblioteca Virtual");
         } else
             System.out.println("10 - Desconectar da Biblioteca Virtual");
-        
 
-        int opcao = sc.nextInt();
+
+        int opcao = 0;
 
         if (opcao == 0) {
-            usuarioAtual.cadastrarLivro();
+            //usuarioAtual.cadastrarLivro();
             return true;
 
         } else if (opcao == 1) {
-        	
-        		usuarioAtual.novoEmprestimo(null, null);
+        		//usuarioAtual.novoEmprestimo(null, null);
         		return true;
-        	
-        	
         } else if (opcao == 2) {
             System.out.println("Digite o nome do usuário com quem você quer fazer um empréstimo ");
 
-            String nome = sc.nextLine();
+            String nome = "MUDAR AQUI";
             int resultado = checaUsuario(nome);
             if (resultado != -1) { // Resultado != -1 -> Usuário existe.
-                usuarioAtual.novoEmprestimo(Biblioteca.usuarios.get(resultado), null);
+                //usuarioAtual.novoEmprestimo(Biblioteca.usuarios.get(resultado), null);
             }else { // Resultado == -1 -> Usuário não existe.
                 System.out.println("Usuário não existe");
             }
             return true;
 
         } else if (opcao == 3) {
-        	try {
-        		usuarioAtual.adicionarAmigo();
+        	/*try {
+        		//usuarioAtual.adicionarAmigo();
         		return true;
         	}catch(SistemaExcecao e) {
         		System.out.println(e.getMessage());
         		return true;
-        	}
+        	}*/
 
         } else if (opcao == 4) {
         	try {
@@ -196,17 +190,17 @@ public class Gerenciador {
         	}
 
         } else if (opcao == 5) {
-            usuarioAtual.alteraDados();
+            //usuarioAtual.alteraDados();
             return true;
 
         } else if (opcao == 6) {
-        	try {
-        		usuarioAtual.adicionarSaldo();
+        	/*try {
+        		    usuarioAtual.adicionarSaldo();
             	return true;
         	}catch(SistemaExcecao e) {
         		System.out.println(e.getMessage());
         		return true;
-        	}
+        	}*/
 
         } else if (opcao == 7) {
             System.out.println("**** Suas informações ****");
@@ -226,7 +220,7 @@ public class Gerenciador {
 
         } else if (usuarioAtual instanceof UsuarioEstudante && opcao == 10) {
             System.out.println("Por favor, digite o código do seu cupom");
-            int resultadoCupom = checaCupom(sc.nextLine());
+            int resultadoCupom = checaCupom("MUDAR AQUI");
 
             if (resultadoCupom != -1) { // resultadoCupom != -1 -> Cupom existe e é válido.
 
@@ -234,16 +228,16 @@ public class Gerenciador {
                 System.out.println("1 - Utilizar o cupom de desconto em um empréstimo com a Biblioteca Virtual");
                 System.out.println("2 - Utilizar o cupom de desconto em um empréstimo com um Usuário");
 
-                int opcao1 = sc.nextInt();
+                int opcao1 = 1;
 
                 if (opcao1 == 1) {
-                    usuarioAtual.novoEmprestimo(null, Biblioteca.cupons.get(resultadoCupom));
+                    //  usuarioAtual.novoEmprestimo(null, Biblioteca.cupons.get(resultadoCupom));
                 } else if (opcao1 == 2) {
                     System.out.println("Digite o nome do usuário com quem você quer fazer um empréstimo ");
-                    String nome = sc.nextLine();
+                    String nome = "MUDAR AQUI";
                     int resultado = checaUsuario(nome);
                     if (resultado != -1) { // resultado != -1 -> Usuário existe.
-                        usuarioAtual.novoEmprestimo(Biblioteca.usuarios.get(resultado), Biblioteca.cupons.get(resultadoCupom));
+                        // usuarioAtual.novoEmprestimo(Biblioteca.usuarios.get(resultado), Biblioteca.cupons.get(resultadoCupom));
                     } else {
                         System.out.println("Usuário não existe");
                     }
@@ -268,5 +262,6 @@ public class Gerenciador {
         	System.out.println("Por favor, escolha uma opção válida");
         	return true;
         }
+        return true;
     }
 }

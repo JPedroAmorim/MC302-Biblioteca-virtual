@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 // Classe biblioteca: É o banco de dados onde estão armazenadas as AL necessárias do sistema.
 
 public class Biblioteca implements SalvarLer {
@@ -34,8 +33,6 @@ public class Biblioteca implements SalvarLer {
 
     	return out;
     }
-
-    
 	public void salvar(File arquivo) {	
 		try {
 			FileWriter arq = new FileWriter("Biblioteca.txt", true);
@@ -47,7 +44,6 @@ public class Biblioteca implements SalvarLer {
 			
 		}
 	}
-	
 	public void ler(File arquivo) {
     	try {
 			FileReader arq = new FileReader(arquivo);

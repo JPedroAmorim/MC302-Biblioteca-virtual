@@ -140,7 +140,6 @@ public class Cadastro extends JFrame {
 				 int ra = Integer.parseInt(txtRA.getText());
 				 boolean i =  rdbtnSim.isSelected();
 				
-				
 				 Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, i);
 				 new Login().setVisible(true);
 				 setVisible(false);

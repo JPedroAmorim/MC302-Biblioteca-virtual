@@ -92,6 +92,7 @@ public class TelaEmprestimoUsuario extends JFrame {
             }
         });
 
+
         contentPane.add(perguntaLivro);
         contentPane.add(nomeLivro);
         contentPane.add(perguntaUsuario);

@@ -4,8 +4,6 @@ package trabalho1;
 
 public enum Genero {
 
-    // Constantes.
-
     MATEMATICA("Matemetica"),
     BIOLOGIA("Biologia"),
     PORTUGUES("Portugues"),
@@ -19,27 +17,15 @@ public enum Genero {
     AVENTURA("Aventura"),
     TRAGEDIA("Tragedia");
 
-    // Atributo.
-
     private String tipo;
-
-    // Construtor.
-
     private Genero(String tipo) {
         this.tipo = tipo;
     }
-
-    // Getter.
-
     public String getTipo() {
         return tipo;
     }
 
-
-    // toString de Genero.
-
-    // @Override
-
+    @Override
     public String toString() {
         return ("Gênero: " + getTipo() + "\n");
     }

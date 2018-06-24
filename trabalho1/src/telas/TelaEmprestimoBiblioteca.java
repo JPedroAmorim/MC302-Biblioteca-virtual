@@ -18,7 +18,6 @@ public class TelaEmprestimoBiblioteca extends JFrame {
 
 
         // Definições de tamanho e criação do frame e painel.
-
         setTitle("Empréstimo com a Biblioteca virtual");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 330);
