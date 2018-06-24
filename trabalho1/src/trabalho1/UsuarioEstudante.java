@@ -88,7 +88,7 @@ public class UsuarioEstudante extends Usuario {
 
         return out;
     }
-    public void salvar(File arquivo) {	
+    public void salvar() {
 		try {
 			FileWriter arq = new FileWriter("UsuarioEstudante.txt", true);
 			BufferedWriter escrever = new BufferedWriter(arq);

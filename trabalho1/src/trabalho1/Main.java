@@ -3,17 +3,12 @@
 // Leonardo Rodrigues Marques	178610
 
 package trabalho1;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Scanner;
-
-import telas.MenuEstudante;
 import telas.TelaInicial;
+import java.io.*;
 
-
-
-// Classe main: Ponto de partida do sistema. É responsável por chamar os métodos login e de opcoesUsuario, da classe Gerenciador. Contém testaSistema(), utilizado para demonstrar o sistema.
+/* Classe main: Ponto de partida do sistema. É responsável por chamar os métodos login e de opcoesUsuario, da classe Gerenciador.
+ * Contém testaSistema(), utilizado para demonstrar o sistema.
+*/
 
 public class Main {
 
@@ -21,42 +16,28 @@ public class Main {
 
     public static void main(String[] args) throws SistemaExcecao {
 
-        Scanner sc = new Scanner(System.in);
+        System.out.println("Testanto...");
 
-        System.out.println("Voce deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
-        String testeSistema = sc.nextLine();
-
-        if (testeSistema.equals("Sim")) {
-            testMode = 1;
-            //testaSistema();
-            return;
-        }
         new TelaInicial().setVisible(true);
 
-        Gerenciador.geradorUsuario("Leonardo", "3234", "19/06/1995", "lrm5060@gmail.com", "Unicamp", 178610, false);
+        //!!TESTE PARA SALVAMENTO DE ARQUIVOS!!
+        Biblioteca biblioteca = new Biblioteca();
+        Gerenciador.geradorUsuario("Leonardo", "3234", "lrm5060@gmail.com", "19/06/1995", "Unicamp", 178610, false);
+        Gerenciador.geradorUsuario("Roberta", "78875", "roberta@hotmail.com", "12/06/1956", "PUC", 19869, false);
+        Biblioteca.usuarios.get(0).enviarMensagem("Roberta", "Oi, tchau!");
         for (Usuario i: Biblioteca.usuarios){
-            i.salvar(null);
+            i.salvar();
         }
-
-        System.out.println("Voc� deseja testar a funcionalidade do sistema por testaSistema()? (Sim/Nao)");
-        // String testeSistema = sc.nextLine();
-
-        //if (testeSistema.equals("Sim")) {
-        //testMode = 1;
-        //  testaSistema();
-        //    return;
-        //  }
-
-        new MenuEstudante().setVisible(true);
-
-
+        biblioteca.salvar();
+        File arqLer = new File("testeArquivos/Biblioteca.txt");
+        biblioteca.ler(arqLer);
+        //!!TESTE PARA SALVAMENTO DE ARQUIVOS!!
     }
 }
         
 /*
     public static void testaSistema() throws SistemaExcecao { // Testa as principais funcionalidades do sistema.
 
-        Scanner sc = new Scanner(System.in);
         
        Biblioteca biblioteca = new Biblioteca();
        
@@ -117,7 +98,6 @@ public class Main {
         System.out.println("FIM DO MODO TESTE");
         
     }
-    }
-    */
+}*/
 
 

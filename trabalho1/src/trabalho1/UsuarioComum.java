@@ -22,9 +22,9 @@ public class UsuarioComum extends Usuario {
         Livro livro = new Livro(nome, autor, list.get(indice), edicao, ano, livrosDisponiveis, valor);
         this.getLivrosDoUsuario().add(livro);
     }
-    public void salvar(File arquivo) {
+    public void salvar() {
         try {
-            FileWriter arq = new FileWriter("MensagensUsuarioComum.txt", true);
+            FileWriter arq = new FileWriter("testeArquivos/MensagensUsuarioComum.txt", true);
             BufferedWriter escrever = new BufferedWriter(arq);
             for (int i = 0; i < getMensagens().size(); i++)
                 escrever.write(getMensagens().get(i).toString());

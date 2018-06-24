@@ -78,9 +78,9 @@ public class UsuarioAdmin extends Usuario {
         Biblioteca.usuarios.remove(Biblioteca.usuarios.get(resultado));
     }
 
-    public void salvar(File arquivo) {	
+    public void salvar() {
 		try {
-			FileWriter arq = new FileWriter("MensagensUsuarioAdmin.txt", true);
+			FileWriter arq = new FileWriter("testeArquivos/MensagensUsuarioAdmin.txt", true);
 			BufferedWriter escrever = new BufferedWriter(arq);
 			for(int i=0; i<getMensagens().size(); i++)
 				escrever.write(getMensagens().get(i).toString());

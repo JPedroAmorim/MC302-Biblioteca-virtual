@@ -8,9 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 public class DadosDoEmprestimo extends JFrame {
 
-<<<<<<< HEAD
-    public DadosDoEmprestimo(Usuario usuarioAtual, Emprestimo emprestimoAtual){}
-=======
     private JPanel contentPane;
     private JTextArea dados;
     private JLabel infoSaldo;
@@ -46,13 +43,5 @@ public class DadosDoEmprestimo extends JFrame {
 
         contentPane.add(infoSaldo);
         contentPane.add(scrollbar);
-
     }
-
-
-    public static void main (String args[]) {
-    }
-
->>>>>>> 9d3c02abe7916de69455acbb54d1b6b7247366b9
-
 }

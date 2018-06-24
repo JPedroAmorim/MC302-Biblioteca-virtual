@@ -49,79 +49,60 @@ public abstract class Usuario implements SalvarLer {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getSenha() {
         return senha;
     }
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
     public String getDataNasc() {
         return dataNasc;
     }
-
     public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public boolean getStatus() {
         return status;
     }
-
     public void setStatus(boolean status) {
         this.status = status;
     }
-
     public double getSaldo() {
         return saldo;
     }
-
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
     public String getInfoPagamento() {
         return infoPagamento;
     }
-
     public void setInfoPagamento(String infoPagamento) {
         this.infoPagamento = infoPagamento;
     }
-
     public ArrayList<Usuario> getAmigos() {
         return amigos;
     }
-
     public ArrayList<Emprestimo> getemprestimos() {
         return emprestimos;
     }
-
     public ArrayList<Livro> getLivrosDoUsuario() {
         return livrosDoUsuario;
     }
-
     public ArrayList<Mensagem> getMensagens() {
         return mensagens;
     }
@@ -320,8 +301,8 @@ public abstract class Usuario implements SalvarLer {
     // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema.
     public abstract void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor);
 
-    // toString de Usuário.
-    // @Overrride
+
+    @Override
     public String toString() {
         String out = "Nome: " + getNome() + " (ID: " + getId() + ")\n";
         out = out + "Data de nascimento: " + getDataNasc() + "\n";

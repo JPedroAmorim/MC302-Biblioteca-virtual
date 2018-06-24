@@ -10,7 +10,6 @@ package trabalho1;
 public class Gerenciador {
 
     // Metodo geradorUsuario: Gera um um objeto Usuario ou UsuarioEstudante com os dados fornecidos pela entrada.
-
     public static void geradorUsuario(String nome, String senha, String email, String data, String instituicao, int ra, boolean estudante) {   
         if (estudante) {
             UsuarioEstudante novoUsuarioEstudante = new UsuarioEstudante(nome, senha, data, email, true,
@@ -20,8 +19,8 @@ public class Gerenciador {
         }
     }
 
-    // Mtodo checaUsuario: Retorna o pindice de um usurio caso ele exista (nome consta na AL usuarios da Biblioteca). Caso contrário, retorna -1.
-
+    /* Mtodo checaUsuario: Retorna o pindice de um usurio caso ele exista (nome consta na AL usuarios da Biblioteca).
+    Caso contrário, retorna -1.*/
     public static int checaUsuario(String nome) throws SistemaExcecao {
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
             if ((Biblioteca.usuarios.get(i)).getNome().equals(nome))
@@ -31,8 +30,8 @@ public class Gerenciador {
         throw new SistemaExcecao("Usuário não existe!");
     }
 
-    // Método trataExececao: Retorna true se o usuário, durante a execução do método adicionarAmigo, tentar se adicionar ou adicionar um usuário que já está em sua lista de amigos.
-
+    /* Método trataExececao: Retorna true se o usuário, durante a execução do método adicionarAmigo,
+     tentar se adicionar ou adicionar um usuário que já está em sua lista de amigos.*/
     public static void checaExcecao(Usuario usuarioAtual, Usuario usuarioAlvo) throws SistemaExcecao {
         for (int i = 0; i < usuarioAtual.getAmigos().size(); i++) {
             if (usuarioAlvo.getAmigos().get(i).getNome().equals(usuarioAlvo.getNome())) {
@@ -45,8 +44,8 @@ public class Gerenciador {
         }
     }
 
-    // Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado (nome e senha batem com os dados na AL), e -1 caso contrário.
-
+    /*Método login: Retorna o índice do usuário na AL usuarios da Biblioteca caso encontrado
+     (nome e senha batem com os dados na AL), e -1 caso contrário.*/
     public static int login(String nome, String senha) throws SistemaExcecao {
     	
         for (int i = 0; i < Biblioteca.usuarios.size(); i++) {
@@ -56,15 +55,15 @@ public class Gerenciador {
         throw new SistemaExcecao("Usuário ou senha incorretos!");
     }
 
-    // Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas. Se houver 16 caracteres na string (como em um número de cartão da vida real), retorna true.
-
+    /* Método pagamentoVálido: "Checa" se as informações de pagamento dadas são válidas. Se houver
+     16 caracteres na string (como em um número de cartão da vida real), retorna true.*/
     public static void pagamentoValido(String infoPagamento) throws SistemaExcecao {
         if(!(infoPagamento.length() == 16)) throw new SistemaExcecao("Cartão de crédito inválido! Por favor, insira um método de pagamento válido");
     }
 
-    // Método checaCupom: Verifica se o código de Cupom dado pelo usuário é um código válido - isto é, existe um cupom com esse código e ele não foi utilizado.
-    // Retorna o índice do cupom na AL cupons da Biblioteca caso o cupom seja válido e -1 caso contrário.
-
+    /* Método checaCupom: Verifica se o código de Cupom dado pelo usuário é um código válido
+     - isto é, existe um cupom com esse código e ele não foi utilizado.
+     Retorna o índice do cupom na AL cupons da Biblioteca caso o cupom seja válido e -1 caso contrário.*/
     public static int checaCupom(String codigo) throws SistemaExcecao {
         for (int i = 0; i < Biblioteca.cupons.size(); i++) {
             if (Biblioteca.cupons.get(i).getCodigo().equals(codigo)) {
@@ -78,8 +77,8 @@ public class Gerenciador {
        throw new SistemaExcecao("Código de cupom inválido (não existe)!");
     }
 
-    // Método opcoesUsuario: Recebe do usuário um inteiro pela entrada padrão e realiza a opção ligada à esse inteiro. Enquanto não retorna false, ele continua a ser executado pela main em loop.
-
+    /* Método opcoesUsuario: Recebe do usuário um inteiro pela entrada padrão e realiza a opção ligada à
+     esse inteiro. Enquanto não retorna false, ele continua a ser executado pela main em loop.*/
     public static boolean opcoesUsuario(Usuario usuarioAtual) throws SistemaExcecao {
 
         System.out.print("\n");
@@ -102,13 +101,13 @@ public class Gerenciador {
                 ((UsuarioAdmin) usuarioAtual).listaDados();
                 return true;
             } else if (opcaoAdmin == 1) {
-            	try {
+            	/*try {
             		((UsuarioAdmin) usuarioAtual).cadastrarCupom();
             		return true;
             	}catch(SistemaExcecao e) {
             		System.out.println(e.getMessage());
             		return true;
-            	}
+            	}*/
             } else if (opcaoAdmin == 2) {
                  //((UsuarioAdmin) usuarioAtual).cadastrarLivro();
                 return true;
@@ -208,11 +207,11 @@ public class Gerenciador {
             return true;
 
         } else if (opcao == 8) {
-            usuarioAtual.enviarMensagem();
+            //usuarioAtual.enviarMensagem();
             return true;
 
         } else if (opcao == 9) {
-            usuarioAtual.verMensagens();
+            //usuarioAtual.verMensagens();
             return true;
 
         } else if (!(usuarioAtual instanceof UsuarioEstudante) && opcao == 10) { // Verifica se usuarioAtual é uma instância apenas de usuário.

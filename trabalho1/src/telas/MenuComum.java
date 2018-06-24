@@ -1,13 +1,8 @@
 package telas;
 
 import trabalho1.Usuario;
-<<<<<<< HEAD
-=======
 import trabalho1.UsuarioComum;
->>>>>>> 9d3c02abe7916de69455acbb54d1b6b7247366b9
-
 import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
@@ -16,9 +11,9 @@ import java.awt.event.ActionEvent;
 public class MenuComum extends JFrame {
 
     private JPanel contentPane;
-    private JButton btnCadastrarLivro, btnEmprestimoBV, btnEmprestimoComUm, btnAdicionarAmigo, btnInformacoesDeOutros, btnAlterarDados, btnVerMinhasInformacoes, btnEnviarMensagem, btnCaixadeEntrada, btnAdicionarSaldo, btnSair;
+    private JButton btnCadastrarLivro, btnEmprestimoBV, btnEmprestimoComUm, btnAdicionarAmigo, btnInformacoesDeOutros,
+            btnAlterarDados, btnVerMinhasInformacoes, btnEnviarMensagem, btnCaixaDeEntrada, btnAdicionarSaldo, btnSair;
 
-<<<<<<< HEAD
     /**
      * Launch the application.
      */
@@ -35,15 +30,11 @@ public class MenuComum extends JFrame {
         });
     }
 
-
     /**
      * Create the frame.
      */
     public MenuComum(Usuario usuario) {
 
-=======
-    public MenuComum(UsuarioComum usuarioAtual) {
->>>>>>> 9d3c02abe7916de69455acbb54d1b6b7247366b9
         setTitle("Menu Principal");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 432);
@@ -72,8 +63,9 @@ public class MenuComum extends JFrame {
         btnInformacoesDeOutros.setBounds(217, 189, 187, 23);
         contentPane.add(btnInformacoesDeOutros);
 
-<<<<<<< HEAD
-        JButton btnAlterarDados = new JButton("Alterar dados");
+
+        btnAlterarDados = new JButton("Alterar dados");
+        btnAlterarDados.setBounds(217, 134, 187, 23);
         btnAlterarDados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,34 +73,29 @@ public class MenuComum extends JFrame {
                 new TelaAlteraDados(usuario).setVisible(true);
             }
         });
-=======
-        btnAlterarDados = new JButton("Alterar dados");
->>>>>>> 9d3c02abe7916de69455acbb54d1b6b7247366b9
-        btnAlterarDados.setBounds(217, 134, 187, 23);
         contentPane.add(btnAlterarDados);
 
         btnVerMinhasInformacoes = new JButton("Ver minhas informacoes");
         btnVerMinhasInformacoes.setBounds(10, 134, 180, 23);
         contentPane.add(btnVerMinhasInformacoes);
 
-        JButton btnEnviarMensagem = new JButton("Enviar mensagem");
+        btnEnviarMensagem = new JButton("Enviar mensagem");
         btnEnviarMensagem.setBounds(217, 258, 187, 23);
         contentPane.add(btnEnviarMensagem);
 
-        JButton btnCaixaDeEntrada = new JButton("Caixa de entrada");
+        btnCaixaDeEntrada = new JButton("Caixa de entrada");
         btnCaixaDeEntrada.setBounds(10, 258, 180, 23);
         contentPane.add(btnCaixaDeEntrada);
 
-        JButton btnAdicionarSaldo = new JButton("Adicionar Saldo");
+        btnAdicionarSaldo = new JButton("Adicionar Saldo");
         btnAdicionarSaldo.setBounds(10, 310, 180, 23);
         contentPane.add(btnAdicionarSaldo);
 
-        JButton btnSair = new JButton("Sair");
+        btnSair = new JButton("Sair");
         btnSair.setBounds(163, 359, 89, 23);
         contentPane.add(btnSair);
 
-<<<<<<< HEAD
-        JButton btnAdicionarSaldo = new JButton("Adicionar Saldo");
+        btnAdicionarSaldo = new JButton("Adicionar Saldo");
         btnAdicionarSaldo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new TelaAddSaldo(usuario).setVisible(true);
@@ -116,8 +103,5 @@ public class MenuComum extends JFrame {
         });
         btnAdicionarSaldo.setBounds(10, 310, 180, 23);
         contentPane.add(btnAdicionarSaldo);
-=======
->>>>>>> 9d3c02abe7916de69455acbb54d1b6b7247366b9
     }
-
 }

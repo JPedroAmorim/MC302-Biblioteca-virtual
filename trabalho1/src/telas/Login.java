@@ -3,21 +3,12 @@ package telas;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.*;
+import javax.swing.border.*;
 import trabalho1.Biblioteca;
 import trabalho1.Gerenciador;
 import trabalho1.SistemaExcecao;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class Login extends JFrame {
 
