@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import trabalho1.Gerenciador;
+import trabalho1.SistemaExcecao;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -115,28 +116,41 @@ public class Cadastro extends JFrame {
         btnCadastrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                nome = txtNome.getText();
-                senha = txtSenha.getText();
-                email = txtEmail.getText();
-                data = txtData.getText();
-                ehEstudante = rdbtnSim.isSelected();
+                try {
 
-                if (ehEstudante) { // Só queremos esses dados no caso de um estudante.
-                    try {
+                    nome = txtNome.getText();
+                    senha = txtSenha.getText();
+                    email = txtEmail.getText();
+                    data = txtData.getText();
+                    ehEstudante = rdbtnSim.isSelected();
+
+                    // Lida com o caso de campos vazios e lança e trata as exceções.
+
+                    if (nome.equals("") || senha.equals("") || email.equals("") || data.equals(""))
+                        throw new SistemaExcecao("Não deixe campos vazios!");
+
+
+                    if (ehEstudante) { // Só queremos esses dados no caso de um estudante.
 
                         instituicao = txtInst.getText();
 
                         ra = Integer.parseInt(txtRA.getText());
 
-                    } catch (NumberFormatException excecao) {
-                        JOptionPane.showMessageDialog(Cadastro.this, "Entre com um número de ra válido", "Erro", JOptionPane.ERROR_MESSAGE);
-                        return;
+                        if (instituicao.equals("")) throw new SistemaExcecao("Não deixa campos vazios!");
                     }
+
+                    Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
+                    Cadastro.this.dispose();
+
+                } catch (NumberFormatException excecao) {
+
+                    JOptionPane.showMessageDialog(Cadastro.this, "Entre com números válidos para o RA", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                } catch (SistemaExcecao excecao1) {
+
+                    JOptionPane.showMessageDialog(Cadastro.this, excecao1.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+
                 }
-
-                Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
-                Cadastro.this.dispose();
-
             }
         });
 
