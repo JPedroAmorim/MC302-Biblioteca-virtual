@@ -165,7 +165,7 @@ public class MenuComumEstudante extends JFrame {
 
                     try {
 
-                        Writer writer = new FileWriter("CaixaDeEntrada.txt");
+                        FileWriter writer = new FileWriter("testeArquivos/CaixaDeEntrada.txt");
 
                         writer.write("Caixa de mensagem\n");
 
@@ -184,7 +184,7 @@ public class MenuComumEstudante extends JFrame {
 
                     JOptionPane.showMessageDialog(MenuComumEstudante.this, "Obrigado por utilizar a Biblioteca Virtual!", "Até logo!", JOptionPane.INFORMATION_MESSAGE);
                     MenuComumEstudante.this.dispose();
-                    System.exit(0); // Podemos "matar" a execução do programa.
+                    new TelaInicial().setVisible(true);
 
                 }
             }
