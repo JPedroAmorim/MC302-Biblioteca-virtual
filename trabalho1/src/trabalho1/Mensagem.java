@@ -38,7 +38,7 @@ public class Mensagem {
 
     // toString de mensagem.
 
-    //@Override
+    @Override
     public String toString() {
 
         String out = "Status da mensagem: ";

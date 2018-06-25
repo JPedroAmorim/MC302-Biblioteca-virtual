@@ -77,46 +77,34 @@ public class TelaCadastrarLivro extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // Caso o usuário já possua o livro em questão, exibimos uma mensagem de erro e fechamos o frame principal.
+                // Caso o usuário já possua o livro em questão, exibimos uma mensagem de erro e lançamos uma exceção.
 
                 try {
+
                     for (int i = 0; i < usuarioAtual.getLivrosDoUsuario().size(); i++) {
                         if (usuarioAtual.getLivrosDoUsuario().get(i).getNome().equals(nomeLivro.getText())) {
                             throw new SistemaExcecao("Você já possui esse livro em seu acervo!");
                         }
                     }
-                } catch (SistemaExcecao excecao) {
-                    JOptionPane.showMessageDialog(TelaCadastrarLivro.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaCadastrarLivro.this.dispose();
-                    return;
-                }
 
+                    // Caso o usuário entre com um gênero inválido, exibimos uma mensagem de erro e lançamos uma exceção.
 
-                // Caso o usuário entre com um gênero inválido, exibimos uma mensagem de erro e fechamos o frame principal.
+                    boolean flag = false;
+                    int indice = 0;
 
-                boolean flag = false;
-                int indice = 0;
+                    List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
 
-                List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
-
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).getTipo().equals(generoLivro.getText())) {
-                        flag = true;
-                        indice = i;
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getTipo().equals(generoLivro.getText())) {
+                            flag = true;
+                            indice = i;
+                        }
                     }
-                }
 
-                try {
+
                     if (!flag) throw new SistemaExcecao("Digite um gênero válido!");
 
-                } catch (SistemaExcecao excecao) {
-                    JOptionPane.showMessageDialog(TelaCadastrarLivro.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaCadastrarLivro.this.dispose();
-                    return;
-                }
-                // Se o frame principal não foi fechado em nenhum dos casos acima, podemos dar prosseguimento ao cadastramentro do livro.
-
-                try {
+                    // Se o em nenhum dos casos acima houve desvio de fluxo, podemos dar prosseguimento ao cadastramentro do livro. Caso haja sucesso, exibimos uma mensagem de sucesso.
 
                     if (usuarioAtual instanceof UsuarioAdmin) {
 
@@ -125,7 +113,6 @@ public class TelaCadastrarLivro extends JFrame {
 
                         JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         TelaCadastrarLivro.this.dispose();
-                        return;
 
                     } else if (usuarioAtual instanceof UsuarioEstudante) {
 
@@ -134,7 +121,6 @@ public class TelaCadastrarLivro extends JFrame {
 
                         JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         TelaCadastrarLivro.this.dispose();
-                        return;
 
                     } else {
 
@@ -143,16 +129,19 @@ public class TelaCadastrarLivro extends JFrame {
 
                         JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         TelaCadastrarLivro.this.dispose();
-                        return;
                     }
 
                 } catch (NumberFormatException excecao) {
-                    JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Entre com números válidos", "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaCadastrarLivro.this.dispose();
-                    return;
-                }
 
+                    JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Entre com números válidos", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                } catch (SistemaExcecao excecao1) {
+
+                    JOptionPane.showMessageDialog(TelaCadastrarLivro.this, excecao1.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+
+                }
             }
+
         });
 
         add(perguntaNomeLivro);

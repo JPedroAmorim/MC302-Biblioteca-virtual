@@ -66,8 +66,6 @@ public class TelaEnviarMensagem extends JFrame {
 
                     JOptionPane.showMessageDialog(TelaEnviarMensagem.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 
-                    TelaEnviarMensagem.this.dispose();
-
                 }
             }
         });

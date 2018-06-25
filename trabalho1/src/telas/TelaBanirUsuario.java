@@ -19,19 +19,19 @@ public class TelaBanirUsuario extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Banir usuário");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 350, 150);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         perguntaUsuario = new JLabel("Digite o nome do usuário à ser banido: ");
-        usuarioBanido = new JTextField("", 40);
+        usuarioBanido = new JTextField("", 20);
 
         // Botão de confirmação.
 
@@ -50,9 +50,10 @@ public class TelaBanirUsuario extends JFrame {
 
                     JOptionPane.showMessageDialog(TelaBanirUsuario.this, "Usuário banido com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
+                    TelaBanirUsuario.this.dispose();
+
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaBanirUsuario.this,excecao.getMessage(),"Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaBanirUsuario.this.dispose();
                 }
             }
         });

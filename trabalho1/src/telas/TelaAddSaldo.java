@@ -59,14 +59,9 @@ public class TelaAddSaldo extends JFrame {
 
                     JOptionPane.showMessageDialog(TelaAddSaldo.this, "Sucesso ao adicionar saldo, seu saldo agora é (R$) " + saldoAtual, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     TelaAddSaldo.this.dispose();
-                    return;
 
                 } catch (SistemaExcecao excecao) {
-
                     JOptionPane.showMessageDialog(TelaAddSaldo.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaAddSaldo.this.dispose();
-                    return;
-
                 }
             }
         });

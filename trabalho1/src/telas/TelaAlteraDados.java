@@ -75,8 +75,6 @@ public class TelaAlteraDados extends JFrame {
                         // Se não foi lançada uma exceção em checaUsuario até esse ponto do código, existe um usuário com esse nome.
 
                         JOptionPane.showMessageDialog(TelaAlteraDados.this, "Esse nome de usuário já existe. Digite um nome válido!", "Erro", JOptionPane.ERROR_MESSAGE);
-                        TelaAlteraDados.this.dispose();
-                        return;
 
                     } catch (SistemaExcecao excecao) {// Nesse caso, queiramos que uma execeção quanto à checaUsuario ocorra -> Se o usuário com o novo nome não existe, podemos mudar o nome do usuário vigente.
 
@@ -92,13 +90,12 @@ public class TelaAlteraDados extends JFrame {
 
                         JOptionPane.showMessageDialog(TelaAlteraDados.this, "Dados alterados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         TelaAlteraDados.this.dispose();
-                        return;
 
                     }
                 } catch (NumberFormatException excecao1) {
+
                     JOptionPane.showMessageDialog(TelaAlteraDados.this, "Digite um número válido para o novo RA!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaAlteraDados.this.dispose();
-                    return;
+
                 }
             }
 

@@ -1,6 +1,6 @@
 package trabalho1;
 
-// Classe Cupom: abstação de um cupom para os efeitos do sistema.
+// Classe Cupom: abstração de um cupom para os efeitos do sistema.
 
 public class Cupom {
 
@@ -16,7 +16,6 @@ public class Cupom {
         this.codigo = codigo;
         this.desconto = desconto;
         this.foiUsado = false;
-        Biblioteca.cupons.add(this);
     }
 
     public String getCodigo() {
@@ -45,7 +44,7 @@ public class Cupom {
 
     // toString de Cupom.
 
-    // @Override
+    @Override
     public String toString() {
         String out = "Código do cupom: " + getCodigo() + "\n";
         if (foiUsado) {

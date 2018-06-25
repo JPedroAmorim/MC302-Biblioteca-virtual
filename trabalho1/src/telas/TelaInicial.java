@@ -25,7 +25,7 @@ public class TelaInicial extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         setLocationRelativeTo(null);
-       // contentPane.setLayout(null);
+
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;

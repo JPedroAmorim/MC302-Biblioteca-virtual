@@ -54,9 +54,9 @@ public class TelaLerMensagens extends JFrame {
                         textoMensagens.setText(usuarioAtual.verMensagens(2));
                     }
                 } catch (SistemaExcecao excecao) {
+
                     JOptionPane.showMessageDialog(TelaLerMensagens.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaLerMensagens.this.dispose();
-                    return;
+
                 }
             }
         };

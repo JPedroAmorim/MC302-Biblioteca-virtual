@@ -87,8 +87,9 @@ public class TelaEmprestimoUsuario extends JFrame {
                     }
 
                 } catch(SistemaExcecao excecao) {
+
                     JOptionPane.showMessageDialog(TelaEmprestimoUsuario.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaEmprestimoUsuario.this.dispose();
+
                 }
             }
         });
