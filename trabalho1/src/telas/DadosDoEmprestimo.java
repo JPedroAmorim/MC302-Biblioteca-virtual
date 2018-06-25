@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 public class DadosDoEmprestimo extends JFrame {
 
+    // Declaração de componentes.
+
     private JPanel contentPane;
     private JTextArea dados;
     private JLabel infoSaldo;

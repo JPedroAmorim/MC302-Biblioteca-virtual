@@ -48,6 +48,8 @@ public class TelaEstadoSistema extends JFrame {
         botaoListaUsuario = new JButton("Listar usuários do sistema");
         botaoListaCupom = new JButton("Listar cupons do sistema");
 
+        // ActionListener que realiza a ação correspondente para cada botão pressionado.
+
         ActionListener btnListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

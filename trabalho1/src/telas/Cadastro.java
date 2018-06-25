@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 
 public class Cadastro extends JFrame {
 
+    // Declaração de variáveis/componentes.
+
     private JPanel contentPane;
     private JTextField txtNome;
     private JTextField txtEmail;
@@ -22,6 +24,9 @@ public class Cadastro extends JFrame {
 
 
     public Cadastro() {
+
+        // Definições de tamanho e criação do frame e painel.
+
         setTitle("Cadastro");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 300, 454);
@@ -115,7 +120,7 @@ public class Cadastro extends JFrame {
                 if (nome.equals("") && senha.equals("") && email.equals("") && data.equals("")) {
                     JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
                 } else {
-
+                    ra = Integer.parseInt(txtRA.getText());
                     if (ehEstudante) {
                         try {
                             instituicao = txtInst.getText();
@@ -124,6 +129,7 @@ public class Cadastro extends JFrame {
                             JOptionPane.showMessageDialog(Cadastro.this, "Entre com um número de ra válido", "Erro", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
+
                     }
                     Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
                     Cadastro.this.dispose();

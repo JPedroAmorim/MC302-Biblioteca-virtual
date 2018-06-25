@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
 
 public class TelaInfoUsuario extends JFrame {
 
+    // Declaração de componentes.
+
     private JPanel contentPane;
     private JTextArea dadosUsuario;
     private JTextField nomeUsuario;
     private JLabel perguntaUsuario;
     private JScrollPane scrollbar;
     private JButton botaoConfirmar;
-
 
 
     public TelaInfoUsuario() {
@@ -73,10 +74,5 @@ public class TelaInfoUsuario extends JFrame {
         contentPane.add(scrollbar);
 
     }
-
-
-    public static void main (String args[]) {
-    }
-
 
 }

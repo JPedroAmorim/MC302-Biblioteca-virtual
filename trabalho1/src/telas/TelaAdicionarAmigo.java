@@ -49,7 +49,7 @@ public class TelaAdicionarAmigo extends JFrame {
                     JOptionPane.showMessageDialog(TelaAdicionarAmigo.this, "Amigo adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     TelaAdicionarAmigo.this.dispose();
 
-                    // Caso capturemos uma exceção no processo, exibimos uma mensagem de erro e fechamos o frame.
+                    // Caso capturemos uma exceção no processo, exibimos uma mensagem de erro e há desvio de fluxo.
 
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaAdicionarAmigo.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

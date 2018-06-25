@@ -14,6 +14,8 @@ import java.io.IOException;
 
 public class TelaMensagemArquivo extends JFrame {
 
+    // Declaração de componentes.
+
     JPanel contentPane;
     JButton botaoConfirmar;
     JLabel perguntaUsuario, perguntaArquivo;
@@ -21,6 +23,9 @@ public class TelaMensagemArquivo extends JFrame {
 
 
     public TelaMensagemArquivo(Usuario usuarioAtual) {
+
+        // Definições de tamanho e criação do frame e painel.
+
         setTitle("Transformar arquivo em mensagem");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 200);

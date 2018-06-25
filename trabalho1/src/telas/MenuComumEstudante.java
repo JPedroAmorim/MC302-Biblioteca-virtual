@@ -17,40 +17,10 @@ public class MenuComumEstudante extends JFrame {
     private JButton btnCadastrarLivro, btnEmprestimoBV, btnEmprestimoComUm, btnAdicionarAmigo, btnInformacoesDeOutros, btnAlterarDados, btnVerMinhasInformacoes,
             btnEnviarMensagem, btnCaixaDeEntrada, btnAdicionarSaldo, btnSair, btnUsuariosMesmaUni, btnCaixaArquivo, btnMensagemArquivo;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-
-                    Gerenciador.geradorUsuario("Dummy", "a", "a", "a", "a", 1, true);
-
-                    Gerenciador.geradorUsuario("Dummy1", "a", "a", "a", "a", 1, true);
-
-                    Usuario dummy1 = Biblioteca.usuarios.get(Gerenciador.login("Dummy1", "a"));
-
-                    dummy1.cadastrarLivro("b", "c", 2, 3, 4, 5, 6);
-
-                    Usuario dummy = Biblioteca.usuarios.get(Gerenciador.login("Dummy", "a"));
-
-                    dummy.setSaldo(100);
-
-                    UsuarioAdmin dummya = new UsuarioAdmin("a", "b", "c", "2", true);
-
-                    dummya.cadastrarLivro("a", "b", 2, 2, 3, 4, 4);
-                    dummya.cadastrarCupom("3", 20);
-
-
-                    MenuComumEstudante frame = new MenuComumEstudante(dummy);
-                    frame.setVisible(true);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     public MenuComumEstudante(Usuario usuarioAtual) {
+
+        // Definições de tamanho e criação do frame e painel.
 
         setTitle("Menu Principal");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -60,6 +30,8 @@ public class MenuComumEstudante extends JFrame {
         setContentPane(contentPane);
         setLocationRelativeTo(null);
         contentPane.setLayout(new WrapLayout(WrapLayout.CENTER));
+
+        // Instanciamento de botões.
 
         btnCadastrarLivro = new JButton("Cadastrar livro");
         btnCadastrarLivro.setBounds(10, 59, 180, 23);
@@ -116,6 +88,8 @@ public class MenuComumEstudante extends JFrame {
         btnSair = new JButton("Sair");
         btnSair.setBounds(163, 359, 140, 23);
         contentPane.add(btnSair);
+
+        // Criamos um actionListener de modo que, para cada botão pressionado, ele mostra a tela/realiza a ação correspondente.
 
         ActionListener btnListener = new ActionListener() {
             @Override
