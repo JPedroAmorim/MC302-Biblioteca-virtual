@@ -136,7 +136,7 @@ public class Cadastro extends JFrame {
 
                         ra = Integer.parseInt(txtRA.getText());
 
-                        if (instituicao.equals("")) throw new SistemaExcecao("Não deixa campos vazios!");
+                        if (instituicao.equals("")) throw new SistemaExcecao("Não deixe campos vazios!");
                     }
 
                     Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
