@@ -22,21 +22,23 @@ public class TelaEnviarMensagem extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Enviar mensagem");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 200, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 500, 650);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         perguntaUsuario = new JLabel("Digite o nome do usuário para o qual que deseja mandar uma mensagem: ");
-        nomeUsuario = new JTextField("", 40);
+        nomeUsuario = new JTextField("", 25);
 
-        corpoMensagem = new JTextArea(50, 50);
+        explicacao = new JLabel("Digite abaixo sua mensagem!");
+
+        corpoMensagem = new JTextArea(30, 35);
 
         corpoMensagem.setLineWrap(true);
 
@@ -72,6 +74,7 @@ public class TelaEnviarMensagem extends JFrame {
 
         contentPane.add(perguntaUsuario);
         contentPane.add(nomeUsuario);
+        contentPane.add(explicacao);
         contentPane.add(scrollbar);
         contentPane.add(botaoConfirmar);
 

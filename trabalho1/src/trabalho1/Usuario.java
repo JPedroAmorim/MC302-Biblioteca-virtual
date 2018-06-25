@@ -132,6 +132,8 @@ public abstract class Usuario implements SalvarLer {
 
         String out = "";
 
+        if(this.mensagens.size() == 0) throw new SistemaExcecao("Não há mensagens em sua caixa de entrada!");
+
         if (opcao == 1) {
             for (int i = 0; i < mensagens.size(); i++) {
                 if (!(mensagens.get(i).getLido())) { // Caso o atributo lido da mensagem seja false.
@@ -147,7 +149,7 @@ public abstract class Usuario implements SalvarLer {
             }
         }
 
-        if (out.equals("")) throw new SistemaExcecao("Não há mensagens em sua caixa de entrada!");
+
 
         return out;
 

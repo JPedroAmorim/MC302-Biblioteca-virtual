@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+// Importamos "à mão" um tipo de FlowLayout que promove a quebra de linha de modo automático.
+
 public class WrapLayout extends FlowLayout
 {
     private Dimension preferredLayoutSize;

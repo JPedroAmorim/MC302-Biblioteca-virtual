@@ -20,13 +20,13 @@ public class TelaEmprestimoUsuario extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Empréstimo com um Usuário");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 600, 250);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
@@ -40,6 +40,7 @@ public class TelaEmprestimoUsuario extends JFrame {
         perguntaCupom = new JLabel("Digite o código do cupom: ");
         perguntaCupom.setToolTipText("Se não possui um cupom de desconto, deixe esse campo em branco");
         codigoCupom = new JTextField("", 40);
+        codigoCupom.setToolTipText("Se não possui um cupom de desconto, deixe esse campo em branco");
 
         // Botão de confirmação.
 
@@ -65,7 +66,7 @@ public class TelaEmprestimoUsuario extends JFrame {
 
                     } else {
 
-                        if(perguntaCupom.getText().isEmpty()) { // Se não foi preenchido texto nesse campo, não há um cupom.
+                        if(perguntaCupom.getText().equals("")) { // Se não foi preenchido texto nesse campo, não há um cupom.
 
                             Emprestimo emprestimoAtual = usuarioAtual.novoEmprestimo(nomeLivro.getText(), Biblioteca.usuarios.get(resultadoUsuario), null);
                             DadosDoEmprestimo dados = new DadosDoEmprestimo(usuarioAtual, emprestimoAtual);

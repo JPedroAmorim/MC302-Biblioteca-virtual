@@ -27,13 +27,13 @@ public class TelaCadastrarLivro extends JFrame {
         // Definições de tamanho e criação do frame e painel.
 
         setTitle("Cadastramento do livro");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 330);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 550, 500);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new WrapLayout(WrapLayout.LEFT, 0, 10));
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 10));
         setContentPane(contentPane);
 
         // Labels de pergunta e seus JTextFields correspondentes (respostas).
@@ -88,6 +88,7 @@ public class TelaCadastrarLivro extends JFrame {
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaCadastrarLivro.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaCadastrarLivro.this.dispose();
+                    return;
                 }
 
 
@@ -111,6 +112,7 @@ public class TelaCadastrarLivro extends JFrame {
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaCadastrarLivro.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaCadastrarLivro.this.dispose();
+                    return;
                 }
                 // Se o frame principal não foi fechado em nenhum dos casos acima, podemos dar prosseguimento ao cadastramentro do livro.
 
@@ -121,27 +123,34 @@ public class TelaCadastrarLivro extends JFrame {
                         ((UsuarioAdmin) usuarioAtual).cadastrarLivro(nomeLivro.getText(), nomeAutor.getText(), indice, Integer.parseInt(edicaoLivro.getText()), Integer.parseInt(anoLivro.getText()),
                                 Integer.parseInt(qntdLivro.getText()), Double.parseDouble(valorLivro.getText()));
 
+                        JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaCadastrarLivro.this.dispose();
+                        return;
+
                     } else if (usuarioAtual instanceof UsuarioEstudante) {
 
                         ((UsuarioEstudante) usuarioAtual).cadastrarLivro(nomeLivro.getText(), nomeAutor.getText(), indice, Integer.parseInt(edicaoLivro.getText()), Integer.parseInt(anoLivro.getText()),
                                 Integer.parseInt(qntdLivro.getText()), Double.parseDouble(valorLivro.getText()));
 
+                        JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaCadastrarLivro.this.dispose();
+                        return;
+
                     } else {
 
                         ((UsuarioComum) usuarioAtual).cadastrarLivro(nomeLivro.getText(), nomeAutor.getText(), indice, Integer.parseInt(edicaoLivro.getText()), Integer.parseInt(anoLivro.getText()),
                                 Integer.parseInt(qntdLivro.getText()), Double.parseDouble(valorLivro.getText()));
+
+                        JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaCadastrarLivro.this.dispose();
+                        return;
                     }
 
                 } catch (NumberFormatException excecao) {
                     JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Entre com números válidos", "Erro", JOptionPane.ERROR_MESSAGE);
                     TelaCadastrarLivro.this.dispose();
+                    return;
                 }
-
-                // Caso a frame não tenha sido fechada até agora, mostramos uma mensagem de sucesso e fechamos a frame principal.
-
-                JOptionPane.showMessageDialog(TelaCadastrarLivro.this, "Livro cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                TelaCadastrarLivro.this.dispose();
 
             }
         });
@@ -155,11 +164,13 @@ public class TelaCadastrarLivro extends JFrame {
         add(perguntaEdicaoLivro);
         add(edicaoLivro);
         add(perguntaAnoLivro);
+        add(anoLivro);
         add(perguntaQntdLivro);
         add(qntdLivro);
         add(perguntaValorLivro);
         add(valorLivro);
         add(botaoConfirmar);
+
     }
 
 }
