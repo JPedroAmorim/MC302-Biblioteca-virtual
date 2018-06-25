@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 
 public class TelaLerMensagens extends JFrame {
 
+    // Declaração de componentes.
+
     private JPanel contentPane;
     private JLabel pergunta;
     private JButton todas, naoLidas;

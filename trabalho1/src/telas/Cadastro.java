@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 
 public class Cadastro extends JFrame {
 
+    // Declaração de variáveis/componentes.
+
     private JPanel contentPane;
     private JTextField txtNome;
     private JTextField txtEmail;
@@ -27,6 +29,9 @@ public class Cadastro extends JFrame {
 
 
     public Cadastro() {
+
+        // Definições de tamanho e criação do frame e painel.
+
         setTitle("Cadastro");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 300, 454);
@@ -116,12 +121,13 @@ public class Cadastro extends JFrame {
                 data = txtData.getText();
                 ehEstudante = rdbtnSim.isSelected();
 
-                if (ehEstudante) {
+                if (ehEstudante) { // Só queremos esses dados no caso de um estudante.
                     try {
 
                         instituicao = txtInst.getText();
 
                         ra = Integer.parseInt(txtRA.getText());
+
                     } catch (NumberFormatException excecao) {
                         JOptionPane.showMessageDialog(Cadastro.this, "Entre com um número de ra válido", "Erro", JOptionPane.ERROR_MESSAGE);
                         return;

@@ -21,51 +21,21 @@ public class MenuAdmin extends JFrame {
     private JPanel contentPane;
 
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-
-                    Gerenciador.geradorUsuario("Dummy", "a", "a", "a", "a", 1, true);
-
-                    Gerenciador.geradorUsuario("Dummy1", "a", "a", "a", "a", 1, true);
-
-                    Usuario dummy1 = Biblioteca.usuarios.get(Gerenciador.login("Dummy1", "a"));
-
-                    dummy1.cadastrarLivro("b", "c", 2, 3, 4, 5, 6);
-
-                    Usuario dummy = Biblioteca.usuarios.get(Gerenciador.login("Dummy", "a"));
-
-                    dummy.setSaldo(100);
-
-                    UsuarioAdmin dummya = new UsuarioAdmin("a", "b", "c", "2", true);
-
-                    dummya.cadastrarLivro("a", "b", 2, 2, 3, 4, 4);
-                    dummya.cadastrarCupom("3", 20);
-
-
-                    MenuAdmin frame = new MenuAdmin(dummya);
-                    frame.setVisible(true);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-
     public MenuAdmin(UsuarioAdmin usuarioAdmin) {
+
+        // Definições de tamanho e criação do frame e painel.
 
         setTitle("Menu Principal");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(100, 100, 200, 250);
+        setBounds(100, 100, 250, 250);
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new WrapLayout(WrapLayout.CENTER));
+
+        // Instanciamento de botões.
 
         JButton botaoBanirUsuario = new JButton("Banir usuário");
         contentPane.add(botaoBanirUsuario);
@@ -79,11 +49,13 @@ public class MenuAdmin extends JFrame {
         JButton botaoListaEstadoDo = new JButton("Listar estado do sistema");
         contentPane.add(botaoListaEstadoDo);
 
-        JButton botaoBibliotecaEmArquivo = new JButton("Transformar o conteúdo do sistema em arquivo");
+        JButton botaoBibliotecaEmArquivo = new JButton("Conteúdo do sistema em arquivo");
         contentPane.add(botaoBibliotecaEmArquivo);
 
         JButton botaoSair = new JButton("Sair");
         contentPane.add(botaoSair);
+
+        // Criamos um actionListener de modo que, para cada botão pressionado, ele mostra a tela/realiza a ação correspondente.
 
         ActionListener btnListener = new ActionListener() {
             @Override

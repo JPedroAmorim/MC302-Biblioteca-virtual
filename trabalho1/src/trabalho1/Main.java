@@ -4,19 +4,17 @@
 
 package trabalho1;
 import telas.TelaInicial;
+import telas.TelaPerguntaModoTeste;
+
 import java.io.*;
 
-/* Classe main: Ponto de partida do sistema. É responsável por chamar os métodos login e de opcoesUsuario, da classe Gerenciador.
- * Contém testaSistema(), utilizado para demonstrar o sistema.
-*/
+// Classe main: Ponto de partida do sistema. Ela apenas instancia a interface inicial do nosso programa. O fluxo do programa é ditado pelas interfaces.
 
 public class Main {
 
-    public static int testMode = 0; // Variável que indica se o sistema está em modo de teste ou não.
-
     public static void main(String[] args) throws SistemaExcecao {
 
-        new TelaInicial().setVisible(true);
+        new TelaPerguntaModoTeste().setVisible(true);
 
     }
 }

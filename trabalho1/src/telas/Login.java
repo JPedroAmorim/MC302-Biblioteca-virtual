@@ -13,17 +13,17 @@ import java.awt.event.*;
 
 public class Login extends JFrame {
 
+    // Declaração de componentes.
+
     private JPanel contentPane;
     private JTextField textUsuario;
     private JPasswordField textSenha;
 
 
-    public static void main(String[] args) {
-        new Login().setVisible(true);
-    }
-
-
     public Login() {
+
+        // Definições de tamanho e criação do frame e painel.
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 285, 228);
         contentPane = new JPanel();
@@ -31,6 +31,8 @@ public class Login extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
         setLocationRelativeTo(null);
+
+        // Labels de pergunta e seus JTextFields correspondentes (respostas).
 
         JLabel txtUsuario = new JLabel("Usuário");
         txtUsuario.setBounds(24, 28, 56, 14);
@@ -55,7 +57,7 @@ public class Login extends JFrame {
                 String nome = textUsuario.getText();
                 String senha = textSenha.getText();
 
-                try {
+                try { // Checa à qual classe pertence o usuário vigente e abre o menu correspondente.
 
                     if (Biblioteca.usuarios.get(Gerenciador.login(nome, senha)) instanceof UsuarioAdmin) {
 

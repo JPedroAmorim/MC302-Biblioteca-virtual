@@ -12,9 +12,9 @@ import java.util.EnumSet;
 import java.util.List;
 
 
-// TODO: Para todos os casos envolvendo números, podemos ter um numberFormatException. Trata-lo.
-
 public class TelaCadastrarLivro extends JFrame {
+
+    // Declaração de componentes
 
     private JPanel contentPane;
     private JLabel perguntaNomeLivro, perguntaNomeAutor, perguntaGeneroLivro, perguntaEdicaoLivro, perguntaAnoLivro, perguntaQntdLivro, perguntaValorLivro;

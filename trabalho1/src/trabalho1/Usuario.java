@@ -210,7 +210,6 @@ public abstract class Usuario implements SalvarLer {
      */
 
     public Emprestimo novoEmprestimo(String nome, @Nullable Usuario usuarioEmprestador, @Nullable Cupom cupom) throws SistemaExcecao {
-        Scanner sc = new Scanner(System.in);
 
         // Para determinar a data de empréstimo e devolução, foram utilizadas as classes Data e Calendar.
 
@@ -247,16 +246,15 @@ public abstract class Usuario implements SalvarLer {
 
                         return emprestimoAtual;
 
-                    } else // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
+                    } else { // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
                         throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
+                    }
                 }
             }
-
-            throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe
-
         } else { // Caso em que o empréstimo é realizado com um usuário do sistema.
             for (int i = 0; i < usuarioEmprestador.getLivrosDoUsuario().size(); i++) {
                 if (usuarioEmprestador.getLivrosDoUsuario().get(i).getNome().equals(nome)) {
+                    System.out.println();
                     if (usuarioEmprestador.getLivrosDoUsuario().get(i).getLivrosDisponiveis() > 0 && saldo >= usuarioEmprestador.getLivrosDoUsuario().get(i).getValorDeEmprestimo()) { // Verifica se existem livros disponíveis para aquele livro e se o saldo é suficiente para o empréstimo.
 
                         double valorNormal = usuarioEmprestador.getLivrosDoUsuario().get(i).getValorDeEmprestimo();
@@ -282,19 +280,21 @@ public abstract class Usuario implements SalvarLer {
                         usuarioEmprestador.getemprestimos().add(emprestimoAtual);
 
                         return emprestimoAtual;
+                    } else { // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
+                        throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
                     }
-                } else  // Se a condição acima não foi satisfeita, um ou ambos dos critérios não foi satisfeito.
-
-                    throw new SistemaExcecao("Saldo insuficiente e/ou livro indisponível!");
+                }
             }
-
-            throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou no for, o livro não existe.
         }
+
+        throw new SistemaExcecao("Perdão, não encontramos um livro com esse nome!"); // Se não retornou nos for(s), o livro não existe.
     }
+
 
     // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema. Implementado em usuarioComum, usuarioAdmin e usuarioEstudante.
 
-    public abstract void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor);
+    public abstract void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano,
+                                        int livrosDisponiveis, double valor);
 
 
     // toString de Usuario.

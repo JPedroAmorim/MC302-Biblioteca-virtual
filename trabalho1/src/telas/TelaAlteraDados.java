@@ -68,7 +68,7 @@ public class TelaAlteraDados extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Caso o nome de usuário já exista, exibimos uma mensagem de erro e fechamos o frame principal.
+                    // Caso o nome de usuário já exista, exibimos uma mensagem de erro.
                     try {
                         Gerenciador.checaUsuario(novoUsuarioNome.getText());
 
@@ -86,7 +86,7 @@ public class TelaAlteraDados extends JFrame {
                             ((UsuarioComum) usuarioAtual).alteraDados(novoUsuarioNome.getText(), novaSenha.getText(), novoEmail.getText(), novoAniversario.getText());
                         }
 
-                        // Caso a frame não tenha sido fechada até agora, soltamos uma mensagem de sucesso e fechamos a frame correspondente.
+                        // Caso o fluxo não tenha sido desviado até agora, soltamos uma mensagem de sucesso e fechamos a frame correspondente.
 
                         JOptionPane.showMessageDialog(TelaAlteraDados.this, "Dados alterados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         TelaAlteraDados.this.dispose();

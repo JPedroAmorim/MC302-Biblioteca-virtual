@@ -14,9 +14,13 @@ import java.awt.GridBagLayout;
 
 public class TelaInicial extends JFrame {
 
+    // Declaração de componentes.
+
     private JPanel contentPane;
 
     public TelaInicial() {
+
+        // Definições de tamanho e criação do frame e painel.
 
         setTitle("Biblioteca Virtual");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -26,6 +30,7 @@ public class TelaInicial extends JFrame {
         setContentPane(contentPane);
         setLocationRelativeTo(null);
 
+        // Fizemos uma label em html para dar (o único, inclusive) um toque artístico à tela inicial.
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -51,7 +56,7 @@ public class TelaInicial extends JFrame {
             }
         });
         btnLogin.setBounds(27, 89, 89, 23);
-        contentPane.add(btnLogin,BorderLayout.CENTER);
+        contentPane.add(btnLogin, BorderLayout.CENTER);
 
         JButton btnCadastro = new JButton("Cadastro");
         btnCadastro.addActionListener(new ActionListener() {
@@ -62,7 +67,4 @@ public class TelaInicial extends JFrame {
         btnCadastro.setBounds(175, 89, 89, 23);
         contentPane.add(btnCadastro, BorderLayout.CENTER);
     }
-
-    public static void main (String args[]) { new TelaInicial().setVisible(true);}
-
 }
