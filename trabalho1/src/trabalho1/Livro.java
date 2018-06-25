@@ -32,7 +32,6 @@ public class Livro {
         Random geradorIdRandom = new Random(geradorId); // Aqui, há um processo de geração de id com auxílio da classe Random. Para cada livro gerado, seu id é um número aleatório com seed.
         this.id = geradorIdRandom.nextInt(idMax);
         geradorId++;
-        Biblioteca.acervo.add(this);
     }
 
     // Setters & Getters.
@@ -103,8 +102,7 @@ public class Livro {
 
     // toString de Livro.
 
-    // @Override
-
+    @Override
     public String toString() {
         String out = "Nome: " + getNome() + "(ID: " + getId() + ")\n";
         out = out + "Autor: " + getAutor() + "\n";

@@ -53,8 +53,6 @@ public class TelaAdicionarAmigo extends JFrame {
 
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(TelaAdicionarAmigo.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaAdicionarAmigo.this.dispose();
-                    return;
                 }
             }
         });

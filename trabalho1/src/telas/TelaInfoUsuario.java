@@ -60,9 +60,9 @@ public class TelaInfoUsuario extends JFrame {
                     dadosUsuario.setText(Biblioteca.usuarios.get(resultado).toString());
 
                 } catch (SistemaExcecao excecao) {
+
                     JOptionPane.showMessageDialog(TelaInfoUsuario.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaInfoUsuario.this.dispose();
-                    return;
+
                 }
             }
         });

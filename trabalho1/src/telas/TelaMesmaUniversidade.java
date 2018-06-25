@@ -43,10 +43,13 @@ public class TelaMesmaUniversidade extends JFrame {
         contentPane.add(scrollbar);
 
         try {
+
             info.setText(usuarioAtual.buscaUsuarioUniversidade());
+
         } catch (SistemaExcecao excecao) {
+
             JOptionPane.showMessageDialog(TelaMesmaUniversidade.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+
         }
 
 

@@ -57,8 +57,19 @@ public class Login extends JFrame {
 
                 try {
 
-                    new MenuComumEstudante(Biblioteca.usuarios.get(Gerenciador.login(nome, senha))).setVisible(true);
-                    Login.this.dispose();
+                    if (Biblioteca.usuarios.get(Gerenciador.login(nome, senha)) instanceof UsuarioAdmin) {
+
+                        new MenuAdmin((UsuarioAdmin) Biblioteca.usuarios.get(Gerenciador.login(nome, senha))).setVisible(true);
+
+                        Login.this.dispose();
+
+                    } else {
+
+                        new MenuComumEstudante(Biblioteca.usuarios.get(Gerenciador.login(nome, senha))).setVisible(true);
+
+                        Login.this.dispose();
+
+                    }
 
                 } catch (SistemaExcecao excecao) {
                     JOptionPane.showMessageDialog(Login.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

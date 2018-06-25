@@ -49,67 +49,86 @@ public abstract class Usuario implements SalvarLer {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getSenha() {
         return senha;
     }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     public String getDataNasc() {
         return dataNasc;
     }
+
     public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public boolean getStatus() {
         return status;
     }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
+
     public double getSaldo() {
         return saldo;
     }
+
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
     public String getInfoPagamento() {
         return infoPagamento;
     }
+
     public void setInfoPagamento(String infoPagamento) {
         this.infoPagamento = infoPagamento;
     }
+
     public ArrayList<Usuario> getAmigos() {
         return amigos;
     }
+
     public ArrayList<Emprestimo> getemprestimos() {
         return emprestimos;
     }
+
     public ArrayList<Livro> getLivrosDoUsuario() {
         return livrosDoUsuario;
     }
+
     public ArrayList<Mensagem> getMensagens() {
         return mensagens;
     }
 
     // Métodos da classe Usuário. São herdados pelas classes UsuarioEstudante e UsuarioAdmin.
 
-    // Método adicionarSaldo: Permite que o usuário adicione um valor(double) à seu seu saldo se a forma de pagamento provida pelo usuário for válida.
+    // Método adicionarSaldo: Permite que o usuário adicione um valor(double) à seu seu saldo se a forma de pagamento provida pelo usuário for válida. Lança SistemaExcecao.
 
     public double adicionarSaldo(String infoPagamento, Double valor) throws SistemaExcecao {
 
@@ -126,13 +145,13 @@ public abstract class Usuario implements SalvarLer {
 
     }
 
-    // Método verMensagem: Permite o usuário ler o contéudo das mensagens de seu atributo AL<Mensagem> mensagens. Ele pode optar por ler todas as mensagens ou apenas as não lidas.
+    // Método verMensagem: Permite o usuário ler o contéudo das mensagens de seu atributo AL<Mensagem> mensagens. Ele pode optar por ler todas as mensagens ou apenas as não lidas. Lança SistemaExceção.
 
     public String verMensagens(int opcao) throws SistemaExcecao {
 
         String out = "";
 
-        if(this.mensagens.size() == 0) throw new SistemaExcecao("Não há mensagens em sua caixa de entrada!");
+        if (this.mensagens.size() == 0) throw new SistemaExcecao("Não há mensagens em sua caixa de entrada!");
 
         if (opcao == 1) {
             for (int i = 0; i < mensagens.size(); i++) {
@@ -149,13 +168,11 @@ public abstract class Usuario implements SalvarLer {
             }
         }
 
-
-
         return out;
 
     }
 
-    // Método enviarMensagem: Permite o usuário enviar uma mensagem à outro usuário do sistema.
+    // Método enviarMensagem: Permite o usuário enviar uma mensagem à outro usuário do sistema a partir de dados obtidos pela interface gráfica.
 
     public void enviarMensagem(String nomeUsuario, String texto) throws SistemaExcecao {
 
@@ -165,30 +182,6 @@ public abstract class Usuario implements SalvarLer {
 
         Biblioteca.usuarios.get(resultado).getMensagens().add(mensagemAtual);
 
-    }
-
-    // Metódo infoUsuario: Permite o usuário atual buscar outro usuário do sistema e caso ele exista, imprimir as informações dele.
-
-    public void infoUsuario() throws SistemaExcecao {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Digite o usuário que você deseja saber suas informações: ");
-        String nome = "";
-
-        if (Main.testMode == 0)
-            nome = sc.nextLine();
-        else if (Main.testMode == 1)
-            nome = "João";
-
-        int resultado = Gerenciador.checaUsuario(nome);
-
-        if (resultado != -1) { // resultado != -1 -> O usuário em questão existe.
-            System.out.println("**** Informações do usuário ****");
-            System.out.println(Biblioteca.usuarios.get(resultado));
-
-        } else { // resultado == -1 -> O usuário não existe.
-            throw new SistemaExcecao("O usuário não existe!");
-        }
     }
 
     // Método adicionarAmigo: Permite o usuário atual adicionar outro usuário do sistema à sua lista de amigos. Lança SistemaExcecao.
@@ -201,7 +194,7 @@ public abstract class Usuario implements SalvarLer {
 
         // A chamada de checaExcecao ocorre para impedir o usuário de se adicionar ou adicionar um usuário que já consta em sua lista de amigos - o método lança as exceções correspondentes para cada caso.
 
-        Gerenciador.checaExcecao(this, Biblioteca.usuarios.get(resultado)); // Propaga a exceção lançada.
+        Gerenciador.checaExcecao(this, Biblioteca.usuarios.get(resultado));
 
         // Se nenhuma exceção foi lançada até esse ponto do código, obtivemos sucesso ao adicionar o usuário.
 
@@ -209,12 +202,11 @@ public abstract class Usuario implements SalvarLer {
 
     }
 
-
     /*
        Método novoEmprestimo: Provavelmente o método mais complexo e importante do sistema. Ele recebe dois parâmetros: usuarioEmprestador
        e cupom, e ambos podem ou não ser nulos (null). A partir desse método, um usuário é capaz de realizar um empréstimo com o acervo
        da biblioteca ou com o acervo de outro usuário do sistema (usuarioEmprestador). No caso de usuarioEstudante, é possível realizar
-       ambos tipos de empréstimo com um cupom de desconto.
+       ambos tipos de empréstimo com um cupom de desconto. Lança SistemaExeceção.
      */
 
     public Emprestimo novoEmprestimo(String nome, @Nullable Usuario usuarioEmprestador, @Nullable Cupom cupom) throws SistemaExcecao {
@@ -300,9 +292,12 @@ public abstract class Usuario implements SalvarLer {
         }
     }
 
-    // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema.
+    // Método cadastrarLivro: Permite o usuário cadastrar um livro no sistema. Implementado em usuarioComum, usuarioAdmin e usuarioEstudante.
+
     public abstract void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor);
 
+
+    // toString de Usuario.
 
     @Override
     public String toString() {

@@ -15,7 +15,7 @@ public class MenuComumEstudante extends JFrame {
 
     private JPanel contentPane;
     private JButton btnCadastrarLivro, btnEmprestimoBV, btnEmprestimoComUm, btnAdicionarAmigo, btnInformacoesDeOutros, btnAlterarDados, btnVerMinhasInformacoes,
-            btnEnviarMensagem, btnCaixaDeEntrada, btnAdicionarSaldo, btnSair, btnUsuariosMesmaUni, btnCaixaArquivo;
+            btnEnviarMensagem, btnCaixaDeEntrada, btnAdicionarSaldo, btnSair, btnUsuariosMesmaUni, btnCaixaArquivo, btnMensagemArquivo;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -104,6 +104,9 @@ public class MenuComumEstudante extends JFrame {
         btnCaixaArquivo = new JButton("Transformar a caixa de entrada em arquivo");
         contentPane.add(btnCaixaArquivo);
 
+        btnMensagemArquivo = new JButton("Transformar um arquivo em mensagem");
+        contentPane.add(btnMensagemArquivo);
+
         btnUsuariosMesmaUni = new JButton("Buscar usuários da mesma Universidade");
         if (usuarioAtual instanceof UsuarioEstudante) {
             contentPane.add(btnUsuariosMesmaUni);
@@ -165,7 +168,7 @@ public class MenuComumEstudante extends JFrame {
 
                     try {
 
-                        FileWriter writer = new FileWriter("testeArquivos/CaixaDeEntrada.txt");
+                        Writer writer = new FileWriter("testeArquivos/CaixaDeEntrada.txt");
 
                         writer.write("Caixa de mensagem\n");
 
@@ -177,13 +180,18 @@ public class MenuComumEstudante extends JFrame {
 
                     } catch (IOException excecao) {
                         JOptionPane.showMessageDialog(MenuComumEstudante.this, "Erro ao tornar a caixa de entrada um arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
-                        System.out.println(excecao.getMessage());
                     }
 
-                }else { // Se nenhum desses botões foi apertado, quer dizer que o usuário apertou "sair".
+                } else if (e.getSource() == btnMensagemArquivo) {
+
+                    new TelaMensagemArquivo(usuarioAtual).setVisible(true);
+
+                } else { // Se nenhum desses botões foi apertado, quer dizer que o usuário apertou "sair".
 
                     JOptionPane.showMessageDialog(MenuComumEstudante.this, "Obrigado por utilizar a Biblioteca Virtual!", "Até logo!", JOptionPane.INFORMATION_MESSAGE);
+
                     MenuComumEstudante.this.dispose();
+
                     new TelaInicial().setVisible(true);
 
                 }
@@ -202,6 +210,7 @@ public class MenuComumEstudante extends JFrame {
         btnAdicionarSaldo.addActionListener(btnListener);
         btnUsuariosMesmaUni.addActionListener(btnListener);
         btnCaixaArquivo.addActionListener(btnListener);
+        btnMensagemArquivo.addActionListener(btnListener);
         btnSair.addActionListener(btnListener);
     }
 }

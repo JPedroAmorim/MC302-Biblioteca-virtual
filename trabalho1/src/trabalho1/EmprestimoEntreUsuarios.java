@@ -28,7 +28,7 @@ public class EmprestimoEntreUsuarios extends Emprestimo {
 
     // toString de EmprestimoEntreUsuarios.
 
-    // @Override
+     @Override
 
     public String toString() {
         String out = "Empréstimo (ID) : " + getIdEmprestimo() + "\n";

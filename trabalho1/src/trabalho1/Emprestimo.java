@@ -94,8 +94,7 @@ public class Emprestimo {
 
     // toString de empréstimo.
 
-    // @Override
-
+     @Override
     public String toString() {
         String out = "Empréstimo (ID): " + getIdEmprestimo() + "\n";
         out = out + "Data do empréstimo: " + getDataEmprestimo() + "\n";

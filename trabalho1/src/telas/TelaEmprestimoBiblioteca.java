@@ -78,9 +78,9 @@ public class TelaEmprestimoBiblioteca extends JFrame {
                 }
 
             } catch(SistemaExcecao excecao) {
+
                     JOptionPane.showMessageDialog(TelaEmprestimoBiblioteca.this, excecao.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    TelaEmprestimoBiblioteca.this.dispose();
-                    return;
+
                 }
             }
         });

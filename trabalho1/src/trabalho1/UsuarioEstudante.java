@@ -28,17 +28,20 @@ public class UsuarioEstudante extends Usuario {
     public String getInstituicao() {
         return instituicao;
     }
+
     public void setInstituicao(String instituicao) {
         this.instituicao = instituicao;
     }
+
     public int getRa() {
         return ra;
     }
+
     public void setRa(int ra) {
         this.ra = ra;
     }
 
-    // Método buscaUsuarioUniversidade: Exclusivo de usuarioEstudante, é capaz de informar quais usuários do sistema estão na mesma instituição de ensino do usuário atual.
+    // Método buscaUsuarioUniversidade: Exclusivo de usuarioEstudante, é capaz de informar quais usuários do sistema estão na mesma instituição de ensino do usuário atual. Lança SistemaExcecao.
 
     public String buscaUsuarioUniversidade() throws SistemaExcecao {
         boolean flag = false;
@@ -53,9 +56,11 @@ public class UsuarioEstudante extends Usuario {
             }
         }
         if (!flag)
-        	throw new SistemaExcecao("Não encontramos nenhum usuário de sua instituição de ensino!");
+            throw new SistemaExcecao("Não encontramos nenhum usuário de sua instituição de ensino!");
         return out;
     }
+
+    // Método alteraDados: permite que o usuário altere seus dados a partir de dados obtidos pela interface gráfica.
 
     public void alteraDados(String novoNome, String novaSenha, String novoEmail, String novoAniversario, int novoRA, String novaInstituicao) {
         this.setNome(novoNome);
@@ -66,6 +71,8 @@ public class UsuarioEstudante extends Usuario {
         this.setInstituicao(novaInstituicao);
     }
 
+    // Implementação de cadastrarLivro.
+
     public void cadastrarLivro(String nome, String autor, int indice, int edicao, int ano, int livrosDisponiveis, double valor) {
 
         List<Genero> list = new ArrayList<Genero>(EnumSet.allOf(Genero.class));
@@ -74,6 +81,8 @@ public class UsuarioEstudante extends Usuario {
         this.getLivrosDoUsuario().add(livro);
     }
 
+
+    // toString de usuarioEstudante.
 
     @Override
     public String toString() {
@@ -84,30 +93,28 @@ public class UsuarioEstudante extends Usuario {
         return out;
     }
 
-    public void salvar(Writer writer) {
-        try {
-            writer.write(this.getMensagens().toString());
+    // Implementação de SalvarLer.
 
-            writer.flush();
+    public void salvar(Writer writer) throws IOException {
 
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+        writer.write(this.getMensagens().toString());
+
+        writer.flush();
     }
-    public void ler(File arquivo) {
-    	try {
-			FileReader arq = new FileReader(arquivo);
-			BufferedReader ler = new BufferedReader(arq);
-			String linha = ler.readLine();		
-			while(linha != null) {
-				System.out.println(linha);
-				linha = ler.readLine();
-			}
-			ler.close();
-			arq.close();	
-		}catch(IOException e) {
-			
-		}	
-	}
+
+    public String ler(File arquivo) throws IOException {
+        String out = "";
+        Reader arq = new FileReader(arquivo);
+        BufferedReader ler = new BufferedReader(arq);
+        String linha = ler.readLine();
+        while (linha != null) {
+            out += linha;
+            linha = ler.readLine();
+        }
+        ler.close();
+        arq.close();
+        return out;
+    }
+
 }
 

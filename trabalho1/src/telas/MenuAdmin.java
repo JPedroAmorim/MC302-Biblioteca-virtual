@@ -1,46 +1,148 @@
 package telas;
 
+import trabalho1.Biblioteca;
+import trabalho1.Gerenciador;
+import trabalho1.Usuario;
+import trabalho1.UsuarioAdmin;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
 public class MenuAdmin extends JFrame {
 
     private JPanel contentPane;
 
 
-    public MenuAdmin() {
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+
+                    Gerenciador.geradorUsuario("Dummy", "a", "a", "a", "a", 1, true);
+
+                    Gerenciador.geradorUsuario("Dummy1", "a", "a", "a", "a", 1, true);
+
+                    Usuario dummy1 = Biblioteca.usuarios.get(Gerenciador.login("Dummy1", "a"));
+
+                    dummy1.cadastrarLivro("b", "c", 2, 3, 4, 5, 6);
+
+                    Usuario dummy = Biblioteca.usuarios.get(Gerenciador.login("Dummy", "a"));
+
+                    dummy.setSaldo(100);
+
+                    UsuarioAdmin dummya = new UsuarioAdmin("a", "b", "c", "2", true);
+
+                    dummya.cadastrarLivro("a", "b", 2, 2, 3, 4, 4);
+                    dummya.cadastrarCupom("3", 20);
+
+
+                    MenuAdmin frame = new MenuAdmin(dummya);
+                    frame.setVisible(true);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    public MenuAdmin(UsuarioAdmin usuarioAdmin) {
+
         setTitle("Menu Principal");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 217);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(100, 100, 200, 250);
+        setLocationRelativeTo(null);
+
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        contentPane.setLayout(null);
+        contentPane.setLayout(new WrapLayout(WrapLayout.CENTER));
 
-        JButton btnNewButton = new JButton("Banir usuário");
-        btnNewButton.setBounds(237, 37, 174, 23);
-        contentPane.add(btnNewButton);
+        JButton botaoBanirUsuario = new JButton("Banir usuário");
+        contentPane.add(botaoBanirUsuario);
 
-        JButton btnCadastrarCupom = new JButton("Cadastrar cupom");
-        btnCadastrarCupom.setBounds(31, 37, 166, 23);
-        contentPane.add(btnCadastrarCupom);
+        JButton botaoCadastrarCupom = new JButton("Cadastrar Cupom");
+        contentPane.add(botaoCadastrarCupom);
 
-        JButton btnCadastrarLivro = new JButton("Cadastrar livro");
-        btnCadastrarLivro.setBounds(234, 71, 177, 23);
-        contentPane.add(btnCadastrarLivro);
+        JButton botaoCadastrarLivro = new JButton("Cadastrar livro");
+        contentPane.add(botaoCadastrarLivro);
 
-        JButton btnListaEstadoDo = new JButton("Listar estado do sistema");
-        btnListaEstadoDo.setBounds(31, 71, 166, 23);
-        contentPane.add(btnListaEstadoDo);
+        JButton botaoListaEstadoDo = new JButton("Listar estado do sistema");
+        contentPane.add(botaoListaEstadoDo);
 
-        JButton btnSair = new JButton("Sair");
-        btnSair.setBounds(172, 130, 89, 23);
-        contentPane.add(btnSair);
+        JButton botaoBibliotecaEmArquivo = new JButton("Transformar o conteúdo do sistema em arquivo");
+        contentPane.add(botaoBibliotecaEmArquivo);
+
+        JButton botaoSair = new JButton("Sair");
+        contentPane.add(botaoSair);
+
+        ActionListener btnListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == botaoBanirUsuario) {
+
+                    new TelaBanirUsuario(usuarioAdmin).setVisible(true);
+
+                } else if (e.getSource() == botaoCadastrarCupom) {
+
+                    new TelaCadastrarCupom(usuarioAdmin).setVisible(true);
+
+                } else if (e.getSource() == botaoCadastrarLivro) {
+
+                    new TelaCadastrarLivro(usuarioAdmin).setVisible(true);
+
+                } else if (e.getSource() == botaoListaEstadoDo) {
+
+                    new TelaEstadoSistema().setVisible(true);
+
+                } else if (e.getSource() == botaoBibliotecaEmArquivo) {
+
+                    try {
+
+                        Writer writer = new FileWriter("testeArquivos/Biblioteca.txt");
+
+                        writer.write("Dados do sistema\n");
+
+                        Biblioteca bibliotecaParaArquivo = new Biblioteca();
+
+                        bibliotecaParaArquivo.salvar(writer);
+
+                        writer.close();
+
+                        JOptionPane.showMessageDialog(MenuAdmin.this, "Dados da biblioteca se tornaram um arquivo texto com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                    } catch (IOException excecao) {
+                        JOptionPane.showMessageDialog(MenuAdmin.this, "Erro ao tornar os dados da biblioteca um arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(MenuAdmin.this, "Obrigado por utilizar a Biblioteca Virtual!", "Até logo!", JOptionPane.INFORMATION_MESSAGE);
+
+                    MenuAdmin.this.dispose();
+
+                    new TelaInicial().setVisible(true);
+
+                }
+            }
+        };
+
+        botaoBanirUsuario.addActionListener(btnListener);
+        botaoCadastrarCupom.addActionListener(btnListener);
+        botaoCadastrarLivro.addActionListener(btnListener);
+        botaoListaEstadoDo.addActionListener(btnListener);
+        botaoBibliotecaEmArquivo.addActionListener(btnListener);
+        botaoSair.addActionListener(btnListener);
+
     }
 
 }
