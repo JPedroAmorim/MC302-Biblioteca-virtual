@@ -68,7 +68,6 @@ public class TelaLerMensagens extends JFrame {
         contentPane.add(todas);
         contentPane.add(naoLidas);
         contentPane.add(scrollbar);
-
     }
 
 

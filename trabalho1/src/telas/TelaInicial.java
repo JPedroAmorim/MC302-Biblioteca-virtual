@@ -63,6 +63,4 @@ public class TelaInicial extends JFrame {
         contentPane.add(btnCadastro, BorderLayout.CENTER);
     }
 
-    public static void main (String args[]) { new TelaInicial().setVisible(true);}
-
 }

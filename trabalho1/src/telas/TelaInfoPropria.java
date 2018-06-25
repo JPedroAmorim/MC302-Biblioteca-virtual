@@ -41,8 +41,6 @@ public class TelaInfoPropria extends JFrame {
         dados.setText(usuarioAtual.toString());
 
         contentPane.add(scrollbar);
-
     }
-
 }
 

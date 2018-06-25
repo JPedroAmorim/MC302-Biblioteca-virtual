@@ -1,14 +1,9 @@
 package telas;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.EventQueue;
-
+;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import trabalho1.Gerenciador;
-
+import trabalho1.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -116,25 +111,25 @@ public class Cadastro extends JFrame {
                 data = txtData.getText();
                 ehEstudante = rdbtnSim.isSelected();
 
-                if (ehEstudante) {
-                    try {
 
-                        instituicao = txtInst.getText();
+                if (nome.equals("") && senha.equals("") && email.equals("") && data.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
+                } else {
 
-                        ra = Integer.parseInt(txtRA.getText());
-                    } catch (NumberFormatException excecao) {
-                        JOptionPane.showMessageDialog(Cadastro.this, "Entre com um número de ra válido", "Erro", JOptionPane.ERROR_MESSAGE);
-                        return;
+                    if (ehEstudante) {
+                        try {
+                            instituicao = txtInst.getText();
+                            ra = Integer.parseInt(txtRA.getText());
+                        } catch (NumberFormatException excecao) {
+                            JOptionPane.showMessageDialog(Cadastro.this, "Entre com um número de ra válido", "Erro", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                     }
+                    Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
+                    Cadastro.this.dispose();
                 }
-
-                Gerenciador.geradorUsuario(nome, senha, data, email, instituicao, ra, ehEstudante);
-                Cadastro.this.dispose();
-
             }
         });
-
-
         btnCadastrar.setBounds(85, 376, 102, 23);
         contentPane.add(btnCadastrar);
     }
