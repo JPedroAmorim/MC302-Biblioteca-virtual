@@ -1,54 +1,116 @@
 package trabalho1;
 
+import java.util.Random;
+
+// Classe livro: abstração de um livro para os efeitos do sistema.
+
 public class Livro {
-	
-	private int codigo;
-	private String nome;
-	private String descricao;
-	private int anoFabricacao;
-	private int anoValidade;
-	private int numeroEmprestimos;
-	
-	public Livro(int codigo, String nome, String descricao, int anoFabricacao, int anoValidade, int numeroEmprestimos) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.anoFabricacao = anoFabricacao;
-		this.anoValidade = anoValidade;
-		this.numeroEmprestimos = numeroEmprestimos;
-	}
 
-	public int getCodigo() {
-		return codigo;
-	}
+    // Atributos.
 
-	public String getNome() {
-		return nome;
-	}
+    private int id;
+    private static int geradorId = 0;
+    private final int idMax = 1000;
+    private String nome;
+    private String autor;
+    private Genero genero;
+    private int edicao;
+    private int ano;
+    private int livrosDisponiveis;
+    private double valorDeEmprestimo;
 
-	public String getDescricao() {
-		return descricao;
-	}
+    // Construtor.
 
-	public int getAnoFabricacao() {
-		return anoFabricacao;
-	}
+    public Livro(String nome, String autor, Genero genero, int edicao, int ano, int livrosDisponiveis, double valorDeEmprestimo) {
+        this.nome = nome;
+        this.autor = autor;
+        this.genero = genero;
+        this.edicao = edicao;
+        this.ano = ano;
+        this.livrosDisponiveis = livrosDisponiveis;
+        this.valorDeEmprestimo = valorDeEmprestimo;
+        Random geradorIdRandom = new Random(geradorId); // Aqui, há um processo de geração de id com auxílio da classe Random. Para cada livro gerado, seu id é um número aleatório com seed.
+        this.id = geradorIdRandom.nextInt(idMax);
+        geradorId++;
+    }
 
-	public int getAnoValidade() {
-		return anoValidade;
-	}
+    // Setters & Getters.
 
-	public int getNumeroEmprestimos() {
-		return numeroEmprestimos;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setNumeroEmprestimos(int numeroEmprestimos) {
-		this.numeroEmprestimos = numeroEmprestimos;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	@Override
-	public String toString() {
-		return "Livro [codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", anoFabricacao="
-				+ anoFabricacao + ", anoValidade=" + anoValidade + ", numeroEmprestimos=" + numeroEmprestimos + "]";
-	}	
-} // kjkjkjk
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public int getEdicao() {
+        return edicao;
+    }
+
+    public void setEdicao(short edicao) {
+        this.edicao = edicao;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(short ano) {
+        this.ano = ano;
+    }
+
+    public int getLivrosDisponiveis() {
+        return livrosDisponiveis;
+    }
+
+    public void setLivrosDisponiveis(int livrosDisponiveis) {
+        this.livrosDisponiveis = livrosDisponiveis;
+    }
+
+    public double getValorDeEmprestimo() {
+        return valorDeEmprestimo;
+    }
+
+    public void setValorDeEmprestimo(double valorDeEmprestimo) {
+        this.valorDeEmprestimo = valorDeEmprestimo;
+    }
+
+    // toString de Livro.
+
+    @Override
+    public String toString() {
+        String out = "Nome: " + getNome() + "(ID: " + getId() + ")\n";
+        out = out + "Autor: " + getAutor() + "\n";
+        out = out + "Ano: " + getAno() + "\n";
+        out = out + "Edição: " + getEdicao() + "\n";
+        out = out + getGenero() + "\n";
+        out = out + "Livros disponiveis: " + getLivrosDisponiveis() + "\n";
+
+        return out;
+    }
+}
